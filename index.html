@@ -381,7 +381,7 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:f7ea09a333';
+const KEY = 'vozni:dataset:94d60a6c45';
 const SHARED = true;
 const TODAY = '2026-08-19';
 const BUDGET_MAX = 15000;
@@ -399,7 +399,7 @@ const SEED_ROWS = [
   "id": "YH-003",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-51230157",
@@ -410,11 +410,15 @@ const SEED_ROWS = [
   "mileage_km": 141955,
   "engine": "1.497 cm3 54 kW Hibrid",
   "transmission": "automatic",
-  "price_eur": 8400,
+  "price_eur": 8000,
   "price_history": [
    {
     "date": "2026-08-17",
     "price": 8400
+   },
+   {
+    "date": "2026-08-19",
+    "price": 8000
    }
   ],
   "location": "Maksimir, Grad Zagreb",
@@ -436,7 +440,7 @@ const SEED_ROWS = [
   "id": "AH-004",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-auris-1.8-hsd-sol-automatik-oglas-51172203",
@@ -473,7 +477,7 @@ const SEED_ROWS = [
   "id": "XX-004",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/kia-optima-2.0-hibrid-automatik-oglas-51211433",
@@ -483,7 +487,7 @@ const SEED_ROWS = [
   "year": 2015,
   "mileage_km": 150000,
   "engine": "1.999 cm3 110 kW Hibrid",
-  "transmission": "manual",
+  "transmission": "automatic",
   "price_eur": 10200,
   "price_history": [
    {
@@ -502,15 +506,52 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Unmatched model, XX prefix. Transmission conflict: title says \"automatik\", Mjenjač field says \"Mehanički mjenjač\" — needs a human read. 4.86 m.",
+  "parse_notes": "Unmatched model, XX prefix. Transmission conflict: title says \"automatik\", Mjenjač field says \"Mehanički mjenjač\" — needs a human read. 4.86 m. Mjenjac field says 'Mehanicki mjenjac'; the Optima 2.0 GDI Hybrid was only ever built with a 6-speed automatic, and the title says automatik. Treat the structured field as a seller error.",
   "power_kw": 151,
   "power_source": "model-typical total system output, not read from the ad"
+ },
+ {
+  "id": "XX-013",
+  "status": "active",
+  "first_seen": "2026-08-19",
+  "last_verified": "2026-08-19",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-oglas-50915742",
+  "image_url": null,
+  "model": "Nissan Juke",
+  "trim": "1,6 16V CVT TEKNA",
+  "year": 2015,
+  "mileage_km": 118000,
+  "engine": "1.598 cm3 86 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 10299,
+  "price_history": [
+   {
+    "date": "2026-08-19",
+    "price": 10299
+   }
+  ],
+  "location": "Sesvete, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": "09 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Nissan Juke 1.6 16V (HR16DE) with CVT - naturally aspirated at 54 kW/litre, so it fits the NA-petrol half of the brief. Off-list find.",
+  "power_kw": null,
+  "power_source": null
  },
  {
   "id": "YH-006",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-50964036",
@@ -547,7 +588,7 @@ const SEED_ROWS = [
   "id": "YH-004",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-pod-garancijom-oglas-50717195",
@@ -584,7 +625,7 @@ const SEED_ROWS = [
   "id": "YH-007",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-hybrid-oglas-49824980",
@@ -621,7 +662,7 @@ const SEED_ROWS = [
   "id": "AH-005",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-automatik-oglas-50802095",
@@ -658,7 +699,7 @@ const SEED_ROWS = [
   "id": "XX-011",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-automatik-oglas-50929919",
@@ -695,7 +736,7 @@ const SEED_ROWS = [
   "id": "YH-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-trend-plus-y20-toyota-relax-202-oglas-51202463",
@@ -730,7 +771,7 @@ const SEED_ROWS = [
   "id": "YP-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-51193485",
@@ -767,7 +808,7 @@ const SEED_ROWS = [
   "id": "YH-005",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-y20-special-edition-2019-oglas-51158436",
@@ -804,7 +845,7 @@ const SEED_ROWS = [
   "id": "XX-008",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-hybrid-oglas-50509254",
@@ -841,7 +882,7 @@ const SEED_ROWS = [
   "id": "XX-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-50861903",
@@ -870,7 +911,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Region unreadable, coastal undetermined. Import flag suppressed: \"uvoz\" negated by \"nije\". 4.36 m — just over the length limit.",
+  "parse_notes": "Region unreadable, coastal undetermined. Import flag suppressed: \"uvoz\" negated by \"nije\". 4.36 m — just over the length limit. Listed in Slovenija, so no Croatian region applies and the coastal corrosion question does not arise. Cross-border purchase.",
   "power_kw": 90,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -878,7 +919,7 @@ const SEED_ROWS = [
   "id": "XX-007",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/renault-megane-conquest-145-ks-e-tech-hibrid-1.6-oglas-48820244",
@@ -915,7 +956,7 @@ const SEED_ROWS = [
   "id": "AH-003",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-kamera-grij-sicevi-kuka-oglas-50407726",
@@ -945,7 +986,7 @@ const SEED_ROWS = [
    "recent_import_no_hr_history",
    "no_vin_stated"
   ],
-  "parse_notes": "Region unreadable, coastal undetermined. German car, no Croatian inspection history yet.",
+  "parse_notes": "Region unreadable, coastal undetermined. German car, no Croatian inspection history yet. Import to order - the ad states the cars are not in Croatia (UVOZ VOZILA PO NARUDZBI ... VOZILA SE NE NALAZE U RH). No Croatian region applies. This is a dealer offer to source a car, not a car you can go and see.",
   "power_kw": 100,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -953,7 +994,7 @@ const SEED_ROWS = [
   "id": "AH-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-136ks-hybrid-design-edition-kamera-navi-led-oglas-50408017",
@@ -983,7 +1024,7 @@ const SEED_ROWS = [
    "recent_import_no_hr_history",
    "no_vin_stated"
   ],
-  "parse_notes": "Region unreadable, coastal undetermined. Estate — the revised brief asks for the hatchback.",
+  "parse_notes": "Region unreadable, coastal undetermined. Estate — the revised brief asks for the hatchback. Import to order - the ad states the cars are not in Croatia (UVOZ VOZILA PO NARUDZBI ... VOZILA SE NE NALAZE U RH). No Croatian region applies. This is a dealer offer to source a car, not a car you can go and see.",
   "power_kw": 100,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -991,7 +1032,7 @@ const SEED_ROWS = [
   "id": "XX-009",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/infiniti-q50-3.5-hybrid-awd-364-ks-v6-elektro-full-oprema-2016-oglas-50216237",
@@ -1028,7 +1069,7 @@ const SEED_ROWS = [
   "id": "XX-012",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-hsd-hibrid-oglas-51017493",
@@ -1038,7 +1079,7 @@ const SEED_ROWS = [
   "year": 2018,
   "mileage_km": 158864,
   "engine": "72 kW Hibrid",
-  "transmission": null,
+  "transmission": "ecvt",
   "price_eur": 15000,
   "price_history": [
    {
@@ -1058,7 +1099,7 @@ const SEED_ROWS = [
    "accident_language",
    "no_vin_stated"
   ],
-  "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad.",
+  "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad. Gearbox not stated in the ad. The C-HR 1.8 HSD is e-CVT only.",
   "power_kw": 90,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -1066,7 +1107,7 @@ const SEED_ROWS = [
   "id": "YP-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-50699858",
@@ -1100,10 +1141,47 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
+  "id": "YH-008",
+  "status": "active",
+  "first_seen": "2026-08-19",
+  "last_verified": "2026-08-19",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-automatik-2021god-produzeno-jamstvo-reg-3-2027-oglas-51290492",
+  "image_url": null,
+  "model": "Toyota Yaris",
+  "trim": "1.5 Hybrid",
+  "year": 2021,
+  "mileage_km": 97000,
+  "engine": "1.490 cm3 68 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15500,
+  "price_history": [
+   {
+    "date": "2026-08-19",
+    "price": 15500
+   }
+  ],
+  "location": "Novi Zagreb - Istok, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "2026-08-19: fit 139 (+36 Toyota Yaris Hybrid (priority 1); +0 above target, within reference range; +4 inland; -1 no_vin_stated)",
+  "power_kw": null,
+  "power_source": null
+ },
+ {
   "id": "AH-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-ambient-light-auto-klima-oglas-50407955",
@@ -1133,7 +1211,7 @@ const SEED_ROWS = [
    "recent_import_no_hr_history",
    "no_vin_stated"
   ],
-  "parse_notes": "Region unreadable, coastal undetermined.",
+  "parse_notes": "Region unreadable, coastal undetermined. Import to order - the ad states the cars are not in Croatia (UVOZ VOZILA PO NARUDZBI ... VOZILA SE NE NALAZE U RH). No Croatian region applies. This is a dealer offer to source a car, not a car you can go and see.",
   "power_kw": 100,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -1141,7 +1219,7 @@ const SEED_ROWS = [
   "id": "JZ-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/honda-jazz-hibrid-oglas-51213613",
@@ -1178,7 +1256,7 @@ const SEED_ROWS = [
   "id": "XX-010",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-51089371",
@@ -1207,7 +1285,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Region unreadable, coastal undetermined. 4.36 m.",
+  "parse_notes": "Region unreadable, coastal undetermined. 4.36 m. Listed in Slovenija, so no Croatian region applies and the coastal corrosion question does not arise. Cross-border purchase.",
   "power_kw": 90,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -1215,7 +1293,7 @@ const SEED_ROWS = [
   "id": "YH-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-reg-10-2026-tvornicko-jamstvo-oglas-50681683",
@@ -1252,7 +1330,7 @@ const SEED_ROWS = [
   "id": "CH-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hybrid-oglas-49018195",
@@ -1289,7 +1367,7 @@ const SEED_ROWS = [
   "id": "XX-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-hybrid-hr-auto-90tkm-servisna-automatik-oglas-51206650",
@@ -1323,10 +1401,47 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
+  "id": "CT-001",
+  "status": "active",
+  "first_seen": "2026-08-19",
+  "last_verified": "2026-08-19",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/lexus-ct-200h-automatik-oglas-50628870",
+  "image_url": null,
+  "model": "Lexus CT",
+  "trim": "200h",
+  "year": 2018,
+  "mileage_km": 96000,
+  "engine": "1.798 cm3 73 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16800,
+  "price_history": [
+   {
+    "date": "2026-08-19",
+    "price": 16800
+   }
+  ],
+  "location": "Stenjevec, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "01 / 2027",
+  "flags": [
+   "recent_import_no_hr_history"
+  ],
+  "parse_notes": "2026-08-19: fit 114 (+18 Lexus CT 200h (priority 4); +0 above target, within reference range; +4 inland; -8 recent_import_no_hr_history)",
+  "power_kw": null,
+  "power_source": null
+ },
+ {
   "id": "XX-003",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-hr-auto-oglas-51217928",
@@ -1336,7 +1451,7 @@ const SEED_ROWS = [
   "year": 2018,
   "mileage_km": 99000,
   "engine": "1.800 cm3 72 kW Hibrid",
-  "transmission": null,
+  "transmission": "ecvt",
   "price_eur": 17000,
   "price_history": [
    {
@@ -1355,7 +1470,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad.",
+  "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad. Gearbox not stated in the ad. The C-HR 1.8 hybrid is e-CVT only.",
   "power_kw": 90,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -1363,7 +1478,7 @@ const SEED_ROWS = [
   "id": "PR-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-prius-1.8-automatik-oglas-46180493",
@@ -1400,7 +1515,7 @@ const SEED_ROWS = [
   "id": "CH-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
+  "last_verified": "2026-08-19",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hibrid-automatik-oglas-50484453",
