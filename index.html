@@ -1,0 +1,1975 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vozni ledger — used car listing tracker, Croatia</title>
+<style>
+  :root{
+    --paper:#E4E7E2;
+    --paper-2:#D8DCD6;
+    --ink:#14171A;
+    --ink-2:#4A5157;
+    --ink-3:#7C858C;
+    --rule:#B9BFB8;
+    --slate:#33566B;
+    --rust:#A2432A;
+    --amber:#9A7318;
+    --green:#3F6B4A;
+    --card:#EFF1ED;
+    --display: "Arial Narrow","Helvetica Neue Condensed","Liberation Sans Narrow",system-ui,sans-serif;
+    --body: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:14px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--slate)}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    border-bottom:2px solid var(--ink);
+    padding:18px 20px 12px;
+    display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 28px;
+  }
+  .wordmark{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:34px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    line-height:.95;
+    margin:0;
+  }
+  .wordmark span{color:var(--rust)}
+  .sub{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--ink-2);
+    text-transform:uppercase;
+    max-width:46ch;
+  }
+  .counters{margin-left:auto;display:flex;gap:20px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .counters b{display:block;font-family:var(--display);font-size:26px;letter-spacing:.02em;font-weight:700}
+  .counters .c-inactive b{color:var(--ink-3)}
+  .counters .c-unver b{color:var(--amber)}
+
+  /* ---------- tabs ---------- */
+  nav.tabs{
+    display:flex;flex-wrap:wrap;gap:0;
+    border-bottom:1px solid var(--rule);
+    background:var(--paper-2);
+    position:sticky;top:0;z-index:30;
+  }
+  nav.tabs button{
+    appearance:none;border:0;background:transparent;
+    font-family:var(--display);font-size:14px;font-weight:700;
+    letter-spacing:.13em;text-transform:uppercase;
+    padding:11px 18px;cursor:pointer;color:var(--ink-2);
+    border-right:1px solid var(--rule);
+    border-bottom:3px solid transparent;
+  }
+  nav.tabs button:hover{color:var(--ink);background:#E9EBE7}
+  nav.tabs button[aria-selected="true"]{color:var(--ink);background:var(--paper);border-bottom-color:var(--rust)}
+  nav.tabs button:focus-visible{outline:2px solid var(--slate);outline-offset:-2px}
+  nav.tabs .count{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--ink-3);margin-left:6px}
+
+  main{padding:0 20px 80px}
+  section[hidden]{display:none}
+
+  .barline{
+    display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;
+    padding:12px 0;border-bottom:1px solid var(--rule);margin-bottom:12px;
+  }
+  .barline .spacer{margin-left:auto}
+  label.field{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);display:flex;gap:6px;align-items:center}
+  input[type=text],input[type=url],input[type=number],input[type=date],select,textarea{
+    font-family:var(--mono);font-size:12px;color:var(--ink);
+    background:#F6F7F4;border:1px solid var(--rule);border-radius:0;
+    padding:6px 8px;
+  }
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--slate);outline-offset:-1px}
+  textarea{width:100%;min-height:150px;line-height:1.4}
+  .btn{
+    font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px;
+    padding:8px 14px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;
+  }
+  .btn:hover{background:#000}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--paper-2)}
+  .btn:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+  .btn[disabled]{opacity:.4;cursor:not-allowed}
+
+  /* ---------- table ---------- */
+  .scroller{overflow-x:auto;border:1px solid var(--rule);background:var(--card)}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  thead th{
+    position:sticky;top:0;z-index:5;
+    background:var(--paper-2);
+    font-family:var(--mono);font-size:10px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.07em;color:var(--ink-2);
+    text-align:left;padding:8px 10px;white-space:nowrap;
+    border-bottom:1px solid var(--ink);
+  }
+  tbody td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;white-space:nowrap}
+  tbody tr:hover td{background:#E7EAE5}
+  td.wrap{white-space:normal;min-width:190px}
+  .num{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+  th.num{text-align:right}
+
+  /* signature: the chassis tag + the corrosion edge */
+  .tag{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;
+    background:var(--ink);color:var(--paper);padding:3px 6px;display:inline-block;
+  }
+  .tag.inactive{background:var(--ink-3)}
+  .tag.unverified{background:var(--amber)}
+  td.idcell{position:sticky;left:0;background:var(--card);z-index:4;border-right:1px solid var(--rule)}
+  tr:hover td.idcell{background:#E7EAE5}
+  th.idcell{position:sticky;left:0;z-index:6}
+  tr.coastal td.idcell{
+    box-shadow:inset 5px 0 0 var(--rust);
+    background-image:repeating-linear-gradient(45deg,rgba(162,67,42,.10) 0 3px,transparent 3px 7px);
+  }
+  tr.gone td{color:var(--ink-3)}
+  tr.gone .thumb{filter:grayscale(1);opacity:.5}
+
+  .chip{
+    font-family:var(--mono);font-size:10px;letter-spacing:.04em;
+    border:1px solid var(--rule);padding:2px 5px;display:inline-block;margin:1px 3px 1px 0;
+    background:#F6F7F4;color:var(--ink-2);
+  }
+  .chip.red{border-color:var(--rust);color:var(--rust)}
+  .chip.amber{border-color:var(--amber);color:var(--amber)}
+  .chip.slate{border-color:var(--slate);color:var(--slate)}
+  .chip.ok{border-color:var(--green);color:var(--green)}
+
+  .thumb{
+    width:74px;height:52px;object-fit:cover;border:1px solid var(--rule);display:block;background:var(--paper-2);
+  }
+  .thumb-missing{
+    width:74px;height:52px;border:1px dashed var(--rule);display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:9px;color:var(--ink-3);text-align:center;line-height:1.1;padding:2px;
+  }
+  .delta-down{color:var(--green);font-family:var(--mono);font-size:11px}
+  .delta-up{color:var(--rust);font-family:var(--mono);font-size:11px}
+  .vs-under{color:var(--green)}
+  .vs-over{color:var(--rust)}
+
+  /* ---------- prose blocks ---------- */
+  .note{
+    border-left:3px solid var(--slate);background:var(--card);
+    padding:12px 14px;margin:14px 0;max-width:80ch;
+  }
+  .note h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:13px;margin:0 0 6px}
+  .note p{margin:0 0 8px}
+  .note p:last-child{margin-bottom:0}
+  .note.decision{border-left-color:var(--amber)}
+  .note.warn{border-left-color:var(--rust)}
+  h2.head{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:17px;margin:22px 0 4px}
+  h2.head:first-child{margin-top:16px}
+  .lede{color:var(--ink-2);max-width:82ch;margin:0 0 14px}
+  code{font-family:var(--mono);font-size:12px;background:var(--paper-2);padding:1px 4px}
+
+  .log-entry{border-bottom:1px solid var(--rule);padding:12px 0;display:flex;gap:18px;flex-wrap:wrap}
+  .log-date{font-family:var(--mono);font-size:11px;color:var(--ink-2);min-width:130px;text-transform:uppercase;letter-spacing:.05em}
+  .log-body{flex:1;min-width:260px}
+  .log-body ul{margin:6px 0 0;padding-left:18px}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px 18px;max-width:1000px}
+  .grid2 label{display:flex;flex-direction:column;gap:4px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)}
+  .grid2 input,.grid2 select{width:100%}
+
+  .toast{
+    position:fixed;left:20px;bottom:20px;z-index:60;
+    background:var(--ink);color:var(--paper);padding:10px 16px;
+    font-family:var(--mono);font-size:12px;max-width:min(520px,80vw);
+  }
+  .toast.err{background:var(--rust)}
+  .empty{padding:40px 20px;text-align:center;color:var(--ink-2);border:1px dashed var(--rule);background:var(--card)}
+  .empty b{display:block;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:15px;margin-bottom:6px;color:var(--ink)}
+
+  @media (max-width:640px){
+    .wordmark{font-size:26px}
+    .counters{width:100%;margin-left:0;gap:14px}
+    main{padding:0 12px 60px}
+    .masthead{padding:14px 12px 10px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="masthead">
+  <div>
+    <h1 class="wordmark">Vozni <span>ledger</span></h1>
+    <div class="sub">Automatic · full hybrid or NA petrol · 2014–2021 · 60–120 tkm · under 4.35 m · power recorded, not required · buying in Zagreb, driving to Dubrovnik</div>
+  </div>
+  <div class="counters">
+    <div><b id="c-total">0</b>rows</div>
+    <div><b id="c-active">0</b>active</div>
+    <div class="c-unver"><b id="c-unver">0</b>unverified</div>
+    <div class="c-inactive"><b id="c-inactive">0</b>gone</div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" data-tab="ledger">In budget <span class="count" id="n-ledger"></span></button>
+  <button role="tab" aria-selected="false" data-tab="reference">Above budget <span class="count" id="n-ref"></span></button>
+  <button role="tab" aria-selected="false" data-tab="log">Run log <span class="count" id="n-log"></span></button>
+  <button role="tab" aria-selected="false" data-tab="sync">Sync</button>
+  <button role="tab" aria-selected="false" data-tab="entry">Add / edit</button>
+  <button role="tab" aria-selected="false" data-tab="about">Read me</button>
+</nav>
+
+<main>
+  <!-- ============ LEDGER ============ -->
+  <section id="tab-ledger">
+    <div class="barline">
+      <label class="field">Show
+        <select id="f-status">
+          <option value="all">every row</option>
+          <option value="active">active only</option>
+          <option value="inactive">gone only</option>
+          <option value="unverified">unverified only</option>
+        </select>
+      </label>
+      <label class="field">Model
+        <select id="f-model"><option value="all">all models</option></select>
+      </label>
+      <label class="field">Coastal
+        <select id="f-coastal">
+          <option value="all">include coastal</option>
+          <option value="no">inland only</option>
+          <option value="yes">coastal only</option>
+        </select>
+      </label>
+      <label class="field">Brief
+        <select id="f-fit">
+          <option value="all">all rows</option>
+          <option value="fit">fits the brief</option>
+          <option value="misfit">misses something</option>
+        </select>
+      </label>
+      <label class="field">Columns
+        <select id="f-cols">
+          <option value="compact">scan</option>
+          <option value="full">everything</option>
+        </select>
+      </label>
+      <span class="spacer"></span>
+      <button class="btn ghost" id="btn-csv">Copy as CSV</button>
+    </div>
+    <div id="ledger-mount"></div>
+  </section>
+
+  <!-- ============ REFERENCE ============ -->
+  <section id="tab-reference" hidden>
+    <h2 class="head">Above budget — €15,000 to €17,000</h2>
+    <p class="lede">Kept apart from the buying table on purpose: these are here to show what the extra money buys, not to be shopped. Same columns, same rules, same IDs — a row that drops below €15,000 moves itself into the in-budget table on the next render.</p>
+    <div id="ref-mount"></div>
+  </section>
+
+  <!-- ============ LOG ============ -->
+  <section id="tab-log" hidden>
+    <h2 class="head">Run log</h2>
+    <p class="lede">Append-only. Every sync writes an entry here, including the sources that could not be reached.</p>
+    <div id="log-mount"></div>
+  </section>
+
+  <!-- ============ SYNC ============ -->
+  <section id="tab-sync" hidden>
+    <h2 class="head">Sync with a scanning session</h2>
+    <p class="lede">A Claude session in another chat cannot write to this page directly. The loop is: copy the dataset out, run the scan, paste the updated dataset back. The paste is checked and diffed before anything is saved.</p>
+
+    <div class="barline">
+      <button class="btn" id="btn-copy-json">Copy dataset</button>
+      <button class="btn ghost" id="btn-copy-prompt">Copy run instructions</button>
+      <span class="spacer"></span>
+      <span class="field" id="sync-stamp"></span>
+    </div>
+
+    <h2 class="head">Paste the updated dataset</h2>
+    <p class="lede">Paste the JSON the session hands back. Nothing is written until you review the diff and confirm.</p>
+    <textarea id="import-box" spellcheck="false" placeholder='{"rows":[ ... ]}'></textarea>
+    <div class="barline">
+      <button class="btn" id="btn-check">Check this paste</button>
+      <button class="btn ghost" id="btn-commit" disabled>Save changes</button>
+      <button class="btn ghost" id="btn-clear-paste">Clear</button>
+    </div>
+    <div id="diff-mount"></div>
+
+    <div class="note decision">
+      <h3>Decision on record — 17 Aug 2026</h3>
+      <p><b>The exported JSON does not restate the search criteria.</b> It carries the rows and nothing else. Each run still starts from the handoff prompt, which holds the criteria; keeping them out of the export stops two copies drifting apart. Revisit this if you ever start a session cold, with no handoff prompt to hand.</p>
+    </div>
+
+    <div class="note">
+      <h3>Standing ask for the next run</h3>
+      <p><b>One photo per ad.</b> Every row now has an <code>image_url</code> field. Fill it with a direct link to the ad's lead photo — the exterior three-quarter shot if there's a choice. Leave it null rather than guessing; an empty frame in the table is a to-do, a wrong photo is a lie. Ads with a photo already recorded don't need it fetched again.</p>
+      <p>Also outstanding: <code>url</code> is empty on the seeded rows. Backfill the direct ad links on the next pass, since re-verification can't work without them.</p>
+    </div>
+  </section>
+
+  <!-- ============ ENTRY ============ -->
+  <section id="tab-entry" hidden>
+    <h2 class="head">Add or edit one listing</h2>
+    <p class="lede">For when you're on Njuškalo yourself and don't want to wait for a run. Enter an existing ID to edit that row; a new ID adds one.</p>
+    <div class="grid2" id="entry-form"></div>
+    <div class="barline">
+      <button class="btn" id="btn-save-row">Save row</button>
+      <button class="btn ghost" id="btn-reset-row">Empty the form</button>
+      <span class="spacer"></span>
+      <span class="field">Rows are never deleted — set status to <code>inactive</code> instead.</span>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="tab-about" hidden>
+    <h2 class="head">What this page is</h2>
+    <p class="lede">A cumulative record of automatic hybrid and naturally-aspirated petrol listings in Croatia, €7,000–15,000, 2014–2021, 60–170 tkm, under ~4.35 m. It exists to show attributes against asking price and to keep dead listings on file, not to choose a car.</p>
+
+    <div class="note decision">
+      <h3>Power is recorded, not required — 18 Aug 2026</h3>
+      <p>The <code>kW</code> column is there to be read, not to filter anything out. A low figure never puts a red chip in <b>fits brief</b> and never keeps a car off the table.</p>
+      <p>Why it matters here: a hard 90 kW floor would have eliminated the top priority model outright. Every Yaris Hybrid on this table is 74 kW, the Yaris 1.5 petrol automatic is 82 kW, and the Jazz CVT is about 75 kW. As a column instead, it sits next to price and mileage where you can weigh it — the Auris Hybrid's 100 kW against a Yaris Hybrid that is several thousand euro cheaper.</p>
+      <p>Figures marked <code>est.</code> are model-typical, not read from the ad. The next run confirms them from the listings.</p>
+    </div>
+
+    <div class="note decision">
+      <h3>Criteria revised — 18 Aug 2026</h3>
+      <p>Mileage narrowed to 60,000–120,000 km. Auris and Corolla now sought as hatchbacks; the Touring Sports estate is out. Engine power is now recorded in its own column but is not a requirement. Two rows were removed for breaking the fuel rule — a Ford Focus 1.0 EcoBoost, which is a turbocharged mild hybrid, and a VW Golf GTE, which is a plug-in. Their IDs are retired.</p>
+      <p>Everything else that no longer fits gets a red chip in the <b>fits brief</b> column and stays in the table. Rows are only ever removed when they never belonged, not when they stop being attractive — the price history is the point.</p>
+      <p>Power figures are model-typical estimates marked <code>est.</code>, not read from the ads. The next run confirms them.</p>
+    </div>
+
+    <div class="note warn">
+      <h3>What the statuses mean</h3>
+      <p><code>inactive</code> means the ad is no longer on the site. It does not say why, and it is not evidence the car found a buyer — ads expire, get withdrawn, and get pulled for reasons the site never states.</p>
+      <p><code>unverified</code> means the last check failed: a timeout, an error, a block. The row gets retried. It is not evidence either way.</p>
+      <p><code>days_listed</code> counts from <code>first_seen</code> — when this tracker first saw the ad, not when it was published.</p>
+    </div>
+
+    <div class="note">
+      <h3>The rust edge</h3>
+      <p>Rows from Dalmatia, Istria and Kvarner carry a hatched red edge on the ID cell and a <span class="chip red">coastal</span> chip. Sea salt gets into the underbody. Rows whose region could not be read are marked <span class="chip amber">coastal unknown</span> and are not assumed inland.</p>
+    </div>
+
+    <div class="note">
+      <h3>Sharing</h3>
+      <p>This page keeps its data in shared storage, so anyone with the link sees the same table and can edit it. Treat it as a public working document, not a private notebook.</p>
+    </div>
+
+    <div class="note">
+      <h3>Off-list finds</h3>
+      <p>IDs starting <code>XX-</code> are cars that met the hard requirements but weren't on the priority list, or whose model string the scanner couldn't match. Several are far longer than 4.35 m — Mondeo at 4.87, Optima at 4.86, Q50 at 4.79, Megane Conquest at 4.51 — and stay in the record as price context rather than candidates. The C-HR rows are 4.36 m, a centimetre over. The parse notes on each row say what couldn't be read.</p>
+      <p>Retired IDs, never to be reused: <code>XX-005</code>, <code>XX-006</code>.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+/* window.storage shim for static hosting. Backed by localStorage; the
+   storage key is content-versioned per render, so a new publish is a
+   cache miss and stale rows are never served. Failures are swallowed so
+   private-browsing visitors see the page, not a write error. */
+window.storage = window.storage || {
+  async get(k){ try{ const v = localStorage.getItem(k); return v == null ? null : {value:v}; }catch(e){ return null; } },
+  async set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+};
+</script>
+<script>
+/* ============================================================
+   Vozni ledger — data, storage, render
+   ============================================================ */
+const KEY = 'vozni:dataset:0bda593e5c';
+const SHARED = true;
+const TODAY = '2026-08-19';
+const BUDGET_MAX = 15000;
+/* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
+const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
+const RETIRED_IDS = ['XX-005','XX-006'];
+
+/* ---- seed: 17 Aug 2026 njuskalo.hr scan, 28 rows ---------------
+   Two rows from that scan are gone: XX-005 (Ford Focus 1.0 EcoBoost,
+   turbo mild hybrid) and XX-006 (VW Golf GTE, plug-in). Neither is a
+   full hybrid or a naturally aspirated petrol. IDs stay retired.
+   power_kw figures are model-typical, not read from the ads. -------- */
+const SEED_ROWS = [
+ {
+  "id": "YH-003",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-51230157",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": null,
+  "year": 2015,
+  "mileage_km": 141955,
+  "engine": "1.497 cm3 54 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 8400,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 8400
+   }
+  ],
+  "location": "Maksimir, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "12 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 74,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "AH-004",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-auris-1.8-hsd-sol-automatik-oglas-51172203",
+  "image_url": null,
+  "model": "Toyota Auris Hybrid Touring Sports",
+  "trim": "karavan",
+  "year": 2014,
+  "mileage_km": 155000,
+  "engine": "1.800 cm3 73 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 9900,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 9900
+   }
+  ],
+  "location": "Stenjevec, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "05 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"nema\". Estate — the revised brief asks for the hatchback.",
+  "power_kw": 100,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-004",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/kia-optima-2.0-hibrid-automatik-oglas-51211433",
+  "image_url": null,
+  "model": "Kia Optima 2.0 Hybrid",
+  "trim": null,
+  "year": 2015,
+  "mileage_km": 150000,
+  "engine": "1.999 cm3 110 kW Hibrid",
+  "transmission": "manual",
+  "price_eur": 10200,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 10200
+   }
+  ],
+  "location": "Samobor, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 2,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. Transmission conflict: title says \"automatik\", Mjenjač field says \"Mehanički mjenjač\" — needs a human read. 4.86 m.",
+  "power_kw": 151,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YH-006",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-50964036",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": null,
+  "year": 2014,
+  "mileage_km": 137000,
+  "engine": "1.500 cm3 55 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 10500,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 10500
+   }
+  ],
+  "location": "Solin - Okolica, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 74,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YH-004",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-pod-garancijom-oglas-50717195",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": null,
+  "year": 2016,
+  "mileage_km": 163000,
+  "engine": "1.500 cm3 74 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 11500,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 11500
+   }
+  ],
+  "location": "Varaždin, Varaždinska",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "10 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 74,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YH-007",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-hybrid-oglas-49824980",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": null,
+  "year": 2019,
+  "mileage_km": 119000,
+  "engine": "1.497 cm3 54 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 11900,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 11900
+   }
+  ],
+  "location": "Jastrebarsko, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "02 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 74,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "AH-005",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-automatik-oglas-50802095",
+  "image_url": null,
+  "model": "Toyota Auris Hybrid",
+  "trim": null,
+  "year": 2016,
+  "mileage_km": 158700,
+  "engine": "1.800 cm3 100 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 12500,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 12500
+   }
+  ],
+  "location": "Trešnjevka - Jug, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera, senzori",
+  "registered_until": "10 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Import flag suppressed: \"uvoz\" negated by \"Nije\".",
+  "power_kw": 100,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-011",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-automatik-oglas-50929919",
+  "image_url": null,
+  "model": "Ford Mondeo 2.0 Hybrid",
+  "trim": null,
+  "year": 2017,
+  "mileage_km": 137000,
+  "engine": "230 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 12900,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 12900
+   }
+  ],
+  "location": "Sesvete, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "10 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. 4.87 m.",
+  "power_kw": 137,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YP-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-51193485",
+  "image_url": null,
+  "model": "Toyota Yaris 1.5 petrol automatic",
+  "trim": null,
+  "year": 2019,
+  "mileage_km": 100721,
+  "engine": "54 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 13000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 13000
+   }
+  ],
+  "location": "Sveta Nedelja, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kameru, senzore",
+  "registered_until": "06 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 82,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YH-002",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-trend-plus-y20-toyota-relax-202-oglas-51202463",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": null,
+  "year": 2019,
+  "mileage_km": 76000,
+  "engine": "1.497 cm3 54 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 13000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 13000
+   }
+  ],
+  "location": "Solin, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": "11 / 2026",
+  "flags": [],
+  "parse_notes": null,
+  "power_kw": 74,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YH-005",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-y20-special-edition-2019-oglas-51158436",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": null,
+  "year": 2019,
+  "mileage_km": 120200,
+  "engine": "1.497 cm3 54 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 13800,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 13800
+   }
+  ],
+  "location": "Velika Gorica, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kameru",
+  "registered_until": "02 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"bez\".",
+  "power_kw": 74,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-008",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-hybrid-oglas-50509254",
+  "image_url": null,
+  "model": "Ford Mondeo 2.0 Hybrid",
+  "trim": null,
+  "year": 2015,
+  "mileage_km": 90000,
+  "engine": "2.000 cm3 130 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 13900,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 13900
+   }
+  ],
+  "location": "Trešnjevka - Jug, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "01 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. 4.87 m.",
+  "power_kw": 137,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-007",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/renault-megane-conquest-145-ks-e-tech-hibrid-1.6-oglas-48820244",
+  "image_url": null,
+  "model": "Renault Megane Conquest 1.6 E-Tech",
+  "trim": null,
+  "year": 2021,
+  "mileage_km": 140700,
+  "engine": "1.600 cm3 106 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 14500,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 14500
+   }
+  ],
+  "location": "Split, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "08 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. Full hybrid, so the fuel rule is met, but 4.51 m.",
+  "power_kw": 105,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-002",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-50861903",
+  "image_url": null,
+  "model": "Toyota C-HR 1.8 VVT-i",
+  "trim": null,
+  "year": 2017,
+  "mileage_km": 142000,
+  "engine": "1.798 cm3 72 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 14500,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 14500
+   }
+  ],
+  "location": "Slovenija",
+  "coastal": "unknown",
+  "seller_type": "dealer",
+  "owners": 2,
+  "service_history": null,
+  "import": null,
+  "parking_aids": "kamera, parkirni, senzori",
+  "registered_until": "10 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Region unreadable, coastal undetermined. Import flag suppressed: \"uvoz\" negated by \"nije\". 4.36 m — just over the length limit.",
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "AH-003",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-kamera-grij-sicevi-kuka-oglas-50407726",
+  "image_url": null,
+  "model": "Toyota Auris Hybrid",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 68000,
+  "engine": "1.798 cm3 100 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 14980,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 14980
+   }
+  ],
+  "location": "Njemačka",
+  "coastal": "unknown",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": null,
+  "flags": [
+   "recent_import_no_hr_history",
+   "no_vin_stated"
+  ],
+  "parse_notes": "Region unreadable, coastal undetermined. German car, no Croatian inspection history yet.",
+  "power_kw": 100,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "AH-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-136ks-hybrid-design-edition-kamera-navi-led-oglas-50408017",
+  "image_url": null,
+  "model": "Toyota Auris Hybrid Touring Sports",
+  "trim": "karavan",
+  "year": 2016,
+  "mileage_km": 91000,
+  "engine": "1.798 cm3 100 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 14990,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 14990
+   }
+  ],
+  "location": "Njemačka",
+  "coastal": "unknown",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": null,
+  "flags": [
+   "recent_import_no_hr_history",
+   "no_vin_stated"
+  ],
+  "parse_notes": "Region unreadable, coastal undetermined. Estate — the revised brief asks for the hatchback.",
+  "power_kw": 100,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-009",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/infiniti-q50-3.5-hybrid-awd-364-ks-v6-elektro-full-oprema-2016-oglas-50216237",
+  "image_url": null,
+  "model": "Infiniti Q50 3.5 Hybrid AWD",
+  "trim": null,
+  "year": 2016,
+  "mileage_km": 162000,
+  "engine": "3.500 cm3 268 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 14999,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 14999
+   }
+  ],
+  "location": "Maksimir, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "360, kamera",
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. 4.79 m and a V6 — far outside the brief, kept as price context.",
+  "power_kw": 268,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-012",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-hsd-hibrid-oglas-51017493",
+  "image_url": null,
+  "model": "Toyota C-HR 1.8 HSD",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 158864,
+  "engine": "72 kW Hibrid",
+  "transmission": null,
+  "price_eur": 15000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 15000
+   }
+  ],
+  "location": "Trešnjevka - Sjever, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "09 / 2026",
+  "flags": [
+   "accident_language",
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad.",
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YP-002",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-50699858",
+  "image_url": null,
+  "model": "Toyota Yaris 1.5 petrol automatic",
+  "trim": null,
+  "year": 2019,
+  "mileage_km": 78000,
+  "engine": "1.500 cm3 74 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15500,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 15500
+   }
+  ],
+  "location": "Velika Gorica, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "01 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 82,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "AH-002",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-ambient-light-auto-klima-oglas-50407955",
+  "image_url": null,
+  "model": "Toyota Auris Hybrid",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 75000,
+  "engine": "1.798 cm3 100 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15570,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 15570
+   }
+  ],
+  "location": "Njemačka",
+  "coastal": "unknown",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "recent_import_no_hr_history",
+   "no_vin_stated"
+  ],
+  "parse_notes": "Region unreadable, coastal undetermined.",
+  "power_kw": 100,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "JZ-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/honda-jazz-hibrid-oglas-51213613",
+  "image_url": null,
+  "model": "Honda Jazz CVT",
+  "trim": null,
+  "year": 2021,
+  "mileage_km": 83000,
+  "engine": "1.500 cm3 72 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15800,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 15800
+   }
+  ],
+  "location": "Gornja Dubrava, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "01 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 75,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-010",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-51089371",
+  "image_url": null,
+  "model": "Toyota C-HR 1.8 VVT-i",
+  "trim": null,
+  "year": 2017,
+  "mileage_km": 78000,
+  "engine": "1.796 cm3 90 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15990,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 15990
+   }
+  ],
+  "location": "Slovenija",
+  "coastal": "unknown",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": null,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Region unreadable, coastal undetermined. 4.36 m.",
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "YH-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-reg-10-2026-tvornicko-jamstvo-oglas-50681683",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": null,
+  "year": 2021,
+  "mileage_km": 103000,
+  "engine": "1.490 cm3 68 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16200,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 16200
+   }
+  ],
+  "location": "Osijek, Osječko-baranjska",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "09 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 85,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "CH-002",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hybrid-oglas-49018195",
+  "image_url": null,
+  "model": "Toyota Corolla Hybrid HB",
+  "trim": null,
+  "year": 2020,
+  "mileage_km": 127500,
+  "engine": "1.800 cm3 72 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16300,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 16300
+   }
+  ],
+  "location": "Split, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "05 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Description block not captured. Engine size unread — 1.8 (90 kW) and 2.0 (132 kW) both sold; power figure assumed 1.8.",
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-c-hr-hybrid-hr-auto-90tkm-servisna-automatik-oglas-51206650",
+  "image_url": null,
+  "model": "Toyota C-HR Hybrid",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 90100,
+  "engine": "1.798 cm3 90 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16800,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 16800
+   }
+  ],
+  "location": "Novi Zagreb - Zapad, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": "06 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. Ad states Croatian car with service book. 4.36 m.",
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "CH-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hibrid-automatik-oglas-50484453",
+  "image_url": null,
+  "model": "Toyota Corolla Hybrid",
+  "trim": null,
+  "year": 2019,
+  "mileage_km": 76000,
+  "engine": "1.798 cm3 72 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 17000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 17000
+   }
+  ],
+  "location": "Dugopolje, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "PR-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-prius-1.8-automatik-oglas-46180493",
+  "image_url": null,
+  "model": "Toyota Prius",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 135000,
+  "engine": "1.798 cm3 72 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 17000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 17000
+   }
+  ],
+  "location": "Čakovec, Međimurska",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "09 / 2026",
+  "flags": [
+   "recent_import_no_hr_history"
+  ],
+  "parse_notes": "Larger than ideal at 4.54 m — noted per the brief.",
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ },
+ {
+  "id": "XX-003",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-hr-auto-oglas-51217928",
+  "image_url": null,
+  "model": "Toyota C-HR 1.8 VVT-i",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 99000,
+  "engine": "1.800 cm3 72 kW Hibrid",
+  "transmission": null,
+  "price_eur": 17000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 17000
+   }
+  ],
+  "location": "Split, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera, senzori",
+  "registered_until": "10 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad.",
+  "power_kw": 90,
+  "power_source": "model-typical estimate, not read from the ad"
+ }
+];
+
+function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
+
+const SEED_LOG = [
+{
+  date:'2026-08-17',
+  title:'First scan',
+  sources_reached:['njuskalo.hr'],
+  sources_unreachable:['index.hr/oglasi','oglasnik.hr','autoscout24','mobile.de'],
+  lines:[
+    '30 listings recorded, all active.',
+    'Ad URLs and photos were not captured this run — both are outstanding for the next pass.',
+    'Six rows could not have their region read; they are marked coastal unknown rather than assumed inland.'
+  ]
+},
+{
+  date:'2026-08-18',
+  title:'Criteria revised',
+  lines:[
+    'Mileage range narrowed from 60–170 tkm to 60–120 tkm.',
+    'Engine power added as a recorded column. It is not a requirement and does not exclude anything.',
+    'Auris / Corolla priority narrowed to the hatchback; the Touring Sports estate is no longer sought.',
+    'Removed XX-005 (Ford Focus 1.0 EcoBoost — turbocharged mild hybrid) and XX-006 (VW Golf GTE — plug-in hybrid). Neither is a full hybrid or a naturally aspirated petrol, so neither should have been recorded. Both IDs are retired and will not be reused.',
+    'power_kw added to every remaining row as a model-typical estimate. None of these figures were read from an ad; the next run should confirm them.',
+    'Rows that no longer meet the tightened rules are marked, not deleted — they stay as price history.'
+  ]
+}];
+
+/* ---- state ---- */
+let DB = {rows:[], log:[], meta:{}};
+let pending = null;
+
+/* ---- storage ---- */
+async function load(){
+  try{
+    const res = await window.storage.get(KEY, SHARED);
+    if(res && res.value){ DB = JSON.parse(res.value); }
+    else { throw new Error('empty'); }
+    if(!Array.isArray(DB.rows) || !DB.rows.length) throw new Error('empty');
+  }catch(e){
+    DB = {rows:seedRows(), log:SEED_LOG.slice(), meta:{created:TODAY, json_preamble_restates_criteria:false}};
+    await save('Seeded from the 17 Aug scan.');
+  }
+  DB.meta = DB.meta || {};
+  renderAll();
+}
+async function save(msg){
+  try{
+    await window.storage.set(KEY, JSON.stringify(DB), SHARED);
+    if(msg) toast(msg);
+  }catch(e){ toast('Nothing was saved — storage refused the write. Copy the dataset out before reloading.', true); }
+}
+
+/* ---- helpers ---- */
+const el = (t,c,txt)=>{const n=document.createElement(t); if(c)n.className=c; if(txt!=null)n.textContent=txt; return n;};
+const fmt = n => n==null?'—':n.toLocaleString('en-US');
+const dash = v => (v==null||v==='')?'—':v;
+function days(from){ if(!from) return null; const a=new Date(from), b=new Date(TODAY); return Math.max(0, Math.round((b-a)/864e5)); }
+function perK(r){ return (r.price_eur&&r.mileage_km)? +(r.price_eur/(r.mileage_km/1000)).toFixed(2) : null; }
+function band(y){ return y<=2016?'2014–16' : y<=2019?'2017–19' : '2020–21'; }
+function median(a){ if(!a.length) return null; const s=[...a].sort((x,y)=>x-y), m=s.length>>1; return s.length%2?s[m]:(s[m-1]+s[m])/2; }
+function vsCohort(r, rows){
+  const peers = rows.filter(x=>x.model===r.model && band(x.year)===band(r.year) && x.price_eur).map(x=>x.price_eur);
+  if(peers.length<2) return null;
+  const m = median(peers); if(!m) return null;
+  return Math.round((r.price_eur-m)/m*100);
+}
+/* Power is recorded, not enforced. It stays out of misses() on purpose
+   (decision of 18 Aug 2026) — see the note on the Read me tab. */
+function misses(r){
+  const out=[];
+  if(r.mileage_km!=null){
+    if(r.mileage_km>CRIT.km_max) out.push('over '+(CRIT.km_max/1000)+' tkm');
+    if(r.mileage_km<CRIT.km_min) out.push('under '+(CRIT.km_min/1000)+' tkm');
+  }
+  if(r.year!=null && (r.year<CRIT.year_min||r.year>CRIT.year_max)) out.push('year '+r.year);
+  return out;
+}
+function lastMove(r){
+  const h=r.price_history||[]; if(h.length<2) return null;
+  return h[h.length-1].price - h[h.length-2].price;
+}
+function toast(msg, err){
+  const t=el('div','toast'+(err?' err':''),msg); document.body.appendChild(t);
+  setTimeout(()=>t.remove(), err?7000:3200);
+}
+async function copy(text, okMsg){
+  try{ await navigator.clipboard.writeText(text); toast(okMsg); }
+  catch(e){
+    const ta=el('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); toast(okMsg); }catch(_){ toast('Copy failed — select the text and copy it by hand.', true); }
+    ta.remove();
+  }
+}
+
+/* ---- columns ---- */
+const COMPACT = ['id','photo','status','fit','model','year','mileage_km','power_kw','price_eur','perk','vs','days','location','seller_type','flags'];
+const FULL = ['id','photo','status','fit','first_seen','last_verified','went_inactive','days','source','url','model','trim','year','mileage_km','power_kw','engine','transmission','price_eur','price_history','perk','vs','location','seller_type','owners','service_history','import','parking_aids','registered_until','flags','notes'];
+const HEAD = {
+  fit:'fits brief', power_kw:'kW',
+  id:'id', photo:'photo', status:'status', first_seen:'first seen', last_verified:'last verified',
+  went_inactive:'went inactive', days:'days listed', source:'source', url:'ad', model:'model', trim:'trim',
+  year:'year', mileage_km:'km', engine:'engine', transmission:'gearbox', price_eur:'price €',
+  price_history:'price history', perk:'€ / 1000 km', vs:'vs cohort', location:'location',
+  seller_type:'seller', owners:'owners', service_history:'service', import:'import',
+  parking_aids:'parking aids', registered_until:'registered to', flags:'flags', notes:'parse notes'
+};
+const NUMCOLS = new Set(['year','mileage_km','price_eur','perk','vs','days','power_kw']);
+
+function cell(col, r, all){
+  const td = el('td');
+  if(NUMCOLS.has(col)) td.className='num';
+  switch(col){
+    case 'id': {
+      td.className='idcell';
+      const t=el('span','tag'+(r.status==='inactive'?' inactive':r.status==='unverified'?' unverified':''), r.id);
+      td.appendChild(t);
+      const e=el('button','btn ghost','edit');
+      e.style.cssText='padding:2px 5px;font-size:9px;margin-left:6px;letter-spacing:.06em';
+      e.onclick=()=>{ openTab('entry'); fillForm(r); };
+      td.appendChild(e);
+      break;
+    }
+    case 'photo': {
+      if(r.image_url){
+        const img=el('img','thumb'); img.src=r.image_url; img.alt=r.model+' '+r.year; img.loading='lazy';
+        img.onerror=()=>{ img.replaceWith(missingPhoto('link broken')); };
+        td.appendChild(img);
+      } else td.appendChild(missingPhoto('no photo yet'));
+      break;
+    }
+    case 'status': td.appendChild(el('span','chip '+(r.status==='active'?'ok':r.status==='unverified'?'amber':''), r.status)); break;
+    case 'fit': {
+      td.className='wrap'; td.style.minWidth='150px';
+      const m=misses(r);
+      if(!m.length){ td.appendChild(el('span','chip ok','fits')); break; }
+      m.forEach(x=>td.appendChild(el('span','chip '+(x==='power unknown'?'amber':'red'), x)));
+      break;
+    }
+    case 'power_kw': {
+      if(r.power_kw==null){ td.textContent='—'; break; }
+      td.textContent=r.power_kw;
+      if(r.power_source && /estimate/i.test(r.power_source)){
+        const s=el('div','','est.'); s.style.cssText='font-family:var(--mono);font-size:10px;color:var(--ink-3)';
+        td.appendChild(s);
+      }
+      break;
+    }
+    case 'days': td.textContent = dash(days(r.first_seen)); break;
+    case 'url':
+      if(r.url){ const a=el('a','','open'); a.href=r.url; a.target='_blank'; a.rel='noopener'; td.appendChild(a); }
+      else td.textContent='—';
+      break;
+    case 'mileage_km': td.textContent=fmt(r.mileage_km); break;
+    case 'price_eur': {
+      td.textContent=fmt(r.price_eur);
+      const d=lastMove(r);
+      if(d){ const s=el('div', d<0?'delta-down':'delta-up', (d<0?'▼ ':'▲ ')+fmt(Math.abs(d))); td.appendChild(s); }
+      break;
+    }
+    case 'price_history':
+      td.className='wrap';
+      td.textContent=(r.price_history||[]).map(p=>fmt(p.price)+' ('+p.date+')').join(' → ')||'—';
+      break;
+    case 'perk': td.textContent = perK(r)==null?'—':perK(r).toFixed(2); break;
+    case 'vs': {
+      const v=vsCohort(r,all);
+      if(v==null){ td.textContent='—'; }
+      else { td.textContent=(v>0?'+':'')+v+'%'; td.classList.add(v<0?'vs-under':'vs-over'); }
+      break;
+    }
+    case 'location': {
+      td.className='wrap';
+      td.appendChild(el('div','',dash(r.location)));
+      if(r.coastal==='yes') td.appendChild(el('span','chip red','coastal'));
+      else if(r.coastal!=='no') td.appendChild(el('span','chip amber','coastal unknown'));
+      break;
+    }
+    case 'flags': {
+      td.className='wrap';
+      if(!r.flags||!r.flags.length){ td.appendChild(el('span','chip ok','none recorded')); break; }
+      r.flags.forEach(f=>{
+        const hard = /accident|taxi|rental|implausible|below_cohort|stock_imagery/.test(f);
+        td.appendChild(el('span','chip '+(hard?'red':'slate'), f.replace(/_/g,' ')));
+      });
+      break;
+    }
+    case 'notes': td.className='wrap'; td.style.minWidth='300px'; td.textContent=dash(r.parse_notes); break;
+    default: td.textContent = dash(r[col]);
+  }
+  return td;
+}
+function missingPhoto(label){ return el('div','thumb-missing',label); }
+
+function buildTable(rows, cols, all){
+  if(!rows.length){
+    const e=el('div','empty'); e.appendChild(el('b','Nothing here'));
+    e.appendChild(el('div','','Loosen the filters, or run a scan and paste the results into Sync.'));
+    return e;
+  }
+  const wrap=el('div','scroller'), t=el('table'), thead=el('thead'), tr=el('tr');
+  cols.forEach(c=>{
+    const th=el('th',(NUMCOLS.has(c)?'num':'')+(c==='id'?' idcell':''), HEAD[c]);
+    tr.appendChild(th);
+  });
+  thead.appendChild(tr); t.appendChild(thead);
+  const tb=el('tbody');
+  rows.forEach(r=>{
+    const row=el('tr');
+    if(r.coastal==='yes') row.classList.add('coastal');
+    if(r.status==='inactive') row.classList.add('gone');
+    cols.forEach(c=>row.appendChild(cell(c,r,all)));
+    tb.appendChild(row);
+  });
+  t.appendChild(tb); wrap.appendChild(t);
+  return wrap;
+}
+
+const ORDER = {active:0, unverified:1, inactive:2};
+function sortRows(a,b){
+  const s=(ORDER[a.status]??3)-(ORDER[b.status]??3);
+  return s || (a.price_eur||0)-(b.price_eur||0);
+}
+
+/* ---- render ---- */
+function renderAll(){
+  const rows=DB.rows;
+  document.getElementById('c-total').textContent=rows.length;
+  document.getElementById('c-active').textContent=rows.filter(r=>r.status==='active').length;
+  document.getElementById('c-unver').textContent=rows.filter(r=>r.status==='unverified').length;
+  document.getElementById('c-inactive').textContent=rows.filter(r=>r.status==='inactive').length;
+
+  const inBudget=rows.filter(r=>(r.price_eur||0)<=BUDGET_MAX);
+  const above=rows.filter(r=>(r.price_eur||0)>BUDGET_MAX);
+  document.getElementById('n-ledger').textContent=inBudget.length;
+  document.getElementById('n-ref').textContent=above.length;
+  document.getElementById('n-log').textContent=(DB.log||[]).length;
+
+  // model filter options
+  const sel=document.getElementById('f-model'), keep=sel.value;
+  sel.innerHTML='<option value="all">all models</option>';
+  [...new Set(rows.map(r=>r.model))].sort().forEach(m=>{
+    const o=el('option','',m); o.value=m; sel.appendChild(o);
+  });
+  sel.value=[...sel.options].some(o=>o.value===keep)?keep:'all';
+
+  const st=document.getElementById('f-status').value;
+  const md=sel.value, co=document.getElementById('f-coastal').value;
+  const cols=document.getElementById('f-cols').value==='full'?FULL:COMPACT;
+  const ft=document.getElementById('f-fit').value;
+  const pass=r=>(st==='all'||r.status===st)&&(md==='all'||r.model===md)&&(co==='all'||r.coastal===co)
+    &&(ft==='all'||(ft==='fit'?misses(r).length===0:misses(r).length>0));
+
+  const m1=document.getElementById('ledger-mount'); m1.innerHTML='';
+  m1.appendChild(buildTable(inBudget.filter(pass).sort(sortRows), cols, rows));
+  const m2=document.getElementById('ref-mount'); m2.innerHTML='';
+  m2.appendChild(buildTable(above.filter(pass).sort(sortRows), cols, rows));
+
+  renderLog();
+  document.getElementById('sync-stamp').textContent=rows.length+' rows · last saved '+(DB.meta.saved||'—');
+}
+
+function renderLog(){
+  const m=document.getElementById('log-mount'); m.innerHTML='';
+  const log=[...(DB.log||[])].sort((a,b)=>b.date.localeCompare(a.date));
+  if(!log.length){ const e=el('div','empty'); e.appendChild(el('b','No runs yet')); e.appendChild(el('div','','The first sync writes the first entry.')); m.appendChild(e); return; }
+  log.forEach(en=>{
+    const w=el('div','log-entry');
+    w.appendChild(el('div','log-date',en.date));
+    const b=el('div','log-body');
+    b.appendChild(el('div','',en.title||'Run'));
+    if(en.sources_reached&&en.sources_reached.length){
+      const p=el('div'); p.style.marginTop='6px';
+      en.sources_reached.forEach(s=>p.appendChild(el('span','chip ok',s)));
+      (en.sources_unreachable||[]).forEach(s=>p.appendChild(el('span','chip red',s+' — not reached')));
+      b.appendChild(p);
+    }
+    if(en.lines&&en.lines.length){
+      const ul=el('ul'); en.lines.forEach(l=>ul.appendChild(el('li','',l))); b.appendChild(ul);
+    }
+    w.appendChild(b); m.appendChild(w);
+  });
+}
+
+/* ---- export / import ---- */
+function exportJSON(){
+  return JSON.stringify({
+    schema:'vozni-ledger/1',
+    exported:TODAY,
+    note:'Rows only. The search criteria live in the handoff prompt and are deliberately not restated here (decision of 17 Aug 2026).',
+    rows:DB.rows
+  }, null, 2);
+}
+const RUN_PROMPT = `You are updating an existing vehicle listing ledger. The criteria are in the handoff prompt you already have — this dataset does not restate them, by design.
+
+1. Read the JSON below. It is the current state of the table.
+2. Re-verify every row with status "active" by fetching its url. Live -> update last_verified. Price changed -> append {date, price} to price_history and update price_eur. Gone -> status "inactive", set went_inactive. Fetch failed for a technical reason -> status "unverified", retry next run, do not mark inactive.
+3. Search for new listings and add rows. Assign new IDs on the existing prefixes (YH- Yaris hybrid, YP- Yaris petrol, AH- Auris/Corolla hybrid, CH- Corolla, JZ- Jazz, LX- Lexus CT, PR- Prius, XX- off-list or unmatched). Never reuse an ID. Never delete a row.
+4. Fill image_url on every row that lacks one: a direct link to the ad's lead photo, exterior shot preferred. Leave it null if you cannot get a real link — do not substitute a stock or placeholder image.
+5. Backfill url on any row where it is null.
+5b. Record power_kw for every row, read from the ad, and set power_source to "read from ad". It is a recorded field only — never exclude or deprioritise a listing for a low figure. The seeded figures are model-typical estimates, several of them guesses on unread engine sizes.
+5c. The brief was revised on 18 Aug 2026: mileage 60,000–120,000 km, Auris/Corolla hatchback rather than the Touring Sports estate. Fuel rule unchanged and strict — full hybrid or naturally aspirated petrol only. Turbocharged mild hybrids and plug-in hybrids do not qualify and must not be recorded. IDs XX-005 and XX-006 were removed for that reason and are retired; do not reuse them.
+6. Set coastal to "yes" for Dalmatia, Istria and Kvarner, "no" for inland, "unknown" if the region cannot be read. Never guess "no".
+7. Hand back the whole dataset as JSON in the same shape, plus a log entry:
+   "log_entry": {"date":"YYYY-MM-DD","title":"...","sources_reached":[...],"sources_unreachable":[...],"lines":["what changed, in short lines"]}
+   Name every source you could not reach. Do not silently skip one.
+8. An ad going inactive is not a sale. Never write that a car sold.
+
+Dataset:
+`;
+
+function parseImport(text){
+  let data;
+  try{ data=JSON.parse(text); }
+  catch(e){ return {error:'That is not valid JSON. '+e.message}; }
+  const rows = Array.isArray(data)?data:data.rows;
+  if(!Array.isArray(rows)) return {error:'No rows array found. Expected {"rows":[...]} or a bare array.'};
+  const ids=new Set(), dupes=[];
+  for(const r of rows){
+    if(!r || !r.id) return {error:'A row has no id. Every row needs a stable id.'};
+    if(ids.has(r.id)) dupes.push(r.id);
+    ids.add(r.id);
+  }
+  if(dupes.length) return {error:'Duplicate ids in the paste: '+[...new Set(dupes)].join(', ')};
+  const bad=rows.filter(r=>r.status && !['active','inactive','unverified'].includes(r.status)).map(r=>r.id);
+  if(bad.length) return {error:'Unknown status on: '+bad.join(', ')+'. Use active, inactive or unverified.'};
+  return {rows, log_entry:data.log_entry||null};
+}
+
+const WATCH = ['status','price_eur','mileage_km','last_verified','went_inactive','url','image_url','location','coastal','flags','service_history','seller_type','model','year'];
+function diff(incoming){
+  const byId=Object.fromEntries(DB.rows.map(r=>[r.id,r]));
+  const added=[], changed=[], missing=[];
+  incoming.forEach(n=>{
+    const o=byId[n.id];
+    if(!o){ added.push(n); return; }
+    const ch=[];
+    WATCH.forEach(k=>{
+      const a=JSON.stringify(o[k]??null), b=JSON.stringify(n[k]??null);
+      if(a!==b) ch.push({field:k, from:o[k], to:n[k]});
+    });
+    if(ch.length) changed.push({id:n.id, model:n.model, ch});
+  });
+  const inIds=new Set(incoming.map(r=>r.id));
+  DB.rows.forEach(o=>{ if(!inIds.has(o.id)) missing.push(o); });
+  return {added, changed, missing};
+}
+
+function renderDiff(d, log_entry){
+  const m=document.getElementById('diff-mount'); m.innerHTML='';
+  const box=el('div','note');
+  box.appendChild(el('h3','','Review before saving'));
+  const val=v=>{
+    if(v==null||v==='') return '—';
+    if(Array.isArray(v)) return v.length?v.join(', '):'none';
+    return String(v);
+  };
+  const line=(t)=>{const p=el('p','',t); box.appendChild(p);};
+  line(d.added.length+' new · '+d.changed.length+' changed · '+d.missing.length+' in the ledger but absent from the paste');
+
+  if(d.added.length){
+    const ul=el('ul');
+    d.added.forEach(r=>ul.appendChild(el('li','',r.id+' — '+(r.model||'?')+' '+(r.year||'')+' · €'+fmt(r.price_eur))));
+    box.appendChild(el('div','','New rows')); box.appendChild(ul);
+  }
+  if(d.changed.length){
+    const ul=el('ul');
+    d.changed.forEach(c=>{
+      const li=el('li','',c.id+' — '+(c.model||''));
+      const sub=el('ul');
+      c.ch.forEach(x=>sub.appendChild(el('li','',x.field+': '+val(x.from)+' → '+val(x.to))));
+      li.appendChild(sub); ul.appendChild(li);
+    });
+    box.appendChild(el('div','','Changed rows')); box.appendChild(ul);
+  }
+  if(d.missing.length){
+    const w=el('div','note warn');
+    w.appendChild(el('h3','','Rows the paste left out'));
+    w.appendChild(el('p','',d.missing.map(r=>r.id).join(', ')+' — these stay in the ledger untouched. Rows are never deleted. If one of these ads is gone, its status should come back as inactive, not be dropped from the paste.'));
+    box.appendChild(w);
+  }
+  if(log_entry){
+    const l=el('div','note');
+    l.appendChild(el('h3','','Log entry attached'));
+    l.appendChild(el('p','',(log_entry.date||'')+' · '+(log_entry.title||'Run')));
+    if((log_entry.sources_unreachable||[]).length){
+      l.appendChild(el('p','','Not reached: '+log_entry.sources_unreachable.join(', ')));
+    }
+    box.appendChild(l);
+  } else {
+    box.appendChild(el('p','','No log entry in this paste. The run log will get a bare entry noting the counts.'));
+  }
+  m.appendChild(box);
+}
+
+/* ---- entry form ---- */
+const FIELDS = [
+  ['id','ID','text'],['status','Status','select',['active','unverified','inactive']],
+  ['model','Model','text'],['trim','Trim','text'],['year','Year','number'],
+  ['mileage_km','Mileage (km)','number'],['price_eur','Asking price (€)','number'],
+  ['power_kw','Power (kW)','number'],['power_source','Where the kW came from','text'],
+  ['engine','Engine','text'],['transmission','Gearbox','text'],
+  ['url','Ad link','url'],['image_url','Photo link','url'],['source','Source','text'],
+  ['location','Location','text'],['coastal','Coastal','select',['no','yes','unknown']],
+  ['seller_type','Seller','select',['private','dealer']],
+  ['owners','Owners','text'],['service_history','Service history','select',['','full','partial','none','not stated']],
+  ['import','Import','text'],['parking_aids','Parking aids','text'],
+  ['registered_until','Registered until','text'],
+  ['first_seen','First seen','date'],['last_verified','Last verified','date'],['went_inactive','Went inactive','date'],
+  ['flags','Flags (comma separated)','text'],['parse_notes','Notes','text']
+];
+function buildForm(){
+  const g=document.getElementById('entry-form'); g.innerHTML='';
+  FIELDS.forEach(f=>{
+    const l=el('label','',f[1]);
+    let inp;
+    if(f[2]==='select'){
+      inp=el('select');
+      f[3].forEach(o=>{const op=el('option','',o||'not stated'); op.value=o; inp.appendChild(op);});
+    } else { inp=el('input'); inp.type=f[2]; }
+    inp.id='fld-'+f[0];
+    l.appendChild(inp); g.appendChild(l);
+  });
+}
+function fillForm(r){
+  FIELDS.forEach(f=>{
+    const i=document.getElementById('fld-'+f[0]);
+    let v=r?r[f[0]]:'';
+    if(f[0]==='flags') v=(r&&r.flags||[]).join(', ');
+    i.value=(v==null)?'':v;
+  });
+  if(!r) document.getElementById('fld-status').value='active';
+}
+function saveRow(){
+  const get=k=>document.getElementById('fld-'+k).value.trim();
+  const id=get('id');
+  if(!id){ toast('A row needs an ID before it can be saved.', true); return; }
+  const existing=DB.rows.find(r=>r.id===id);
+  const row=existing?{...existing}:{price_history:[]};
+  FIELDS.forEach(f=>{
+    const k=f[0]; let v=get(k);
+    if(k==='flags'){ row.flags=v?v.split(',').map(s=>s.trim()).filter(Boolean):[]; return; }
+    if(f[2]==='number'){ row[k]=v?Number(v):null; return; }
+    row[k]=v||null;
+  });
+  row.id=id;
+  row.status=row.status||'active';
+  row.first_seen=row.first_seen||TODAY;
+  row.coastal=row.coastal||'unknown';
+  const prev=existing?existing.price_eur:null;
+  if(row.price_eur && row.price_eur!==prev){
+    row.price_history=[...(row.price_history||[]),{date:TODAY, price:row.price_eur}];
+  }
+  if(existing){ DB.rows=DB.rows.map(r=>r.id===id?row:r); }
+  else { DB.rows=[...DB.rows, row]; }
+  DB.meta.saved=TODAY;
+  save(existing?('Updated '+id+'.'):('Added '+id+'.'));
+  renderAll();
+}
+
+/* ---- CSV ---- */
+function toCSV(){
+  const cols=FULL.filter(c=>c!=='photo');
+  const head=cols.map(c=>HEAD[c]).join(',');
+  const esc=v=>{const s=(v==null?'':String(v)); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;};
+  const lines=DB.rows.slice().sort(sortRows).map(r=>cols.map(c=>{
+    if(c==='days') return days(r.first_seen);
+    if(c==='perk') return perK(r);
+    if(c==='vs') return vsCohort(r,DB.rows);
+    if(c==='fit'){ const m=misses(r); return m.length?m.join(' | '):'fits'; }
+    if(c==='flags') return (r.flags||[]).join(' | ');
+    if(c==='price_history') return (r.price_history||[]).map(p=>p.price+' ('+p.date+')').join(' -> ');
+    if(c==='notes') return r.parse_notes;
+    return r[c];
+  }).map(esc).join(','));
+  return [head,...lines].join('\n');
+}
+
+/* ---- tabs ---- */
+function openTab(name){
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.tab===name)));
+  ['ledger','reference','log','sync','entry','about'].forEach(t=>{
+    document.getElementById('tab-'+t).hidden = (t!==name);
+  });
+  window.scrollTo({top:0});
+}
+
+/* ---- wiring ---- */
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
+['f-status','f-model','f-coastal','f-cols','f-fit'].forEach(id=>document.getElementById(id).onchange=renderAll);
+document.getElementById('btn-csv').onclick=()=>copy(toCSV(),'Whole ledger copied as CSV.');
+document.getElementById('btn-copy-json').onclick=()=>copy(exportJSON(),'Dataset copied. Paste it into the scanning session.');
+document.getElementById('btn-copy-prompt').onclick=()=>copy(RUN_PROMPT+exportJSON(),'Run instructions and dataset copied.');
+document.getElementById('btn-clear-paste').onclick=()=>{
+  document.getElementById('import-box').value='';
+  document.getElementById('diff-mount').innerHTML='';
+  document.getElementById('btn-commit').disabled=true; pending=null;
+};
+document.getElementById('btn-check').onclick=()=>{
+  const txt=document.getElementById('import-box').value.trim();
+  const m=document.getElementById('diff-mount');
+  if(!txt){ m.innerHTML=''; toast('Paste the dataset first.', true); return; }
+  const res=parseImport(txt);
+  if(res.error){
+    m.innerHTML='';
+    const w=el('div','note warn'); w.appendChild(el('h3','','This paste was not accepted'));
+    w.appendChild(el('p','',res.error)); m.appendChild(w);
+    document.getElementById('btn-commit').disabled=true; pending=null; return;
+  }
+  pending=res;
+  renderDiff(diff(res.rows), res.log_entry);
+  document.getElementById('btn-commit').disabled=false;
+};
+document.getElementById('btn-commit').onclick=async()=>{
+  if(!pending) return;
+  const d=diff(pending.rows);
+  const byId=Object.fromEntries(pending.rows.map(r=>[r.id,r]));
+  DB.rows=DB.rows.map(o=>byId[o.id]?{...o,...byId[o.id]}:o).concat(d.added);
+  const entry=pending.log_entry||{date:TODAY,title:'Sync',lines:[]};
+  entry.lines=[...(entry.lines||[]), d.added.length+' added, '+d.changed.length+' changed'];
+  DB.log=[...(DB.log||[]), entry];
+  DB.meta.saved=TODAY;
+  await save('Saved. '+d.added.length+' new, '+d.changed.length+' changed.');
+  pending=null;
+  document.getElementById('btn-commit').disabled=true;
+  document.getElementById('import-box').value='';
+  document.getElementById('diff-mount').innerHTML='';
+  renderAll();
+  openTab('log');
+};
+document.getElementById('btn-save-row').onclick=saveRow;
+document.getElementById('btn-reset-row').onclick=()=>fillForm(null);
+
+buildForm(); fillForm(null); load();
+</script>
