@@ -220,8 +220,6 @@
   <button role="tab" aria-selected="true" data-tab="ledger">In budget <span class="count" id="n-ledger"></span></button>
   <button role="tab" aria-selected="false" data-tab="reference">Above budget <span class="count" id="n-ref"></span></button>
   <button role="tab" aria-selected="false" data-tab="log">Run log <span class="count" id="n-log"></span></button>
-  <button role="tab" aria-selected="false" data-tab="sync">Sync</button>
-  <button role="tab" aria-selected="false" data-tab="entry">Add / edit</button>
   <button role="tab" aria-selected="false" data-tab="about">Read me</button>
 </nav>
 
@@ -372,14 +370,12 @@
 </main>
 
 <script>
-/* window.storage shim for static hosting. Backed by localStorage; the
-   storage key is content-versioned per render, so a new publish is a
-   cache miss and stale rows are never served. Failures are swallowed so
-   private-browsing visitors see the page, not a write error. */
-window.storage = window.storage || {
-  async get(k){ try{ const v = localStorage.getItem(k); return v == null ? null : {value:v}; }catch(e){ return null; } },
-  async set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
-};
+/* Published build: read-only. The template was authored against the
+   Claude artifact runtime's shared-storage API, which does not exist on
+   a static host. `get` always misses so the page renders the data baked
+   in at publish time; `set` is a no-op so nothing is half-persisted into
+   one visitor's browser. Edits belong in curated.json. */
+window.storage = { async get(){ return null; }, async set(){} };
 </script>
 <script>
 /* ============================================================
@@ -1555,10 +1551,6 @@ function cell(col, r, all){
       td.className='idcell';
       const t=el('span','tag'+(r.status==='inactive'?' inactive':r.status==='unverified'?' unverified':''), r.id);
       td.appendChild(t);
-      const e=el('button','btn ghost','edit');
-      e.style.cssText='padding:2px 5px;font-size:9px;margin-left:6px;letter-spacing:.06em';
-      e.onclick=()=>{ openTab('entry'); fillForm(r); };
-      td.appendChild(e);
       break;
     }
     case 'photo': {
