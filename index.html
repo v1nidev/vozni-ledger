@@ -121,6 +121,13 @@
   td.wrap{white-space:normal;min-width:190px}
   .num{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
   th.num{text-align:right}
+  thead th.sortable{cursor:pointer;user-select:none}
+  thead th.sortable:hover{background:#DDE1DB;color:var(--ink)}
+  thead th.sortable:focus-visible{outline:2px solid var(--slate);outline-offset:-2px}
+  thead th.sortable:hover::after{content:' \2195';color:var(--ink-3)}
+  thead th.sorted{color:var(--ink);box-shadow:inset 0 -2px 0 var(--rust)}
+  thead th.sorted::after,thead th.sorted:hover::after{content:none}
+  .sort-ind{margin-left:5px;font-size:9px;color:var(--rust)}
 
   /* signature: the chassis tag + the corrosion edge */
   .tag{
@@ -1739,15 +1746,36 @@ function cell(col, r, all){
 }
 function missingPhoto(label){ return el('div','thumb-missing',label); }
 
-function buildTable(rows, cols, all){
+function buildTable(rows, cols, all, key){
   if(!rows.length){
     const e=el('div','empty'); e.appendChild(el('b','Nothing here'));
     e.appendChild(el('div','','Loosen the filters, or run a scan and paste the results into Sync.'));
     return e;
   }
   const wrap=el('div','scroller'), t=el('table'), thead=el('thead'), tr=el('tr');
+  const st=SORT[key];
   cols.forEach(c=>{
     const th=el('th',(NUMCOLS.has(c)?'num':'')+(c==='id'?' idcell':''), HEAD[c]);
+    if(st){
+      const on=st.col===c, asc=st.dir===1;
+      th.classList.add('sortable');
+      if(on) th.classList.add('sorted');
+      th.tabIndex=0;
+      th.setAttribute('aria-sort', on?(asc?'ascending':'descending'):'none');
+      th.title=on?(asc?'Sorted low to high — click for high to low'
+                      :'Sorted high to low — click to clear')
+                 :'Sort by '+HEAD[c];
+      if(on) th.appendChild(el('span','sort-ind', asc?'\u25B2':'\u25BC'));
+      th.dataset.col=c;
+      /* renderAll replaces the header, taking the focused element with it. */
+      const go=()=>{
+        cycleSort(key,c); renderAll();
+        const back=document.querySelector('#'+SORT_MOUNT[key]+' th[data-col="'+c+'"]');
+        if(back && document.activeElement===document.body) back.focus({preventScroll:true});
+      };
+      th.onclick=go;
+      th.onkeydown=e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } };
+    }
     tr.appendChild(th);
   });
   thead.appendChild(tr); t.appendChild(thead);
@@ -1769,7 +1797,61 @@ function sortRows(a,b){
   return s || (a.price_eur||0)-(b.price_eur||0);
 }
 
-/* ---- render ---- */
+/* ---- column sorting ----
+   Each table keeps its own column and direction; clicking a header cycles
+   ascending -> descending -> back to the default status-then-price order.
+   Sorting only reorders what the filters already produced: no row is added
+   or dropped by it. */
+const SORT = {ledger:{col:null, dir:1}, ref:{col:null, dir:1}};
+const SORT_MOUNT = {ledger:'ledger-mount', ref:'ref-mount'};
+function sortValue(col, r, all){
+  switch(col){
+    case 'status': return ORDER[r.status]??3;
+    case 'fit': return misses(r).length;
+    case 'photo': return r.image_url?0:1;
+    case 'url': return r.url?0:1;
+    case 'flags': return (r.flags||[]).length;
+    case 'price_history': return (r.price_history||[]).length;
+    case 'days': return days(r.first_seen);
+    case 'perk': return perK(r);
+    case 'vs': return vsCohort(r, all);
+    case 'notes': return r.parse_notes;
+    default: return r[col];
+  }
+}
+function sorterFor(st, all){
+  if(!st.col) return sortRows;
+  return (a,b)=>{
+    const x=sortValue(st.col,a,all), y=sortValue(st.col,b,all);
+    /* A missing value sorts last whichever way the column is pointing —
+       reversing the order should not fill the top with dashes. */
+    const xn=(x==null||x===''), yn=(y==null||y==='');
+    if(xn||yn) return (xn&&yn)?sortRows(a,b):(xn?1:-1);
+    const c=(typeof x==='number'&&typeof y==='number')
+      ? x-y
+      : String(x).localeCompare(String(y), undefined, {numeric:true, sensitivity:'base'});
+    return (c*st.dir) || sortRows(a,b);
+  };
+}
+function cycleSort(key, col){
+  const st=SORT[key];
+  if(st.col!==col){ st.col=col; st.dir=1; }
+  else if(st.dir===1){ st.dir=-1; }
+  else { st.col=null; st.dir=1; }
+}
+
+/* ---- render ----
+   Every render replaces the whole table, so the sideways scroll position has
+   to be carried over by hand: in the full column set the header you clicked
+   is off to the right, and losing it on every sort makes the table unusable. */
+function mount(id, node){
+  const m=document.getElementById(id);
+  const was=m.querySelector('.scroller');
+  const x=was?was.scrollLeft:0;
+  m.innerHTML=''; m.appendChild(node);
+  const now=m.querySelector('.scroller');
+  if(now) now.scrollLeft=x;
+}
 function renderAll(){
   const rows=DB.rows;
   document.getElementById('c-total').textContent=rows.length;
@@ -1798,10 +1880,8 @@ function renderAll(){
   const pass=r=>(st==='all'||r.status===st)&&(md==='all'||r.model===md)&&(co==='all'||r.coastal===co)
     &&(ft==='all'||(ft==='fit'?misses(r).length===0:misses(r).length>0));
 
-  const m1=document.getElementById('ledger-mount'); m1.innerHTML='';
-  m1.appendChild(buildTable(inBudget.filter(pass).sort(sortRows), cols, rows));
-  const m2=document.getElementById('ref-mount'); m2.innerHTML='';
-  m2.appendChild(buildTable(above.filter(pass).sort(sortRows), cols, rows));
+  mount('ledger-mount', buildTable(inBudget.filter(pass).sort(sorterFor(SORT.ledger, rows)), cols, rows, 'ledger'));
+  mount('ref-mount', buildTable(above.filter(pass).sort(sorterFor(SORT.ref, rows)), cols, rows, 'ref'));
 
   renderLog();
   document.getElementById('sync-stamp').textContent=rows.length+' rows · last saved '+(DB.meta.saved||'—');
