@@ -385,7 +385,7 @@ window.storage = window.storage || {
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:0bda593e5c';
+const KEY = 'vozni:dataset:f7ea09a333';
 const SHARED = true;
 const TODAY = '2026-08-19';
 const BUDGET_MAX = 15000;
@@ -409,7 +409,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-51230157",
   "image_url": null,
   "model": "Toyota Yaris Hybrid",
-  "trim": null,
+  "trim": "Hybrid 1,5 VVT-i",
   "year": 2015,
   "mileage_km": 141955,
   "engine": "1.497 cm3 54 kW Hibrid",
@@ -434,7 +434,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 74,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "AH-004",
@@ -471,7 +471,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"nema\". Estate — the revised brief asks for the hatchback.",
   "power_kw": 100,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-004",
@@ -483,7 +483,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/kia-optima-2.0-hibrid-automatik-oglas-51211433",
   "image_url": null,
   "model": "Kia Optima 2.0 Hybrid",
-  "trim": null,
+  "trim": "2,0 HIBRID automatik",
   "year": 2015,
   "mileage_km": 150000,
   "engine": "1.999 cm3 110 kW Hibrid",
@@ -508,7 +508,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Unmatched model, XX prefix. Transmission conflict: title says \"automatik\", Mjenjač field says \"Mehanički mjenjač\" — needs a human read. 4.86 m.",
   "power_kw": 151,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YH-006",
@@ -520,7 +520,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-50964036",
   "image_url": null,
   "model": "Toyota Yaris Hybrid",
-  "trim": null,
+  "trim": "Hybrid 1,5 VVT-i",
   "year": 2014,
   "mileage_km": 137000,
   "engine": "1.500 cm3 55 kW Hibrid",
@@ -545,7 +545,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 74,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YH-004",
@@ -557,7 +557,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-pod-garancijom-oglas-50717195",
   "image_url": null,
   "model": "Toyota Yaris Hybrid",
-  "trim": null,
+  "trim": "Hybrid 1,5 VVT-i",
   "year": 2016,
   "mileage_km": 163000,
   "engine": "1.500 cm3 74 kW Hibrid",
@@ -582,7 +582,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 74,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YH-007",
@@ -594,7 +594,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-hybrid-oglas-49824980",
   "image_url": null,
   "model": "Toyota Yaris Hybrid",
-  "trim": null,
+  "trim": "1,5",
   "year": 2019,
   "mileage_km": 119000,
   "engine": "1.497 cm3 54 kW Hibrid",
@@ -619,7 +619,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 74,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "AH-005",
@@ -631,7 +631,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-automatik-oglas-50802095",
   "image_url": null,
   "model": "Toyota Auris Hybrid",
-  "trim": null,
+  "trim": "1,8",
   "year": 2016,
   "mileage_km": 158700,
   "engine": "1.800 cm3 100 kW Hibrid",
@@ -656,7 +656,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Import flag suppressed: \"uvoz\" negated by \"Nije\".",
   "power_kw": 100,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-011",
@@ -668,7 +668,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-automatik-oglas-50929919",
   "image_url": null,
   "model": "Ford Mondeo 2.0 Hybrid",
-  "trim": null,
+  "trim": "2,0",
   "year": 2017,
   "mileage_km": 137000,
   "engine": "230 kW Hibrid",
@@ -693,7 +693,42 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Unmatched model, XX prefix. 4.87 m.",
   "power_kw": 137,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
+ },
+ {
+  "id": "YH-002",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-trend-plus-y20-toyota-relax-202-oglas-51202463",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid",
+  "trim": "1,5",
+  "year": 2019,
+  "mileage_km": 76000,
+  "engine": "1.497 cm3 54 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 13000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 13000
+   }
+  ],
+  "location": "Solin, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": "11 / 2026",
+  "flags": [],
+  "parse_notes": null,
+  "power_kw": 74,
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YP-001",
@@ -705,7 +740,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-51193485",
   "image_url": null,
   "model": "Toyota Yaris 1.5 petrol automatic",
-  "trim": null,
+  "trim": "1,5",
   "year": 2019,
   "mileage_km": 100721,
   "engine": "54 kW Hibrid",
@@ -730,42 +765,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 82,
-  "power_source": "model-typical estimate, not read from the ad"
- },
- {
-  "id": "YH-002",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-trend-plus-y20-toyota-relax-202-oglas-51202463",
-  "image_url": null,
-  "model": "Toyota Yaris Hybrid",
-  "trim": null,
-  "year": 2019,
-  "mileage_km": 76000,
-  "engine": "1.497 cm3 54 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 13000,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 13000
-   }
-  ],
-  "location": "Solin, Splitsko-dalmatinska",
-  "coastal": "yes",
-  "seller_type": "private",
-  "owners": 1,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera",
-  "registered_until": "11 / 2026",
-  "flags": [],
-  "parse_notes": null,
-  "power_kw": 74,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YH-005",
@@ -777,7 +777,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-y20-special-edition-2019-oglas-51158436",
   "image_url": null,
   "model": "Toyota Yaris Hybrid",
-  "trim": null,
+  "trim": "1,5",
   "year": 2019,
   "mileage_km": 120200,
   "engine": "1.497 cm3 54 kW Hibrid",
@@ -802,7 +802,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"bez\".",
   "power_kw": 74,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-008",
@@ -814,7 +814,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-hybrid-oglas-50509254",
   "image_url": null,
   "model": "Ford Mondeo 2.0 Hybrid",
-  "trim": null,
+  "trim": "2,0 HEV CT",
   "year": 2015,
   "mileage_km": 90000,
   "engine": "2.000 cm3 130 kW Hibrid",
@@ -839,44 +839,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Unmatched model, XX prefix. 4.87 m.",
   "power_kw": 137,
-  "power_source": "model-typical estimate, not read from the ad"
- },
- {
-  "id": "XX-007",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/renault-megane-conquest-145-ks-e-tech-hibrid-1.6-oglas-48820244",
-  "image_url": null,
-  "model": "Renault Megane Conquest 1.6 E-Tech",
-  "trim": null,
-  "year": 2021,
-  "mileage_km": 140700,
-  "engine": "1.600 cm3 106 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 14500,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 14500
-   }
-  ],
-  "location": "Split, Splitsko-dalmatinska",
-  "coastal": "yes",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "08 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Unmatched model, XX prefix. Full hybrid, so the fuel rule is met, but 4.51 m.",
-  "power_kw": 105,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-002",
@@ -888,7 +851,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-50861903",
   "image_url": null,
   "model": "Toyota C-HR 1.8 VVT-i",
-  "trim": null,
+  "trim": "1,8 VVT-i",
   "year": 2017,
   "mileage_km": 142000,
   "engine": "1.798 cm3 72 kW Hibrid",
@@ -913,7 +876,44 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Region unreadable, coastal undetermined. Import flag suppressed: \"uvoz\" negated by \"nije\". 4.36 m — just over the length limit.",
   "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
+ },
+ {
+  "id": "XX-007",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/renault-megane-conquest-145-ks-e-tech-hibrid-1.6-oglas-48820244",
+  "image_url": null,
+  "model": "Renault Megane Conquest 1.6 E-Tech",
+  "trim": "145 ks ,1.6 e-tech , hibrid",
+  "year": 2021,
+  "mileage_km": 140700,
+  "engine": "1.600 cm3 106 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 14500,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 14500
+   }
+  ],
+  "location": "Split, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "08 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Unmatched model, XX prefix. Full hybrid, so the fuel rule is met, but 4.51 m.",
+  "power_kw": 105,
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "AH-003",
@@ -925,7 +925,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-kamera-grij-sicevi-kuka-oglas-50407726",
   "image_url": null,
   "model": "Toyota Auris Hybrid",
-  "trim": null,
+  "trim": "1.8 136KS Hybrid",
   "year": 2018,
   "mileage_km": 68000,
   "engine": "1.798 cm3 100 kW Hibrid",
@@ -951,7 +951,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Region unreadable, coastal undetermined. German car, no Croatian inspection history yet.",
   "power_kw": 100,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "AH-001",
@@ -989,7 +989,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Region unreadable, coastal undetermined. Estate — the revised brief asks for the hatchback.",
   "power_kw": 100,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-009",
@@ -1001,7 +1001,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/infiniti-q50-3.5-hybrid-awd-364-ks-v6-elektro-full-oprema-2016-oglas-50216237",
   "image_url": null,
   "model": "Infiniti Q50 3.5 Hybrid AWD",
-  "trim": null,
+  "trim": "3,5",
   "year": 2016,
   "mileage_km": 162000,
   "engine": "3.500 cm3 268 kW Hibrid",
@@ -1026,7 +1026,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Unmatched model, XX prefix. 4.79 m and a V6 — far outside the brief, kept as price context.",
   "power_kw": 268,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-012",
@@ -1038,7 +1038,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-hsd-hibrid-oglas-51017493",
   "image_url": null,
   "model": "Toyota C-HR 1.8 HSD",
-  "trim": null,
+  "trim": "1,8 VVT-i",
   "year": 2018,
   "mileage_km": 158864,
   "engine": "72 kW Hibrid",
@@ -1064,7 +1064,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad.",
   "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YP-002",
@@ -1076,7 +1076,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-50699858",
   "image_url": null,
   "model": "Toyota Yaris 1.5 petrol automatic",
-  "trim": null,
+  "trim": "1,5",
   "year": 2019,
   "mileage_km": 78000,
   "engine": "1.500 cm3 74 kW Hibrid",
@@ -1101,7 +1101,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 82,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "AH-002",
@@ -1113,7 +1113,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-ambient-light-auto-klima-oglas-50407955",
   "image_url": null,
   "model": "Toyota Auris Hybrid",
-  "trim": null,
+  "trim": "1.8 136KS Hybrid",
   "year": 2018,
   "mileage_km": 75000,
   "engine": "1.798 cm3 100 kW Hibrid",
@@ -1139,7 +1139,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Region unreadable, coastal undetermined.",
   "power_kw": 100,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "JZ-001",
@@ -1151,7 +1151,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/honda-jazz-hibrid-oglas-51213613",
   "image_url": null,
   "model": "Honda Jazz CVT",
-  "trim": null,
+  "trim": "1.5 eHEV Elegans",
   "year": 2021,
   "mileage_km": 83000,
   "engine": "1.500 cm3 72 kW Hibrid",
@@ -1176,7 +1176,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 75,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-010",
@@ -1188,7 +1188,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-51089371",
   "image_url": null,
   "model": "Toyota C-HR 1.8 VVT-i",
-  "trim": null,
+  "trim": "1,8 VVT-i",
   "year": 2017,
   "mileage_km": 78000,
   "engine": "1.796 cm3 90 kW Hibrid",
@@ -1213,7 +1213,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Region unreadable, coastal undetermined. 4.36 m.",
   "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YH-001",
@@ -1225,7 +1225,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-reg-10-2026-tvornicko-jamstvo-oglas-50681683",
   "image_url": null,
   "model": "Toyota Yaris Hybrid",
-  "trim": null,
+  "trim": "1,5",
   "year": 2021,
   "mileage_km": 103000,
   "engine": "1.490 cm3 68 kW Hibrid",
@@ -1250,7 +1250,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": null,
   "power_kw": 85,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "CH-002",
@@ -1262,7 +1262,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hybrid-oglas-49018195",
   "image_url": null,
   "model": "Toyota Corolla Hybrid HB",
-  "trim": null,
+  "trim": "1,8 HYBRID",
   "year": 2020,
   "mileage_km": 127500,
   "engine": "1.800 cm3 72 kW Hibrid",
@@ -1287,7 +1287,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Description block not captured. Engine size unread — 1.8 (90 kW) and 2.0 (132 kW) both sold; power figure assumed 1.8.",
   "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-001",
@@ -1299,7 +1299,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-hybrid-hr-auto-90tkm-servisna-automatik-oglas-51206650",
   "image_url": null,
   "model": "Toyota C-HR Hybrid",
-  "trim": null,
+  "trim": "Hybrid",
   "year": 2018,
   "mileage_km": 90100,
   "engine": "1.798 cm3 90 kW Hibrid",
@@ -1324,81 +1324,7 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Unmatched model, XX prefix. Ad states Croatian car with service book. 4.36 m.",
   "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
- },
- {
-  "id": "CH-001",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hibrid-automatik-oglas-50484453",
-  "image_url": null,
-  "model": "Toyota Corolla Hybrid",
-  "trim": null,
-  "year": 2019,
-  "mileage_km": 76000,
-  "engine": "1.798 cm3 72 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 17000,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 17000
-   }
-  ],
-  "location": "Dugopolje, Splitsko-dalmatinska",
-  "coastal": "yes",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": null,
-  "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
- },
- {
-  "id": "PR-001",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-08-17",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-prius-1.8-automatik-oglas-46180493",
-  "image_url": null,
-  "model": "Toyota Prius",
-  "trim": null,
-  "year": 2018,
-  "mileage_km": 135000,
-  "engine": "1.798 cm3 72 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 17000,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 17000
-   }
-  ],
-  "location": "Čakovec, Međimurska",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": null,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "09 / 2026",
-  "flags": [
-   "recent_import_no_hr_history"
-  ],
-  "parse_notes": "Larger than ideal at 4.54 m — noted per the brief.",
-  "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "XX-003",
@@ -1410,7 +1336,7 @@ const SEED_ROWS = [
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-hr-auto-oglas-51217928",
   "image_url": null,
   "model": "Toyota C-HR 1.8 VVT-i",
-  "trim": null,
+  "trim": "1,8 VVT-i",
   "year": 2018,
   "mileage_km": 99000,
   "engine": "1.800 cm3 72 kW Hibrid",
@@ -1435,7 +1361,81 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Unmatched model, XX prefix. Transmission field missing from the ad.",
   "power_kw": 90,
-  "power_source": "model-typical estimate, not read from the ad"
+  "power_source": "model-typical total system output, not read from the ad"
+ },
+ {
+  "id": "PR-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-prius-1.8-automatik-oglas-46180493",
+  "image_url": null,
+  "model": "Toyota Prius",
+  "trim": "1,8",
+  "year": 2018,
+  "mileage_km": 135000,
+  "engine": "1.798 cm3 72 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 17000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 17000
+   }
+  ],
+  "location": "Čakovec, Međimurska",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "09 / 2026",
+  "flags": [
+   "recent_import_no_hr_history"
+  ],
+  "parse_notes": "Larger than ideal at 4.54 m — noted per the brief.",
+  "power_kw": 90,
+  "power_source": "model-typical total system output, not read from the ad"
+ },
+ {
+  "id": "CH-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-08-17",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hibrid-automatik-oglas-50484453",
+  "image_url": null,
+  "model": "Toyota Corolla Hybrid",
+  "trim": "1,8 VVT-i",
+  "year": 2019,
+  "mileage_km": 76000,
+  "engine": "1.798 cm3 72 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 17000,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 17000
+   }
+  ],
+  "location": "Dugopolje, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 90,
+  "power_source": "model-typical total system output, not read from the ad"
  }
 ];
 
