@@ -1569,6 +1569,23 @@ function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 const SEED_LOG = [
  {
   "date": "2026-08-20",
+  "title": "verify+discover · 19:47 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 36 → 37. 1 added.",
+   "36 rows re-verified, nothing moved.",
+   "njuskalo: opened 30 ads, kept 1; refused 29 (forced_induction 4, fuel 1, transmission 24).",
+   "Filter `fuelTypeId=604` — site reported 29, 29 cards seen, 10 opened, 0 kept (12 page loads, no rows).",
+   "Filter `fuelTypeId=600` — site reported 1668, 25 cards seen, 20 opened, 1 kept (21 page loads per row).",
+   "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
+   "69 of 150 page loads used. 29 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-08-20",
   "title": "verify+discover · 18:38 UTC",
   "sources_reached": [
    "njuskalo"
@@ -1580,6 +1597,16 @@ const SEED_LOG = [
    "njuskalo: opened 30 ads, kept 2.",
    "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
    "67 of 150 page loads used."
+  ]
+ },
+ {
+  "date": "2026-08-20",
+  "title": "Contacts scrubbed, and three turbos retired",
+  "lines": [
+   "Seller phone numbers and email addresses are now stripped from ad text before it is stored, and 14 existing rows were cleaned. The schema always forbade keeping a private seller's number; the structured fields were never the leak, the description was.",
+   "XX-017 (Smart fortwo 453) retired: its 'automatik' is a dry dual-clutch, which the brief excludes without evidence of a recent clutch pack replacement.",
+   "XX-015 (Suzuki 1.4 Boosterjet) and XX-016 (BMW X1 sDrive20i) retired as turbo petrol. Both sat just under the old 72 kW/litre ceiling; it is now 65 and no longer applied to hybrids, where the kW figure is often total system output.",
+   "Ads refused on a disqualifier are now recorded with a reason and remembered, so the same manual is not opened again every run."
   ]
  },
  {
