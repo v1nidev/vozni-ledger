@@ -159,6 +159,9 @@
   .thumb{
     width:74px;height:52px;object-fit:cover;border:1px solid var(--rule);display:block;background:var(--paper-2);
   }
+  a.thumb-link{display:inline-block;text-decoration:none}
+  a.thumb-link:hover .thumb,a.thumb-link:hover .thumb-missing{border-color:var(--slate);box-shadow:0 0 0 2px rgba(51,86,107,.25)}
+  a.thumb-link:focus-visible{outline:2px solid var(--slate);outline-offset:2px}
   .thumb-missing{
     width:74px;height:52px;border:1px dashed var(--rule);display:flex;align-items:center;justify-content:center;
     font-family:var(--mono);font-size:9px;color:var(--ink-3);text-align:center;line-height:1.1;padding:2px;
@@ -390,7 +393,7 @@ window.storage = { async get(){ return null; }, async set(){} };
    ============================================================ */
 const KEY = 'vozni:dataset:a522173cad';
 const SHARED = true;
-const TODAY = '2026-08-19';
+const TODAY = '2026-08-20';
 const BUDGET_MAX = 15000;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
 const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
@@ -1653,7 +1656,7 @@ async function copy(text, okMsg){
 
 /* ---- columns ---- */
 const COMPACT = ['id','photo','status','fit','model','year','mileage_km','power_kw','price_eur','perk','vs','days','location','seller_type','flags'];
-const FULL = ['id','photo','status','fit','first_seen','last_verified','went_inactive','days','source','url','model','trim','year','mileage_km','power_kw','engine','transmission','price_eur','price_history','perk','vs','location','seller_type','owners','service_history','import','parking_aids','registered_until','flags','notes'];
+const FULL = ['id','photo','status','fit','first_seen','last_verified','went_inactive','days','source','model','trim','year','mileage_km','power_kw','engine','transmission','price_eur','price_history','perk','vs','location','seller_type','owners','service_history','import','parking_aids','registered_until','flags','notes'];
 const HEAD = {
   fit:'fits brief', power_kw:'kW',
   id:'id', photo:'photo', status:'status', first_seen:'first seen', last_verified:'last verified',
@@ -1676,11 +1679,21 @@ function cell(col, r, all){
       break;
     }
     case 'photo': {
+      let node;
       if(r.image_url){
         const img=el('img','thumb'); img.src=r.image_url; img.alt=r.model+' '+r.year; img.loading='lazy';
         img.onerror=()=>{ img.replaceWith(missingPhoto('link broken')); };
-        td.appendChild(img);
-      } else td.appendChild(missingPhoto('no photo yet'));
+        node=img;
+      } else node=missingPhoto('no photo yet');
+      /* The photo is the way through to the ad — there is no separate link
+         column. A row with no url is not wrapped, so a dead-end link never
+         looks live. */
+      if(r.url){
+        const a=el('a','thumb-link'); a.href=r.url; a.target='_blank'; a.rel='noopener';
+        a.title='Open the ad on '+(r.source||'the source site');
+        a.appendChild(node); node=a;
+      }
+      td.appendChild(node);
       break;
     }
     case 'status': td.appendChild(el('span','chip '+(r.status==='active'?'ok':r.status==='unverified'?'amber':''), r.status)); break;
@@ -1701,10 +1714,6 @@ function cell(col, r, all){
       break;
     }
     case 'days': td.textContent = dash(days(r.first_seen)); break;
-    case 'url':
-      if(r.url){ const a=el('a','','open'); a.href=r.url; a.target='_blank'; a.rel='noopener'; td.appendChild(a); }
-      else td.textContent='—';
-      break;
     case 'mileage_km': td.textContent=fmt(r.mileage_km); break;
     case 'price_eur': {
       td.textContent=fmt(r.price_eur);
@@ -1808,8 +1817,7 @@ function sortValue(col, r, all){
   switch(col){
     case 'status': return ORDER[r.status]??3;
     case 'fit': return misses(r).length;
-    case 'photo': return r.image_url?0:1;
-    case 'url': return r.url?0:1;
+    case 'photo': return (r.image_url?0:2)+(r.url?0:1);
     case 'flags': return (r.flags||[]).length;
     case 'price_history': return (r.price_history||[]).length;
     case 'days': return days(r.first_seen);
@@ -2087,7 +2095,10 @@ function saveRow(){
 
 /* ---- CSV ---- */
 function toCSV(){
+  /* url left the table when the thumbnail became the link, but a spreadsheet
+     of listings without their links is useless, so the export keeps it. */
   const cols=FULL.filter(c=>c!=='photo');
+  cols.splice(cols.indexOf('source')+1, 0, 'url');
   const head=cols.map(c=>HEAD[c]).join(',');
   const esc=v=>{const s=(v==null?'':String(v)); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;};
   const lines=DB.rows.slice().sort(sortRows).map(r=>cols.map(c=>{
