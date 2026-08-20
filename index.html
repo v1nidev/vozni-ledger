@@ -1567,29 +1567,132 @@ const SEED_ROWS = [
 function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
-{
-  date:'2026-08-17',
-  title:'First scan',
-  sources_reached:['njuskalo.hr'],
-  sources_unreachable:['index.hr/oglasi','oglasnik.hr','autoscout24','mobile.de'],
-  lines:[
-    '30 listings recorded, all active.',
-    'Ad URLs and photos were not captured this run — both are outstanding for the next pass.',
-    'Six rows could not have their region read; they are marked coastal unknown rather than assumed inland.'
+ {
+  "date": "2026-08-20",
+  "title": "verify+discover · 18:38 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 34 → 36. 2 added.",
+   "34 rows re-verified — 1 price change(s).",
+   "njuskalo: opened 30 ads, kept 2.",
+   "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
+   "67 of 150 page loads used."
   ]
-},
-{
-  date:'2026-08-18',
-  title:'Criteria revised',
-  lines:[
-    'Mileage range narrowed from 60–170 tkm to 60–120 tkm.',
-    'Engine power added as a recorded column. It is not a requirement and does not exclude anything.',
-    'Auris / Corolla priority narrowed to the hatchback; the Touring Sports estate is no longer sought.',
-    'Removed XX-005 (Ford Focus 1.0 EcoBoost — turbocharged mild hybrid) and XX-006 (VW Golf GTE — plug-in hybrid). Neither is a full hybrid or a naturally aspirated petrol, so neither should have been recorded. Both IDs are retired and will not be reused.',
-    'power_kw added to every remaining row as a model-typical estimate. None of these figures were read from an ad; the next run should confirm them.',
-    'Rows that no longer meet the tightened rules are marked, not deleted — they stay as price history.'
+ },
+ {
+  "date": "2026-08-19",
+  "title": "verify-only · 21:30 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "34 rows, unchanged.",
+   "34 rows re-verified, nothing moved.",
+   "34 of 150 page loads used."
   ]
-}];
+ },
+ {
+  "date": "2026-08-19",
+  "title": "verify+discover · 21:10 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 30 → 32. 2 added.",
+   "30 rows re-verified — 1 price change(s).",
+   "njuskalo: opened 12 ads, kept 2.",
+   "44 of 150 page loads used."
+  ]
+ },
+ {
+  "date": "2026-08-19",
+  "title": "discover-only · 21:17 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 32 → 34. 2 added.",
+   "njuskalo: opened 30 ads, kept 2.",
+   "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
+   "33 of 150 page loads used."
+  ]
+ },
+ {
+  "date": "2026-08-18",
+  "title": "Criteria revised",
+  "lines": [
+   "Mileage range narrowed from 60–170 tkm to 60–120 tkm.",
+   "Engine power added as a recorded column. It is not a requirement and does not exclude anything.",
+   "Auris / Corolla priority narrowed to the hatchback; the Touring Sports estate is no longer sought.",
+   "Removed XX-005 (Ford Focus 1.0 EcoBoost — turbocharged mild hybrid) and XX-006 (VW Golf GTE — plug-in hybrid). Neither is a full hybrid or a naturally aspirated petrol, so neither should have been recorded. Both IDs are retired and will not be reused.",
+   "power_kw added to every remaining row as a model-typical estimate. None of these figures were read from an ad; the next run should confirm them.",
+   "Rows that no longer meet the tightened rules are marked, not deleted — they stay as price history."
+  ]
+ },
+ {
+  "date": "2026-08-17",
+  "title": "verify-only · 15:55 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "16 rows, unchanged.",
+   "16 rows re-verified, nothing moved.",
+   "16 of 20 page loads used."
+  ]
+ },
+ {
+  "date": "2026-08-17",
+  "title": "verify+discover · 20:27 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 16 → 30. 14 added.",
+   "16 rows re-verified, nothing moved.",
+   "45 of 150 page loads used."
+  ]
+ },
+ {
+  "date": "2026-08-17",
+  "title": "verify+discover · 15:51 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 0 → 16. 16 added.",
+   "**njuskalo coverage is incomplete** — page-load budget exhausted. Ads it did not reach are still out there; this is not a thin market.",
+   "24 of 24 page loads used."
+  ]
+ },
+ {
+  "date": "2026-08-17",
+  "title": "First scan",
+  "sources_reached": [
+   "njuskalo.hr"
+  ],
+  "sources_unreachable": [
+   "index.hr/oglasi",
+   "oglasnik.hr",
+   "autoscout24",
+   "mobile.de"
+  ],
+  "lines": [
+   "30 listings recorded, all active.",
+   "Ad URLs and photos were not captured this run — both are outstanding for the next pass.",
+   "Six rows could not have their region read; they are marked coastal unknown rather than assumed inland."
+  ]
+ }
+];
 
 /* ---- state ---- */
 let DB = {rows:[], log:[], meta:{}};
