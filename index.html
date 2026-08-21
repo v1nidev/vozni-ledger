@@ -393,7 +393,7 @@ window.storage = { async get(){ return null; }, async set(){} };
    ============================================================ */
 const KEY = 'vozni:dataset:28bf8c0e2e';
 const SHARED = true;
-const TODAY = '2026-08-20';
+const TODAY = '2026-08-21';
 const BUDGET_MAX = 15000;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
 const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
@@ -1567,6 +1567,34 @@ const SEED_ROWS = [
 function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
+ {
+  "date": "2026-08-21",
+  "title": "verify+discover · 17:58 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 37 → 38. 1 added.",
+   "37 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "njuskalo: opened 30 ads, kept 1; refused 29 (forced_induction 4, transmission 25).",
+   "njuskalo: 13 ads skipped unopened — already refused in an earlier run on a property of the car.",
+   "Filter `fuelTypeId=604` — site reported 29, 29 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
+   "Filter `fuelTypeId=600` — site reported 1683, 50 cards seen, 30 opened, 1 kept (32 page loads per row).",
+   "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
+   "34 of 150 page loads used. 58 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-08-21",
+  "title": "Dry dual-clutch is now a rule, not a judgement call",
+  "lines": [
+   "Two Smart fortwos were admitted on consecutive runs, each scoring well because they are naturally aspirated petrol automatics inside budget. Both are twinamic dry dual-clutch boxes, which the brief excludes without evidence of a clutch pack replacement.",
+   "The gearbox field reads 'Automatski' for a torque converter and a dry DCT alike, so the exclusion can only be applied by model. config.json now lists the affected models, and an ad that does show a replaced clutch is still let through — flagged, not dropped, exactly as the brief asks.",
+   "XX-018 retired. XX-017 was retired yesterday for the same reason.",
+   "Verification cost nothing this run: all 37 rows had been read the evening before, and the new 48-hour freshness floor took them at their word. The whole page budget went to discovery, which reached a second page of the petrol search for the first time."
+  ]
+ },
  {
   "date": "2026-08-20",
   "title": "verify+discover · 19:47 UTC",
