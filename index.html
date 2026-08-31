@@ -1634,6 +1634,24 @@ function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 const SEED_LOG = [
  {
   "date": "2026-08-31",
+  "title": "verify+discover · 19:10 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 43 → 44. 1 added.",
+   "41 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "njuskalo: opened 20 ads, kept 1; refused 19 (forced_induction 1, transmission 18).",
+   "njuskalo: 52 ads skipped unopened — already refused in an earlier run on a property of the car.",
+   "Filter `fuelTypeId=604` — site reported 26, 26 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
+   "Filter `fuelTypeId=600` — site reported 1318, 75 cards seen, 20 opened, 1 kept (28 page loads per row).",
+   "**njuskalo coverage is incomplete** — page-load budget exhausted. Ads it did not reach are still out there; this is not a thin market.",
+   "30 of 30 page loads used on discovery. 89 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-08-31",
   "title": "verify+discover · 18:46 UTC",
   "sources_reached": [
    "njuskalo"
@@ -1715,7 +1733,10 @@ const SEED_LOG = [
    "The refusal memory is earning its keep now that the criteria have stopped moving: 46 ads were skipped unopened this run against 24 opened, and 70 verdicts are carried forward. Of the 24 opened, 20 were manuals and 4 turbos.",
    "XX-023 (Renault Clio 1,2 Limited) was added and retired the same run. Its gearbox field is missing, so nothing excluded it on discovery — the tool refuses to guess, which is correct. The judgement is recorded against the row: manual, turbo or dry DCT, every reading of that ad is outside the brief. Renault's EDC belongs on criteria.dry_dual_clutch_models eventually; it is not added here because editing that list invalidates all 70 remembered refusals, and no EDC ad has actually been met yet.",
    "The budget ceiling moved to EUR 12,500 on the owner's instruction, from EUR 15,000. reference_max is unchanged at EUR 17,000, so the band above the ceiling widened rather than moved: ads to EUR 17,000 are still collected and still shown apart from the buying table. Twelve tracked rows moved above budget and none was dropped — XX-012, XX-009, AH-001, AH-003, XX-002, XX-007, YP-002, YH-005, XX-008, YH-002, YP-001 and XX-011 — leaving nine in budget. The template had EUR 15,000 written into the heading, the lede and the constant that splits the two tables, so a criteria change alone would have published a page describing rules it was not applying; render_page.py now injects all of them from config.json. That also corrected the lede, which still advertised 60-170 tkm against a 60-120 rule.",
-   "The floor followed the ceiling: the range is now EUR 9,000-12,500, from EUR 7,000-15,000. A floor behaves differently from a ceiling here — below the minimum an ad is refused outright rather than recorded as a miss, so the site search now carries price[min]=9000 and those cards are never fetched. One tracked row sits below the new floor, YH-003 at EUR 8,000, and keeps its place like any drifting row. Yield before and after this search change is not comparable yet; the next run is the first under price[min]=9000, and its funnel is the one to read. The numbers were updated in config.json, BRIEF.md, config.example.json (which is also the test fixture) and the vendored template. recon/njuskalo-findings.md and scraper-build-prompt.md keep the old figures on purpose: both are records of what was observed or asked at the time, not statements of the current rule."
+   "The floor followed the ceiling: the range is now EUR 9,000-12,500, from EUR 7,000-15,000. A floor behaves differently from a ceiling here — below the minimum an ad is refused outright rather than recorded as a miss, so the site search now carries price[min]=9000 and those cards are never fetched. One tracked row sits below the new floor, YH-003 at EUR 8,000, and keeps its place like any drifting row. Yield before and after this search change is not comparable yet; the next run is the first under price[min]=9000, and its funnel is the one to read. The numbers were updated in config.json, BRIEF.md, config.example.json (which is also the test fixture) and the vendored template. recon/njuskalo-findings.md and scraper-build-prompt.md keep the old figures on purpose: both are records of what was observed or asked at the time, not statements of the current rule.",
+   "Yield before and after the price floor, same budget of 30 loads, same day, same search but for price[min] 7000 to 9000. On the petrol filter the site's own pool fell from 1,690 ads to 1,318, a fifth of it gone, and the share of cards surviving the local post-filter rose from 90 of 101 to 97 of 101. Loads spent per row kept did not move: 28 either way, one row kept from about thirty loads both times. The floor bought a cleaner pool, not a cheaper one, because the dominant cost is unchanged — 18 of this run's 19 refusals were manual gearboxes. That is the trade-off the runbook takes deliberately, since a site-side gearbox filter would also hide the mis-entered fields worth judging. One run is an anecdote; the comparison is worth repeating next time.",
+   "XX-024 (Fiat 500 Dualogic) was added and retired the same run — see the row's entry. It exposes a gap the criteria cannot express: a single dry-clutch automated manual reads 'automatic' in the gearbox field and is not a dual clutch, so no list covers it. Stretching dry_dual_clutch_models to hold it would make the tool state something false in coverage.md. A separate list, or renaming that one to cover dry-clutch robotised boxes generally, is the fix; neither is done here because it is a change to how the criteria are modelled, and that is the owner's call.",
+   "One red flag did not fire that arguably should have: the same ad says the car is 'unos iz Nizozemske', a Dutch import, but the recent_import_no_hr_history rule looks for 'uvoz'. Not patched — 'unos' on its own means entry or input and would misfire; a safe pattern would have to require a country after it."
   ]
  },
  {
