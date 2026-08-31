@@ -1634,6 +1634,39 @@ function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 const SEED_LOG = [
  {
   "date": "2026-08-31",
+  "title": "verify+discover · 18:38 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "40 rows, unchanged.",
+   "38 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "Filter `fuelTypeId=604` — site reported ?, 0 cards seen, 0 opened, 0 kept (1 page loads, no rows).",
+   "Filter `fuelTypeId=600` — site reported ?, 0 cards seen, 0 opened, 0 kept (1 page loads, no rows).",
+   "2 of 60 page loads used on discovery. 18 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-08-31",
+  "title": "verify+discover · 18:38 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 40 → 42. 2 added.",
+   "38 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "njuskalo: opened 30 ads, kept 2; refused 28 (forced_induction 5, transmission 23).",
+   "njuskalo: 18 ads skipped unopened — already refused in an earlier run on a property of the car.",
+   "Filter `fuelTypeId=604` — site reported 26, 26 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
+   "Filter `fuelTypeId=600` — site reported 1690, 50 cards seen, 30 opened, 2 kept (16 page loads per row).",
+   "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
+   "34 of 60 page loads used on discovery. 46 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-08-31",
   "title": "verify+discover · 18:19 UTC",
   "sources_reached": [
    "njuskalo"
@@ -1652,12 +1685,14 @@ const SEED_LOG = [
  },
  {
   "date": "2026-08-31",
-  "title": "A 60-load budget, spent almost entirely on re-verification",
+  "title": "The page budget stopped paying for re-verification",
   "lines": [
-   "The page-load budget was cut from 150 to 60 at the owner's instruction. Re-reading the 38 active rows took 38 of those loads, so discovery ran on the remainder and stopped mid-crawl: 51 cards seen, 19 ads opened, 0 kept. The run is PARTIAL and the market was not sampled — do not read 0 added as a quiet market this time.",
-   "The previous run's criteria change (the tighter naturally-aspirated ceiling below 1.5 litres) invalidated the refusal memory, so 58 remembered refusals were discarded and re-examined from scratch. 18 of the 19 ads opened were re-refusals of cars already known to be manual or turbocharged. Those verdicts are now stored again, so the next run gets them free.",
-   "Three price cuts, all on tracked rows: YH-001 Toyota Yaris 1.5 automatik 16,200 to 15,900 EUR, XX-008 Ford Mondeo 2.0 Hybrid 13,900 to 13,500, and XX-006 VW Golf GTE 12,000 to 11,200 (retired as a plug-in hybrid, so the cut changes nothing).",
-   "XX-013 (Nissan Juke CVT) has not been read since 24 August. It timed out on the 28th, which set its status to unverified, and the verify pass only re-reads rows marked active — so it is not being retried and is not covered by --force-verify either. It is stranded rather than stale; flagged for the owner, no code changed."
+   "The owner cut browser.max_page_loads from 150 to 60. On the old accounting that was nearly useless: re-reading the 38 tracked rows took 38 of the 60 loads, discovery got what was left, and the run ended PARTIAL having opened 19 ads and kept none. Charging verification to the sweep budget meant every row added shrank the next run's sweep — a full table would eventually add nothing while the numbers still read as a quiet market.",
+   "max_page_loads is now a discovery budget. Re-verification still obeys the 4-9s delay floor and is still counted, but it no longer spends the budget, and the two figures are reported apart everywhere: 'page loads 34/60 on discovery' with the uncharged verify loads named separately. The run that followed used 34 of 60 on discovery and stopped on the per-run cap of 30 ads examined, which is the cap that should bind.",
+   "Three price cuts, all on tracked rows, from the first run of the day: YH-001 Toyota Yaris 1.5 automatik 16,200 to 15,900 EUR, XX-008 Ford Mondeo 2.0 Hybrid 13,900 to 13,500, and XX-006 VW Golf GTE 12,000 to 11,200 (retired as a plug-in hybrid, so the cut changes nothing).",
+   "XX-021 (Mercedes A160) and XX-022 (MINI One) were discovered, judged and retired the same run: both are turbo petrol. Both ads state power without displacement — 'engine: 75 kW Benzin' — so the kW/litre test had nothing to divide by and neither title carries a turbo badge. The ratio test cannot catch a detuned small turbo when the cc is missing; a model-level list, the way dry_dual_clutch_models works for gearboxes, is the fix and has not been built.",
+   "The run record timestamped 18:38 UTC shows njuskalo erroring on both search URLs after two page loads. The browser window was closed by hand while it was running; the site was fine, and the run that followed at 18:42 fetched normally. No row was touched — verification had already been skipped under the 48-hour freshness floor.",
+   "XX-013 (Nissan Juke CVT) has not been read since 24 August. It timed out on the 28th, which set its status to unverified, and the verify pass only re-reads rows marked active — so it is not being retried, and --force-verify does not reach it either. Stranded rather than stale; flagged for the owner, no code changed."
   ]
  },
  {
