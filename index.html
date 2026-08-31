@@ -276,8 +276,8 @@
 
   <!-- ============ REFERENCE ============ -->
   <section id="tab-reference" hidden>
-    <h2 class="head">Above budget — €15,000 to €17,000</h2>
-    <p class="lede">Kept apart from the buying table on purpose: these are here to show what the extra money buys, not to be shopped. Same columns, same rules, same IDs — a row that drops below €15,000 moves itself into the in-budget table on the next render.</p>
+    <h2 class="head">Above budget — €12,500 to €17,000</h2>
+    <p class="lede">Kept apart from the buying table on purpose: these are here to show what the extra money buys, not to be shopped. Same columns, same rules, same IDs — a row that drops below €12,500 moves itself into the in-budget table on the next render.</p>
     <div id="ref-mount"></div>
   </section>
 
@@ -338,7 +338,7 @@
   <!-- ============ ABOUT ============ -->
   <section id="tab-about" hidden>
     <h2 class="head">What this page is</h2>
-    <p class="lede">A cumulative record of automatic hybrid and naturally-aspirated petrol listings in Croatia, €7,000–15,000, 2014–2021, 60–170 tkm, under ~4.35 m. It exists to show attributes against asking price and to keep dead listings on file, not to choose a car.</p>
+    <p class="lede">A cumulative record of automatic hybrid and naturally-aspirated petrol listings in Croatia, €7,000–12,500, 2014–2021, 60–120 tkm, under ~4.35 m. It exists to show attributes against asking price and to keep dead listings on file, not to choose a car.</p>
 
     <div class="note decision">
       <h3>Power is recorded, not required — 18 Aug 2026</h3>
@@ -394,7 +394,7 @@ window.storage = { async get(){ return null; }, async set(){} };
 const KEY = 'vozni:dataset:508f842a99';
 const SHARED = true;
 const TODAY = '2026-08-31';
-const BUDGET_MAX = 15000;
+const BUDGET_MAX = 12500;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
 const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
 const RETIRED_IDS = ['XX-005','XX-006'];
@@ -1713,7 +1713,8 @@ const SEED_LOG = [
    "XX-013 (Nissan Juke CVT) has not been read since 24 August. It timed out on the 28th, which set its status to unverified, and the verify pass only re-reads rows marked active — so it is not being retried, and --force-verify does not reach it either. Stranded rather than stale; flagged for the owner, no code changed.",
    "A second cut, to max_page_loads 30, showed the new accounting working the other way: verification again cost nothing (all 40 rows inside the 48-hour floor), discovery spent all 30 loads and ended PARTIAL with cards still unread. At 60 the binding constraint had been the per-run cap of 30 ads examined; at 30 it is the budget again. Both runs are honest about which — the funnel line says which stage absorbed the stock.",
    "The refusal memory is earning its keep now that the criteria have stopped moving: 46 ads were skipped unopened this run against 24 opened, and 70 verdicts are carried forward. Of the 24 opened, 20 were manuals and 4 turbos.",
-   "XX-023 (Renault Clio 1,2 Limited) was added and retired the same run. Its gearbox field is missing, so nothing excluded it on discovery — the tool refuses to guess, which is correct. The judgement is recorded against the row: manual, turbo or dry DCT, every reading of that ad is outside the brief. Renault's EDC belongs on criteria.dry_dual_clutch_models eventually; it is not added here because editing that list invalidates all 70 remembered refusals, and no EDC ad has actually been met yet."
+   "XX-023 (Renault Clio 1,2 Limited) was added and retired the same run. Its gearbox field is missing, so nothing excluded it on discovery — the tool refuses to guess, which is correct. The judgement is recorded against the row: manual, turbo or dry DCT, every reading of that ad is outside the brief. Renault's EDC belongs on criteria.dry_dual_clutch_models eventually; it is not added here because editing that list invalidates all 70 remembered refusals, and no EDC ad has actually been met yet.",
+   "The budget ceiling moved to EUR 12,500 on the owner's instruction, from EUR 15,000. reference_max is unchanged at EUR 17,000, so the band above the ceiling widened rather than moved: ads to EUR 17,000 are still collected and still shown apart from the buying table. Twelve tracked rows moved above budget and none was dropped — XX-012, XX-009, AH-001, AH-003, XX-002, XX-007, YP-002, YH-005, XX-008, YH-002, YP-001 and XX-011 — leaving nine in budget. The template had EUR 15,000 written into the heading, the lede and the constant that splits the two tables, so a criteria change alone would have published a page describing rules it was not applying; render_page.py now injects all of them from config.json. That also corrected the lede, which still advertised 60-170 tkm against a 60-120 rule."
   ]
  },
  {
