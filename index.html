@@ -276,8 +276,8 @@
 
   <!-- ============ REFERENCE ============ -->
   <section id="tab-reference" hidden>
-    <h2 class="head">Above budget — €12,500 to €17,000</h2>
-    <p class="lede">Kept apart from the buying table on purpose: these are here to show what the extra money buys, not to be shopped. Same columns, same rules, same IDs — a row that drops below €12,500 moves itself into the in-budget table on the next render.</p>
+    <h2 class="head">Above budget — €15,000 to €17,000</h2>
+    <p class="lede">Kept apart from the buying table on purpose: these are here to show what the extra money buys, not to be shopped. Same columns, same rules, same IDs — a row that drops below €15,000 moves itself into the in-budget table on the next render.</p>
     <div id="ref-mount"></div>
   </section>
 
@@ -338,7 +338,7 @@
   <!-- ============ ABOUT ============ -->
   <section id="tab-about" hidden>
     <h2 class="head">What this page is</h2>
-    <p class="lede">A cumulative record of automatic hybrid and naturally-aspirated petrol listings in Croatia, €9,000–12,500, 2014–2021, 60–120 tkm, under ~4.35 m. It exists to show attributes against asking price and to keep dead listings on file, not to choose a car.</p>
+    <p class="lede">A cumulative record of automatic hybrid and naturally-aspirated petrol listings in Croatia, €7,000–15,000, 2014–2021, 60–170 tkm, under ~4.35 m. It exists to show attributes against asking price and to keep dead listings on file, not to choose a car.</p>
 
     <div class="note decision">
       <h3>Power is recorded, not required — 18 Aug 2026</h3>
@@ -391,10 +391,10 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:508f842a99';
+const KEY = 'vozni:dataset:7a65fc2fcb';
 const SHARED = true;
-const TODAY = '2026-08-31';
-const BUDGET_MAX = 12500;
+const TODAY = '2026-09-04';
+const BUDGET_MAX = 15000;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
 const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
 const RETIRED_IDS = ['XX-005','XX-006'];
@@ -409,7 +409,7 @@ const SEED_ROWS = [
   "id": "YH-003",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-51230157",
@@ -447,10 +447,47 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
+  "id": "XX-021",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/citro-n-c1-1.0-automatik-oglas-49966832",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/citro-n-c1-1.0-automatik-slika-273061283.jpg",
+  "model": "Citroën C1 1.0 VTi 68",
+  "trim": "1,0 VTi 68",
+  "year": 2016,
+  "mileage_km": 100000,
+  "engine": "999 cm3 50 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 8490,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 8490
+   }
+  ],
+  "location": "Rijeka, Primorsko-goranska",
+  "coastal": "yes",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Off-list find, XX prefix. Naturally aspirated three-cylinder, so it clears the fuel rule. COASTAL — Rijeka, flagged per the brief. Caveat for the owner: the C1 \"automatik\" is the ETG5, a robotised single-clutch manual with a dry clutch, not a torque converter. The brief excludes dry DUAL-clutch boxes, so this is not caught by that rule, but it shares the clutch-wear failure mode and drives poorly compared with the CVT/eCVT cars in this table. Kept and flagged rather than refused; say the word and it is retired. At EUR 8,490 for a 50 kW city car it is also weak value against the Yaris Hybrids already tracked.",
+  "power_kw": 50,
+  "power_source": "manufacturer spec for the 1.0 VTi 68 (999 cm3, naturally aspirated)"
+ },
+ {
   "id": "XX-019",
   "status": "active",
   "first_seen": "2026-08-24",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-automatik-tiptronic-83000-km-oglas-51343671",
@@ -487,7 +524,7 @@ const SEED_ROWS = [
   "id": "AH-004",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-auris-1.8-hsd-sol-automatik-oglas-51172203",
@@ -516,7 +553,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"nema\". Estate — the revised brief asks for the hatchback.",
+  "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"nema\" — audited 4 Sep 2026, the clause reads \"nema oštećenja\" and the suppression is correct. Estate — the revised brief asks for the hatchback.",
   "power_kw": 100,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -524,7 +561,7 @@ const SEED_ROWS = [
   "id": "XX-004",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/kia-optima-2.0-hibrid-automatik-oglas-51211433",
@@ -559,9 +596,9 @@ const SEED_ROWS = [
  },
  {
   "id": "XX-013",
-  "status": "unverified",
+  "status": "active",
   "first_seen": "2026-08-19",
-  "last_verified": "2026-08-24",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-oglas-50915742",
@@ -590,7 +627,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Nissan Juke 1.6 16V (HR16DE) with CVT - naturally aspirated at 54 kW/litre, so it fits the NA-petrol half of the brief. Off-list find.",
+  "parse_notes": "Nissan Juke 1.6 16V (HR16DE) with CVT - naturally aspirated at 54 kW/litre, so it fits the NA-petrol half of the brief. Off-list find. Import flag suppressed on \"ORIGINAL HR AUTO NIJE UVOZ\" — audited 4 Sep 2026, correct. Went unverified on a 28 Aug page timeout and stayed that way for two runs because verification only re-read rows already marked active; re-read on 4 Sep and live at the same price.",
   "power_kw": null,
   "power_source": null
  },
@@ -598,7 +635,7 @@ const SEED_ROWS = [
   "id": "YH-006",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-50964036",
@@ -643,7 +680,7 @@ const SEED_ROWS = [
   "id": "YH-004",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-pod-garancijom-oglas-50717195",
@@ -651,14 +688,18 @@ const SEED_ROWS = [
   "model": "Toyota Yaris Hybrid",
   "trim": "Hybrid 1,5 VVT-i",
   "year": 2016,
-  "mileage_km": 163000,
+  "mileage_km": 168000,
   "engine": "1.500 cm3 74 kW Hibrid",
   "transmission": "automatic",
-  "price_eur": 11500,
+  "price_eur": 10800,
   "price_history": [
    {
     "date": "2026-08-17",
     "price": 11500
+   },
+   {
+    "date": "2026-09-04",
+    "price": 10800
    }
   ],
   "location": "Varaždin, Varaždinska",
@@ -680,7 +721,7 @@ const SEED_ROWS = [
   "id": "AH-005",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-automatik-oglas-50802095",
@@ -717,7 +758,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Import flag suppressed: \"uvoz\" negated by \"Nije\".",
+  "parse_notes": "Import flag suppressed: \"uvoz\" negated by \"Nije\" — audited 4 Sep 2026, the ad states the car was never imported. Suppression correct.",
   "power_kw": 100,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -725,7 +766,7 @@ const SEED_ROWS = [
   "id": "YH-007",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-hybrid-oglas-49824980",
@@ -759,10 +800,51 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
+  "id": "YP-001",
+  "status": "active",
+  "first_seen": "2026-08-17",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-51193485",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-1.5-automatik-slika-282705835.jpg",
+  "model": "Toyota Yaris 1.5 petrol automatic",
+  "trim": "1,5",
+  "year": 2019,
+  "mileage_km": 100721,
+  "engine": "54 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 12900,
+  "price_history": [
+   {
+    "date": "2026-08-17",
+    "price": 13000
+   },
+   {
+    "date": "2026-09-04",
+    "price": 12900
+   }
+  ],
+  "location": "Sveta Nedelja, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kameru, senzore",
+  "registered_until": "06 / 2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": null,
+  "power_kw": 82,
+  "power_source": "model-typical total system output, not read from the ad"
+ },
+ {
   "id": "XX-011",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-automatik-oglas-50929919",
@@ -799,7 +881,7 @@ const SEED_ROWS = [
   "id": "YH-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-trend-plus-y20-toyota-relax-202-oglas-51202463",
@@ -831,47 +913,10 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
-  "id": "YP-001",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-51193485",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-1.5-automatik-slika-282705835.jpg",
-  "model": "Toyota Yaris 1.5 petrol automatic",
-  "trim": "1,5",
-  "year": 2019,
-  "mileage_km": 100721,
-  "engine": "54 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 13000,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 13000
-   }
-  ],
-  "location": "Sveta Nedelja, Zagrebačka",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kameru, senzore",
-  "registered_until": "06 / 2027",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": null,
-  "power_kw": 82,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
   "id": "XX-008",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-hybrid-oglas-50509254",
@@ -889,7 +934,7 @@ const SEED_ROWS = [
     "price": 13900
    },
    {
-    "date": "2026-08-31",
+    "date": "2026-09-04",
     "price": 13500
    }
   ],
@@ -912,7 +957,7 @@ const SEED_ROWS = [
   "id": "YH-005",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-y20-special-edition-2019-oglas-51158436",
@@ -941,7 +986,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"bez\".",
+  "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"bez\" — audited 4 Sep 2026, the clause reads \"bez oštećenja\". Suppression correct.",
   "power_kw": 74,
   "power_source": "model-typical total system output, not read from the ad"
  },
@@ -949,7 +994,7 @@ const SEED_ROWS = [
   "id": "YP-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-oglas-50699858",
@@ -990,7 +1035,7 @@ const SEED_ROWS = [
   "id": "XX-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-50861903",
@@ -1027,7 +1072,7 @@ const SEED_ROWS = [
   "id": "XX-007",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/renault-megane-conquest-145-ks-e-tech-hibrid-1.6-oglas-48820244",
@@ -1064,7 +1109,7 @@ const SEED_ROWS = [
   "id": "AH-003",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-kamera-grij-sicevi-kuka-oglas-50407726",
@@ -1102,7 +1147,7 @@ const SEED_ROWS = [
   "id": "AH-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-136ks-hybrid-design-edition-kamera-navi-led-oglas-50408017",
@@ -1140,7 +1185,7 @@ const SEED_ROWS = [
   "id": "XX-009",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/infiniti-q50-3.5-hybrid-awd-364-ks-v6-elektro-full-oprema-2016-oglas-50216237",
@@ -1215,7 +1260,7 @@ const SEED_ROWS = [
   "id": "YH-008",
   "status": "active",
   "first_seen": "2026-08-19",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-automatik-2021god-produzeno-jamstvo-reg-3-2027-oglas-51290492",
@@ -1252,7 +1297,7 @@ const SEED_ROWS = [
   "id": "AH-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-136ks-hybrid-led-navi-ambient-light-auto-klima-oglas-50407955",
@@ -1290,7 +1335,7 @@ const SEED_ROWS = [
   "id": "JZ-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/honda-jazz-hibrid-oglas-51213613",
@@ -1331,7 +1376,7 @@ const SEED_ROWS = [
   "id": "YH-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-automatik-reg-10-2026-tvornicko-jamstvo-oglas-50681683",
@@ -1349,7 +1394,7 @@ const SEED_ROWS = [
     "price": 16200
    },
    {
-    "date": "2026-08-31",
+    "date": "2026-09-04",
     "price": 15900
    }
   ],
@@ -1372,7 +1417,7 @@ const SEED_ROWS = [
   "id": "XX-010",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-automatik-oglas-51089371",
@@ -1409,7 +1454,7 @@ const SEED_ROWS = [
   "id": "CH-002",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hybrid-oglas-49018195",
@@ -1446,7 +1491,7 @@ const SEED_ROWS = [
   "id": "XX-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-hybrid-hr-auto-90tkm-servisna-automatik-oglas-51206650",
@@ -1483,7 +1528,7 @@ const SEED_ROWS = [
   "id": "CT-001",
   "status": "active",
   "first_seen": "2026-08-19",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/lexus-ct-200h-automatik-oglas-50628870",
@@ -1520,7 +1565,7 @@ const SEED_ROWS = [
   "id": "XX-003",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-c-hr-1.8-vvt-hr-auto-oglas-51217928",
@@ -1557,7 +1602,7 @@ const SEED_ROWS = [
   "id": "PR-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-prius-1.8-automatik-oglas-46180493",
@@ -1594,7 +1639,7 @@ const SEED_ROWS = [
   "id": "CH-001",
   "status": "active",
   "first_seen": "2026-08-17",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-04",
   "went_inactive": null,
   "source": "njuskalo",
   "url": "https://www.njuskalo.hr/auti/toyota-corolla-1.8-hibrid-automatik-oglas-50484453",
@@ -1633,110 +1678,71 @@ function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
  {
-  "date": "2026-08-31",
-  "title": "verify+discover · 19:10 UTC",
-  "sources_reached": [
+  "date": "2026-09-04",
+  "title": "verify-only · 06:56 UTC",
+  "sources_reached": [],
+  "sources_unreachable": [
    "njuskalo"
   ],
-  "sources_unreachable": [],
   "lines": [
-   "Rows 43 → 44. 1 added.",
-   "41 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
-   "njuskalo: opened 20 ads, kept 1; refused 19 (forced_induction 1, transmission 18).",
-   "njuskalo: 52 ads skipped unopened — already refused in an earlier run on a property of the car.",
-   "Filter `fuelTypeId=604` — site reported 26, 26 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
-   "Filter `fuelTypeId=600` — site reported 1318, 75 cards seen, 20 opened, 1 kept (28 page loads per row).",
-   "**njuskalo coverage is incomplete** — page-load budget exhausted. Ads it did not reach are still out there; this is not a thin market.",
-   "30 of 30 page loads used on discovery. 89 refusals carried forward."
-  ]
- },
- {
-  "date": "2026-08-31",
-  "title": "verify+discover · 18:46 UTC",
-  "sources_reached": [
-   "njuskalo"
-  ],
-  "sources_unreachable": [],
-  "lines": [
-   "Rows 42 → 43. 1 added.",
+   "41 rows, unchanged.",
    "40 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
-   "njuskalo: opened 25 ads, kept 1; refused 24 (forced_induction 4, transmission 20).",
-   "njuskalo: 46 ads skipped unopened — already refused in an earlier run on a property of the car.",
-   "Filter `fuelTypeId=604` — site reported 26, 26 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
-   "Filter `fuelTypeId=600` — site reported 1690, 75 cards seen, 25 opened, 1 kept (28 page loads per row).",
-   "**njuskalo coverage is incomplete** — page-load budget exhausted. Ads it did not reach are still out there; this is not a thin market.",
-   "30 of 30 page loads used on discovery. 70 refusals carried forward."
+   "0 of 150 page loads used. 29 refusals carried forward."
   ]
  },
  {
-  "date": "2026-08-31",
-  "title": "verify+discover · 18:38 UTC",
+  "date": "2026-09-04",
+  "title": "verify-only · 06:55 UTC",
+  "sources_reached": [],
+  "sources_unreachable": [
+   "njuskalo"
+  ],
+  "lines": [
+   "41 rows, unchanged.",
+   "40 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "0 of 150 page loads used. 29 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-09-04",
+  "title": "verify-only · 06:54 UTC",
   "sources_reached": [
    "njuskalo"
   ],
   "sources_unreachable": [],
   "lines": [
-   "40 rows, unchanged.",
-   "38 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
-   "Filter `fuelTypeId=604` — site reported ?, 0 cards seen, 0 opened, 0 kept (1 page loads, no rows).",
-   "Filter `fuelTypeId=600` — site reported ?, 0 cards seen, 0 opened, 0 kept (1 page loads, no rows).",
-   "2 of 60 page loads used on discovery. 18 refusals carried forward."
+   "41 rows, unchanged.",
+   "39 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "1 rows re-verified, nothing moved.",
+   "1 of 150 page loads used. 29 refusals carried forward."
   ]
  },
  {
-  "date": "2026-08-31",
-  "title": "verify+discover · 18:38 UTC",
+  "date": "2026-09-04",
+  "title": "verify+discover · 06:25 UTC",
   "sources_reached": [
    "njuskalo"
   ],
   "sources_unreachable": [],
   "lines": [
-   "Rows 40 → 42. 2 added.",
-   "38 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
-   "njuskalo: opened 30 ads, kept 2; refused 28 (forced_induction 5, transmission 23).",
-   "njuskalo: 18 ads skipped unopened — already refused in an earlier run on a property of the car.",
-   "Filter `fuelTypeId=604` — site reported 26, 26 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
-   "Filter `fuelTypeId=600` — site reported 1690, 50 cards seen, 30 opened, 2 kept (16 page loads per row).",
+   "Rows 40 → 41. 1 added.",
+   "38 rows re-verified — 6 price change(s).",
+   "njuskalo: opened 30 ads, kept 1; refused 29 (forced_induction 8, fuel 1, transmission 20).",
+   "Filter `fuelTypeId=604` — site reported 25, 25 cards seen, 5 opened, 0 kept (11 page loads, no rows).",
+   "Filter `fuelTypeId=600` — site reported 1720, 50 cards seen, 25 opened, 1 kept (27 page loads per row).",
    "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
-   "34 of 60 page loads used on discovery. 46 refusals carried forward."
-  ]
- },
- {
-  "date": "2026-08-31",
-  "title": "verify+discover · 18:19 UTC",
-  "sources_reached": [
-   "njuskalo"
-  ],
-  "sources_unreachable": [],
-  "lines": [
-   "40 rows, unchanged.",
-   "37 rows re-verified — 3 price change(s), 1 could not be reached and will be retried.",
-   "njuskalo: opened 19 ads, kept 0; refused 18 (forced_induction 2, fuel 1, transmission 15).",
-   "Filter `fuelTypeId=604` — site reported 26, 26 cards seen, 12 opened, 0 kept (14 page loads, no rows).",
-   "Filter `fuelTypeId=600` — site reported 1690, 25 cards seen, 7 opened, 0 kept (8 page loads, no rows).",
-   "**njuskalo coverage is incomplete** — page-load budget exhausted. Ads it did not reach are still out there; this is not a thin market.",
-   "60 of 60 page loads used. 18 refusals carried forward.",
+   "76 of 150 page loads used. 29 refusals carried forward.",
    "Config: criteria changed since the last run — discarded 58 remembered refusals and re-examined those ads from scratch"
   ]
  },
  {
-  "date": "2026-08-31",
-  "title": "The page budget stopped paying for re-verification",
+  "date": "2026-09-04",
+  "title": "Stuck row unstuck, one off-list find",
   "lines": [
-   "The owner cut browser.max_page_loads from 150 to 60. On the old accounting that was nearly useless: re-reading the 38 tracked rows took 38 of the 60 loads, discovery got what was left, and the run ended PARTIAL having opened 19 ads and kept none. Charging verification to the sweep budget meant every row added shrank the next run's sweep — a full table would eventually add nothing while the numbers still read as a quiet market.",
-   "max_page_loads is now a discovery budget. Re-verification still obeys the 4-9s delay floor and is still counted, but it no longer spends the budget, and the two figures are reported apart everywhere: 'page loads 34/60 on discovery' with the uncharged verify loads named separately. The run that followed used 34 of 60 on discovery and stopped on the per-run cap of 30 ads examined, which is the cap that should bind.",
-   "Three price cuts, all on tracked rows, from the first run of the day: YH-001 Toyota Yaris 1.5 automatik 16,200 to 15,900 EUR, XX-008 Ford Mondeo 2.0 Hybrid 13,900 to 13,500, and XX-006 VW Golf GTE 12,000 to 11,200 (retired as a plug-in hybrid, so the cut changes nothing).",
-   "XX-021 (Mercedes A160) and XX-022 (MINI One) were discovered, judged and retired the same run: both are turbo petrol. Both ads state power without displacement — 'engine: 75 kW Benzin' — so the kW/litre test had nothing to divide by and neither title carries a turbo badge. The ratio test cannot catch a detuned small turbo when the cc is missing; a model-level list, the way dry_dual_clutch_models works for gearboxes, is the fix and has not been built.",
-   "The run record timestamped 18:38 UTC shows njuskalo erroring on both search URLs after two page loads. The browser window was closed by hand while it was running; the site was fine, and the run that followed at 18:42 fetched normally. No row was touched — verification had already been skipped under the 48-hour freshness floor.",
-   "XX-013 (Nissan Juke CVT) has not been read since 24 August. It timed out on the 28th, which set its status to unverified, and the verify pass only re-reads rows marked active — so it is not being retried, and --force-verify does not reach it either. Stranded rather than stale; flagged for the owner, no code changed.",
-   "A second cut, to max_page_loads 30, showed the new accounting working the other way: verification again cost nothing (all 40 rows inside the 48-hour floor), discovery spent all 30 loads and ended PARTIAL with cards still unread. At 60 the binding constraint had been the per-run cap of 30 ads examined; at 30 it is the budget again. Both runs are honest about which — the funnel line says which stage absorbed the stock.",
-   "The refusal memory is earning its keep now that the criteria have stopped moving: 46 ads were skipped unopened this run against 24 opened, and 70 verdicts are carried forward. Of the 24 opened, 20 were manuals and 4 turbos.",
-   "XX-023 (Renault Clio 1,2 Limited) was added and retired the same run. Its gearbox field is missing, so nothing excluded it on discovery — the tool refuses to guess, which is correct. The judgement is recorded against the row: manual, turbo or dry DCT, every reading of that ad is outside the brief. Renault's EDC belongs on criteria.dry_dual_clutch_models eventually; it is not added here because editing that list invalidates all 70 remembered refusals, and no EDC ad has actually been met yet.",
-   "The budget ceiling moved to EUR 12,500 on the owner's instruction, from EUR 15,000. reference_max is unchanged at EUR 17,000, so the band above the ceiling widened rather than moved: ads to EUR 17,000 are still collected and still shown apart from the buying table. Twelve tracked rows moved above budget and none was dropped — XX-012, XX-009, AH-001, AH-003, XX-002, XX-007, YP-002, YH-005, XX-008, YH-002, YP-001 and XX-011 — leaving nine in budget. The template had EUR 15,000 written into the heading, the lede and the constant that splits the two tables, so a criteria change alone would have published a page describing rules it was not applying; render_page.py now injects all of them from config.json. That also corrected the lede, which still advertised 60-170 tkm against a 60-120 rule.",
-   "The floor followed the ceiling: the range is now EUR 9,000-12,500, from EUR 7,000-15,000. A floor behaves differently from a ceiling here — below the minimum an ad is refused outright rather than recorded as a miss, so the site search now carries price[min]=9000 and those cards are never fetched. One tracked row sits below the new floor, YH-003 at EUR 8,000, and keeps its place like any drifting row. Yield before and after this search change is not comparable yet; the next run is the first under price[min]=9000, and its funnel is the one to read. The numbers were updated in config.json, BRIEF.md, config.example.json (which is also the test fixture) and the vendored template. recon/njuskalo-findings.md and scraper-build-prompt.md keep the old figures on purpose: both are records of what was observed or asked at the time, not statements of the current rule.",
-   "Yield before and after the price floor, same budget of 30 loads, same day, same search but for price[min] 7000 to 9000. On the petrol filter the site's own pool fell from 1,690 ads to 1,318, a fifth of it gone, and the share of cards surviving the local post-filter rose from 90 of 101 to 97 of 101. Loads spent per row kept did not move: 28 either way, one row kept from about thirty loads both times. The floor bought a cleaner pool, not a cheaper one, because the dominant cost is unchanged — 18 of this run's 19 refusals were manual gearboxes. That is the trade-off the runbook takes deliberately, since a site-side gearbox filter would also hide the mis-entered fields worth judging. One run is an anecdote; the comparison is worth repeating next time.",
-   "XX-024 (Fiat 500 Dualogic) was added and retired the same run — see the row's entry. It exposes a gap the criteria cannot express: a single dry-clutch automated manual reads 'automatic' in the gearbox field and is not a dual clutch, so no list covers it. Stretching dry_dual_clutch_models to hold it would make the tool state something false in coverage.md. A separate list, or renaming that one to cover dry-clutch robotised boxes generally, is the fix; neither is done here because it is a change to how the criteria are modelled, and that is the owner's call.",
-   "One red flag did not fire that arguably should have: the same ad says the car is 'unos iz Nizozemske', a Dutch import, but the recent_import_no_hr_history rule looks for 'uvoz'. Not patched — 'unos' on its own means entry or input and would misfire; a safe pattern would have to require a country after it."
+   "Fixed a verification gap: a row marked unverified was never re-read, because verification only looked at rows already marked active. XX-013 (Nissan Juke CVT) had been stranded since a page timeout on 28 Aug. It is re-read and live at the unchanged 10,299 EUR. Unverified rows now go back into the queue and are never treated as fresh.",
+   "Added XX-021, a Citroën C1 1,0 automatik in Rijeka at 8,490 EUR. Off-list and coastal. Its 'automatik' is an ETG5 robotised single-clutch manual, not a torque converter; the brief excludes dry dual-clutch boxes, which this is not, so it was kept and flagged rather than refused. Retire it if that is not the intent.",
+   "Audited the five flags that were suppressed by a negation in the ad text. Four are correct ('nema oštećenja', 'bez oštećenja', 'nije uvoz' x2) and are now recorded as settled. XX-002's import suppression stays open on purpose: the ad says the car was bought and registered in Slovenia, so for a Zagreb purchase it still has no Croatian history.",
+   "Six price cuts, all downward, 100-800 EUR. Nothing went inactive."
   ]
  },
  {
