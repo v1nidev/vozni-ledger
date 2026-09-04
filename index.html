@@ -391,7 +391,7 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:7a65fc2fcb';
+const KEY = 'vozni:dataset:60be1dde53';
 const SHARED = true;
 const TODAY = '2026-09-04';
 const BUDGET_MAX = 15000;
@@ -556,6 +556,43 @@ const SEED_ROWS = [
   "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"nema\" — audited 4 Sep 2026, the clause reads \"nema oštećenja\" and the suppression is correct. Estate — the revised brief asks for the hatchback.",
   "power_kw": 100,
   "power_source": "model-typical total system output, not read from the ad"
+ },
+ {
+  "id": "XX-022",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-oglas-50986270",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-slika-281183829.jpg",
+  "model": "Opel Corsa 1.4 (E)",
+  "trim": "1,4 Aut.",
+  "year": 2016,
+  "mileage_km": 78000,
+  "engine": "1.398 cm3 66 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 9900,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 9900
+   }
+  ],
+  "location": "Rugvica, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "12 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Off-list find and the pick of this run: naturally aspirated 1.4 with a torque-converter automatic, one owner, 78,000 km, bought new in Croatia, inland (Rugvica) at 9,900 EUR. Import flag suppressed on \"NIJE UVOZ\" — audited 4 Sep 2026 and correct; the ad also says \"KUPLJEN U HR KAO NOVO VOZILO\". Second Corsa in the table alongside XX-019, which is a different ad (2018, 83,400 km, 9,800 EUR) — useful as a like-for-like price comparison.",
+  "power_kw": 66,
+  "power_source": "manufacturer spec for the 1.4 naturally aspirated (A14XER family), matches the ad"
  },
  {
   "id": "XX-004",
@@ -1562,6 +1599,78 @@ const SEED_ROWS = [
   "power_source": null
  },
  {
+  "id": "AH-006",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-automatik-oglas-51443014",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-auris-karavan-1.8-automatik-slika-284603033.jpg",
+  "model": "Toyota Auris Hybrid Touring Sports",
+  "trim": "karavan",
+  "year": 2018,
+  "mileage_km": 93600,
+  "engine": "1.798 cm3 73 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16880,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 16880
+   }
+  ],
+  "location": "Sesvete, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": null,
+  "flags": [
+   "recent_import_no_hr_history"
+  ],
+  "parse_notes": "Estate, not the hatchback the revised brief asks for — same case as AH-004, and the ad title hides it (the URL slug says \"auris-karavan\"). German import, and the flag fired correctly: the ad says \"Uvoz Njemačka\", so there is no Croatian service history. At 16,880 EUR it is a reference row above budget, not a candidate.",
+  "power_kw": 100,
+  "power_source": "total system output for the 1.8 HSD; the ad's 73 kW is the combustion engine alone"
+ },
+ {
+  "id": "XX-023",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/mazda-cx-3-g121-automatik-navigacija-head-up-kamera-oglas-51226109",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/mazda-cx-3-g121-automatik-navigacija-head-up-kamera-slika-283259435.jpg",
+  "model": "Mazda CX-3 2.0 Skyactiv-G 121",
+  "trim": "cx-3",
+  "year": 2018,
+  "mileage_km": 101000,
+  "engine": "1.998 cm3 89 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 16950,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 16950
+   }
+  ],
+  "location": "Osijek - Okolica, Osječko-baranjska",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera, parkirna, senzori",
+  "registered_until": null,
+  "flags": [],
+  "parse_notes": "Off-list find. Naturally aspirated 2.0 with a six-speed torque-converter automatic — no dual clutch anywhere in the range. 4.28 m, so it parks like the hatchbacks despite being a crossover. At 16,950 EUR it is a reference row above budget, right at the top of the reference band.",
+  "power_kw": 89,
+  "power_source": "manufacturer spec for the Skyactiv-G 121 (121 PS), matches the ad"
+ },
+ {
   "id": "XX-003",
   "status": "active",
   "first_seen": "2026-08-17",
@@ -1719,6 +1828,24 @@ const SEED_LOG = [
  },
  {
   "date": "2026-09-04",
+  "title": "verify+discover · 08:40 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 41 → 44. 3 added.",
+   "40 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "njuskalo: opened 30 ads, kept 3; refused 27 (forced_induction 11, transmission 16).",
+   "njuskalo: 13 ads skipped unopened — already refused in an earlier run on a property of the car.",
+   "Filter `fuelTypeId=604` — site reported 26, 26 cards seen, 6 opened, 1 kept (8 page loads per row).",
+   "Filter `fuelTypeId=600` — site reported 1719, 150 cards seen, 24 opened, 2 kept (15 page loads per row).",
+   "**njuskalo coverage is incomplete** — examined the per-run cap of 30 ads. Ads it did not reach are still out there; this is not a thin market.",
+   "38 of 220 page loads used. 56 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-09-04",
   "title": "verify+discover · 06:25 UTC",
   "sources_reached": [
    "njuskalo"
@@ -1743,6 +1870,17 @@ const SEED_LOG = [
    "Added XX-021, a Citroën C1 1,0 automatik in Rijeka at 8,490 EUR. Off-list and coastal. Its 'automatik' is an ETG5 robotised single-clutch manual, not a torque converter; the brief excludes dry dual-clutch boxes, which this is not, so it was kept and flagged rather than refused. Retire it if that is not the intent.",
    "Audited the five flags that were suppressed by a negation in the ad text. Four are correct ('nema oštećenja', 'bez oštećenja', 'nije uvoz' x2) and are now recorded as settled. XX-002's import suppression stays open on purpose: the ad says the car was bought and registered in Slovenia, so for a Zagreb purchase it still has no Croatian history.",
    "Six price cuts, all downward, 100-800 EUR. Nothing went inactive."
+  ]
+ },
+ {
+  "date": "2026-09-04",
+  "title": "Discovery now opens the likely automatics first",
+  "lines": [
+   "Measured why so few cars were being added, and it is not a thin market: njuškalo lists 1,719 petrol ads inside the criteria against 26 hybrids. The hybrid pool is genuinely exhausted — the table already holds more hybrid rows than there are hybrid ads currently listed — so the room to grow is in petrol.",
+   "The petrol pool was converting at about 3%: of 30 ads opened per run, roughly 24 turned out to be manuals. njuškalo silently ignores its own gearbox filter (tested four ways, including manual-only, all returning the same 1,719 ads), so a manual could only be found by opening it.",
+   "Discovery now reads a few pages ahead and opens the ads whose titles advertise an automatic first. It is an ordering, not a filter: an ad that says nothing about its gearbox is still opened once the signalled ones run out, so sellers who fill the gearbox field wrongly are still caught. Same 30-ad budget, three rows kept instead of one, and cost per row fell from 36 page loads to about 13.",
+   "Verification is now capped so it cannot crowd out discovery as the table grows: it re-reads the stalest rows first and stops with 60 page loads held back. Rows it does not reach are reported as deferred — they keep their status and are first in line next run. The overall budget went from 150 to 220 loads.",
+   "Added AH-006 (Auris Hybrid estate, German import, 16,880 EUR — a reference row, not a candidate), XX-022 (Opel Corsa 1.4 automatic, one owner, 78,000 km, 9,900 EUR, inland) and XX-023 (Mazda CX-3 2.0 automatic, 16,950 EUR)."
   ]
  },
  {
