@@ -1788,6 +1788,24 @@ function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 const SEED_LOG = [
  {
   "date": "2026-09-09",
+  "title": "verify+discover · 07:07 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "47 rows, unchanged.",
+   "45 rows were skipped as still fresh — checked recently enough that re-reading them would only confirm what was already known.",
+   "njuskalo: opened 60 ads, kept 0; refused 101 (forced_induction 46, transmission 55).",
+   "Filter `fuelTypeId=604, sort=new` — site reported 29, 29 cards seen, 6 opened, 0 kept (8 page loads, no rows).",
+   "Filter `fuelTypeId=600, mileage[max]=100000, mileage[min]=60000` — site reported 708, 150 cards seen, 54 opened, 0 kept (60 page loads, no rows).",
+   "**njuskalo coverage is incomplete** — examined the per-run cap of 60 ads. Ads it did not reach are still out there; this is not a thin market.",
+   "68 of 220 page loads used. 101 refusals carried forward.",
+   "Config: criteria changed since the last run — discarded 113 remembered refusals and re-examined those ads from scratch"
+  ]
+ },
+ {
+  "date": "2026-09-09",
   "title": "verify+discover · 06:17 UTC",
   "sources_reached": [
    "njuskalo"
@@ -1802,6 +1820,19 @@ const SEED_LOG = [
    "Filter `fuelTypeId=600` — site reported 708, 150 cards seen, 58 opened, 1 kept (64 page loads per row).",
    "**njuskalo coverage is incomplete** — examined the per-run cap of 60 ads. Ads it did not reach are still out there; this is not a thin market.",
    "110 of 220 page loads used. 113 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-09-09",
+  "title": "Turbo refused from the card",
+  "lines": [
+   "Every blown petrol is refused again, with no exceptions: three engines were admitted by name earlier today and all three were withdrawn.",
+   "A turbo whose search card carries the badge is now refused before it costs a page load. It fired 41 times on this run - 41 loads that previous runs had spent to reach a verdict already visible on the card.",
+   "The run added nothing, and the stage that absorbed the stock was gearbox: of the 60 ads it did pay to open, 55 were manual and only 5 were turbos the badge had missed.",
+   "Nothing was re-verified. All 45 rows had been checked within 48 hours, so the freshness floor took the stored answer; the run cost 68 page loads instead of the usual ~110.",
+   "The hybrid search lost its site-side mileage bounds and now sorts newest-first. It surfaced more cars, but they are mostly high-mileage: six of the fourteen skipped as outside the brief were hybrids between 113,000 and 250,000 km.",
+   "Both criteria changes today discarded the refusal memory, so all 113 stored verdicts were re-taken from scratch. The high refusal count is that rebuild, not a change in the market.",
+   "XX-002's import flag is marked resolved. The auto-suppression on 'nije uvoz' is wrong for this car and the note explains why; recording it stops the same question returning every run."
   ]
  },
  {
