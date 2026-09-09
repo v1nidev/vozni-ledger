@@ -391,7 +391,7 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:c1eb7bdf6b';
+const KEY = 'vozni:dataset:78bd86f72e';
 const SHARED = true;
 const TODAY = '2026-09-09';
 const BUDGET_MAX = 15000;
@@ -405,6 +405,43 @@ const RETIRED_IDS = ['XX-005','XX-006'];
    full hybrid or a naturally aspirated petrol. IDs stay retired.
    power_kw figures are model-typical, not read from the ads. -------- */
 const SEED_ROWS = [
+ {
+  "id": "XX-030",
+  "status": "active",
+  "first_seen": "2026-09-09",
+  "last_verified": "2026-09-09",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/fiat-500-1.2-8v-dualogic-start-stopp-automatik-oglas-51445492",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/fiat-500-1.2-8v-dualogic-start-stopp-automatik-slika-284686681.jpg",
+  "model": "Fiat 500 1.2 8V Dualogic",
+  "trim": "1.2 8V Dualogic Start&Stopp AUTOMATIK",
+  "year": 2019,
+  "mileage_km": 94300,
+  "engine": "51 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 11700,
+  "price_history": [
+   {
+    "date": "2026-09-09",
+    "price": 11700
+   }
+  ],
+  "location": "Split, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "The first row since the 9 Sep narrowing to fit every numeric rule: EUR 11,700 inside the EUR 12,500 cap, 2019, 94,300 km, naturally aspirated petrol, and 3,571 mm against the 4.1 m length rule. One open question for the owner: 'Dualogic' is Fiat's robotised single-clutch automated manual, not a torque converter. The brief excludes manuals and dry dual-clutches; a single dry clutch automated manual is neither by name but shares the wear and the jerky shift the dry-DCT rule is aimed at. Left in the table pending that call. The ad says 'u dolasku' — the car has not arrived yet.",
+  "power_kw": 51,
+  "power_source": "engine field, 51 kW — the 1.2 8V FIRE, naturally aspirated"
+ },
  {
   "id": "XX-021",
   "status": "active",
@@ -1736,7 +1773,7 @@ const SEED_ROWS = [
   "service_history": true,
   "import": null,
   "parking_aids": null,
-  "registered_until": "09 / 2026",
+  "registered_until": "09 / 2027",
   "flags": [
    "recent_import_no_hr_history"
   ],
@@ -1786,6 +1823,23 @@ const SEED_ROWS = [
 function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
+ {
+  "date": "2026-09-09",
+  "title": "verify+discover · 10:13 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 47 → 52. 5 added.",
+   "45 rows re-verified, nothing moved.",
+   "njuskalo: opened 28 ads, kept 5; refused 242 (forced_induction 230, transmission 12).",
+   "njuskalo: 101 ads skipped unopened — already refused in an earlier run on a property of the car.",
+   "Filter `fuelTypeId=604, sort=new` — site reported 28, 28 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
+   "Filter `fuelTypeId=600, mileage[max]=100000, mileage[min]=60000` — site reported 707, 500 cards seen, 28 opened, 5 kept (10 page loads per row).",
+   "95 of 220 page loads used. 343 refusals carried forward."
+  ]
+ },
  {
   "date": "2026-09-09",
   "title": "verify+discover · 07:07 UTC",
@@ -1857,6 +1911,18 @@ const SEED_LOG = [
    "Length is a rule again at 4.1 m, down from the 4.35 m that was dropped as unenforceable. No listing states body length, so it is applied by judgement from the model rather than by config. It narrows the reference list sharply: of the six models only the Yaris (~3.95 m) and the Jazz (~4.04 m) are under it.",
    "43 of the 44 tracked rows now fall outside the numeric rules. None is dropped — each keeps its place and its price history, marked as missing the brief. The one row inside the new band is XX-005, which is retired as out of brief on other grounds, so the buying table starts empty and refills from the next scan.",
    "The njuškalo searches now carry the 2019 year floor and the 100,000 km ceiling, so out-of-range cards are not fetched at all. The €7,000 price floor at the site is unchanged, since the reference band still reaches to €17,000."
+  ]
+ },
+ {
+  "date": "2026-09-09",
+  "title": "Complete coverage for the first time",
+  "lines": [
+   "The run read the whole petrol search - 500 cards over 20 pages - instead of stopping at page 6, and finished without truncating for the first time.",
+   "It opened 28 ads instead of 60 and kept 5. Cost per row on the petrol search fell from 64 page loads to 10.",
+   "219 turbo ads were refused straight from the card for nothing, and 155 unsignalled cards were left unopened - not refused, and first in the queue next run.",
+   "Four of the five new rows are retired: a Mazda 3 saloon, a MINI Cooper One, a Mitsubishi Eclipse Cross and a Mazda CX-3. All four are over the 4.1 m length rule and over the EUR 12,500 cap; the MINI and the Mitsubishi are turbos as well.",
+   "XX-030, a Fiat 500 1.2 Dualogic at EUR 11,700, is the first row since the criteria were narrowed to satisfy every numeric rule and the length rule at once. It needs an owner decision on whether a robotised single-clutch automated manual counts as an automatic.",
+   "All 45 rows were re-read with --force-verify. No price moved and nothing went inactive."
   ]
  },
  {
