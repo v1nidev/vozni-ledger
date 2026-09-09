@@ -391,9 +391,9 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:60be1dde53';
+const KEY = 'vozni:dataset:a2b20efa8f';
 const SHARED = true;
-const TODAY = '2026-09-04';
+const TODAY = '2026-09-09';
 const BUDGET_MAX = 15000;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
 const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
@@ -405,6 +405,300 @@ const RETIRED_IDS = ['XX-005','XX-006'];
    full hybrid or a naturally aspirated petrol. IDs stay retired.
    power_kw figures are model-typical, not read from the ads. -------- */
 const SEED_ROWS = [
+ {
+  "id": "XX-021",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/citro-n-c1-1.0-automatik-oglas-49966832",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/citro-n-c1-1.0-automatik-slika-273061283.jpg",
+  "model": "Citroën C1 1.0 VTi 68",
+  "trim": "1,0 VTi 68",
+  "year": 2016,
+  "mileage_km": 100000,
+  "engine": "999 cm3 50 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 8490,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 8490
+   }
+  ],
+  "location": "Rijeka, Primorsko-goranska",
+  "coastal": "yes",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Off-list find, XX prefix. Naturally aspirated three-cylinder, so it clears the fuel rule. COASTAL — Rijeka, flagged per the brief. Caveat for the owner: the C1 \"automatik\" is the ETG5, a robotised single-clutch manual with a dry clutch, not a torque converter. The brief excludes dry DUAL-clutch boxes, so this is not caught by that rule, but it shares the clutch-wear failure mode and drives poorly compared with the CVT/eCVT cars in this table. Kept and flagged rather than refused; say the word and it is retired. At EUR 8,490 for a 50 kW city car it is also weak value against the Yaris Hybrids already tracked.",
+  "power_kw": 50,
+  "power_source": "manufacturer spec for the 1.0 VTi 68 (999 cm3, naturally aspirated)"
+ },
+ {
+  "id": "XX-022",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-oglas-50986270",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-slika-281183829.jpg",
+  "model": "Opel Corsa 1.4 (E)",
+  "trim": "1,4 Aut.",
+  "year": 2016,
+  "mileage_km": 78000,
+  "engine": "1.398 cm3 66 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 9900,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 9900
+   }
+  ],
+  "location": "Rugvica, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "12 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Off-list find and the pick of this run: naturally aspirated 1.4 with a torque-converter automatic, one owner, 78,000 km, bought new in Croatia, inland (Rugvica) at 9,900 EUR. Import flag suppressed on \"NIJE UVOZ\" — audited 4 Sep 2026 and correct; the ad also says \"KUPLJEN U HR KAO NOVO VOZILO\". Second Corsa in the table alongside XX-019, which is a different ad (2018, 83,400 km, 9,800 EUR) — useful as a like-for-like price comparison.",
+  "power_kw": 66,
+  "power_source": "manufacturer spec for the 1.4 naturally aspirated (A14XER family), matches the ad"
+ },
+ {
+  "id": "AH-006",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-automatik-oglas-51443014",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-auris-karavan-1.8-automatik-slika-284603033.jpg",
+  "model": "Toyota Auris Hybrid Touring Sports",
+  "trim": "karavan",
+  "year": 2018,
+  "mileage_km": 93600,
+  "engine": "1.798 cm3 73 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16880,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 16880
+   }
+  ],
+  "location": "Sesvete, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": null,
+  "flags": [
+   "recent_import_no_hr_history"
+  ],
+  "parse_notes": "Estate, not the hatchback the revised brief asks for — same case as AH-004, and the ad title hides it (the URL slug says \"auris-karavan\"). German import, and the flag fired correctly: the ad says \"Uvoz Njemačka\", so there is no Croatian service history. At 16,880 EUR it is a reference row above budget, not a candidate.",
+  "power_kw": 100,
+  "power_source": "total system output for the 1.8 HSD; the ad's 73 kW is the combustion engine alone"
+ },
+ {
+  "id": "XX-023",
+  "status": "active",
+  "first_seen": "2026-09-04",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/mazda-cx-3-g121-automatik-navigacija-head-up-kamera-oglas-51226109",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/mazda-cx-3-g121-automatik-navigacija-head-up-kamera-slika-283259435.jpg",
+  "model": "Mazda CX-3 2.0 Skyactiv-G 121",
+  "trim": "cx-3",
+  "year": 2018,
+  "mileage_km": 101000,
+  "engine": "1.998 cm3 89 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 16950,
+  "price_history": [
+   {
+    "date": "2026-09-04",
+    "price": 16950
+   }
+  ],
+  "location": "Osijek - Okolica, Osječko-baranjska",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera, parkirna, senzori",
+  "registered_until": null,
+  "flags": [],
+  "parse_notes": "Off-list find. Naturally aspirated 2.0 with a six-speed torque-converter automatic — no dual clutch anywhere in the range. 4.28 m, so it parks like the hatchbacks despite being a crossover. At 16,950 EUR it is a reference row above budget, right at the top of the reference band.",
+  "power_kw": 89,
+  "power_source": "manufacturer spec for the Skyactiv-G 121 (121 PS), matches the ad"
+ },
+ {
+  "id": "XX-019",
+  "status": "active",
+  "first_seen": "2026-08-24",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-automatik-tiptronic-83000-km-oglas-51343671",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/opel-corsa-1.4-automatik-tiptronic-83000-km-slika-283894906.jpg",
+  "model": "Opel Corsa 1.4 (E)",
+  "trim": "1,4",
+  "year": 2018,
+  "mileage_km": 83400,
+  "engine": "1.398 cm3 66 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 9800,
+  "price_history": [
+   {
+    "date": "2026-08-24",
+    "price": 9800
+   }
+  ],
+  "location": "Podstrana, Splitsko-dalmatinska",
+  "coastal": "yes",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Off-list find. Gearbox fields are wrong three times over: Mjenjac says 'Mehanicki mjenjac', 'Rucni mjenjac' says Da, and 'Broj stupnjeva' says 5. The interior photo shows a P-R-N-D gate with a +/- rocker on the knob - the GM 6-speed torque-converter auto, exactly the 'tiptronic' the title claims. Not a dual-clutch, so nothing in the brief excludes it. Naturally aspirated 1.4, 4.02 m, so it satisfies every hard requirement. Included for the price/attribute picture rather than as a buy: at EUR 9,800 it is line-ball with YH-006, a 2016 Yaris Hybrid at EUR 10,200, which is reference model #1 and far cheaper to run. Coastal (Podstrana).",
+  "power_kw": 66,
+  "power_source": "combustion engine, as stated in the ad (Snaga motora 66 kW)"
+ },
+ {
+  "id": "XX-013",
+  "status": "active",
+  "first_seen": "2026-08-19",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-oglas-50915742",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-slika-280543337.jpg",
+  "model": "Nissan Juke 1.6 CVT Tekna",
+  "trim": "1,6 16V CVT TEKNA",
+  "year": 2015,
+  "mileage_km": 118000,
+  "engine": "1.598 cm3 86 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 10299,
+  "price_history": [
+   {
+    "date": "2026-08-19",
+    "price": 10299
+   }
+  ],
+  "location": "Sesvete, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": "kamera",
+  "registered_until": "09 / 2026",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Nissan Juke 1.6 16V (HR16DE) with CVT - naturally aspirated at 54 kW/litre, so it fits the NA-petrol half of the brief. Off-list find. Import flag suppressed on \"ORIGINAL HR AUTO NIJE UVOZ\" — audited 4 Sep 2026, correct. Went unverified on a 28 Aug page timeout and stayed that way for two runs because verification only re-read rows already marked active; re-read on 4 Sep and live at the same price.",
+  "power_kw": null,
+  "power_source": null
+ },
+ {
+  "id": "YH-008",
+  "status": "active",
+  "first_seen": "2026-08-19",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-automatik-2021god-produzeno-jamstvo-reg-3-2027-oglas-51290492",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-1.5-hybrid-automatik-2021god-produzeno-jamstvo-reg-3-2027-slika-283509948.jpg",
+  "model": "Toyota Yaris",
+  "trim": "1.5 Hybrid",
+  "year": 2021,
+  "mileage_km": 97000,
+  "engine": "1.490 cm3 68 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15500,
+  "price_history": [
+   {
+    "date": "2026-08-19",
+    "price": 15500
+   }
+  ],
+  "location": "Novi Zagreb - Istok, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "dealer",
+  "owners": 1,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "2026-08-19: fit 139 (+36 Toyota Yaris Hybrid (priority 1); +0 above target, within reference range; +4 inland; -1 no_vin_stated)",
+  "power_kw": null,
+  "power_source": null
+ },
+ {
+  "id": "CT-001",
+  "status": "active",
+  "first_seen": "2026-08-19",
+  "last_verified": "2026-09-04",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/lexus-ct-200h-automatik-oglas-50628870",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/lexus-ct-200h-automatik-slika-278093269.jpg",
+  "model": "Lexus CT",
+  "trim": "200h",
+  "year": 2018,
+  "mileage_km": 96000,
+  "engine": "1.798 cm3 73 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16800,
+  "price_history": [
+   {
+    "date": "2026-08-19",
+    "price": 16800
+   }
+  ],
+  "location": "Stenjevec, Grad Zagreb",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": true,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "01 / 2027",
+  "flags": [
+   "recent_import_no_hr_history"
+  ],
+  "parse_notes": "2026-08-19: fit 114 (+18 Lexus CT 200h (priority 4); +0 above target, within reference range; +4 inland; -8 recent_import_no_hr_history)",
+  "power_kw": null,
+  "power_source": null
+ },
  {
   "id": "YH-003",
   "status": "active",
@@ -447,80 +741,6 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
-  "id": "XX-021",
-  "status": "active",
-  "first_seen": "2026-09-04",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/citro-n-c1-1.0-automatik-oglas-49966832",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/citro-n-c1-1.0-automatik-slika-273061283.jpg",
-  "model": "Citroën C1 1.0 VTi 68",
-  "trim": "1,0 VTi 68",
-  "year": 2016,
-  "mileage_km": 100000,
-  "engine": "999 cm3 50 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 8490,
-  "price_history": [
-   {
-    "date": "2026-09-04",
-    "price": 8490
-   }
-  ],
-  "location": "Rijeka, Primorsko-goranska",
-  "coastal": "yes",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": null,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Off-list find, XX prefix. Naturally aspirated three-cylinder, so it clears the fuel rule. COASTAL — Rijeka, flagged per the brief. Caveat for the owner: the C1 \"automatik\" is the ETG5, a robotised single-clutch manual with a dry clutch, not a torque converter. The brief excludes dry DUAL-clutch boxes, so this is not caught by that rule, but it shares the clutch-wear failure mode and drives poorly compared with the CVT/eCVT cars in this table. Kept and flagged rather than refused; say the word and it is retired. At EUR 8,490 for a 50 kW city car it is also weak value against the Yaris Hybrids already tracked.",
-  "power_kw": 50,
-  "power_source": "manufacturer spec for the 1.0 VTi 68 (999 cm3, naturally aspirated)"
- },
- {
-  "id": "XX-019",
-  "status": "active",
-  "first_seen": "2026-08-24",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-automatik-tiptronic-83000-km-oglas-51343671",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/opel-corsa-1.4-automatik-tiptronic-83000-km-slika-283894906.jpg",
-  "model": "Opel Corsa 1.4 (E)",
-  "trim": "1,4",
-  "year": 2018,
-  "mileage_km": 83400,
-  "engine": "1.398 cm3 66 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 9800,
-  "price_history": [
-   {
-    "date": "2026-08-24",
-    "price": 9800
-   }
-  ],
-  "location": "Podstrana, Splitsko-dalmatinska",
-  "coastal": "yes",
-  "seller_type": "dealer",
-  "owners": null,
-  "service_history": null,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Off-list find. Gearbox fields are wrong three times over: Mjenjac says 'Mehanicki mjenjac', 'Rucni mjenjac' says Da, and 'Broj stupnjeva' says 5. The interior photo shows a P-R-N-D gate with a +/- rocker on the knob - the GM 6-speed torque-converter auto, exactly the 'tiptronic' the title claims. Not a dual-clutch, so nothing in the brief excludes it. Naturally aspirated 1.4, 4.02 m, so it satisfies every hard requirement. Included for the price/attribute picture rather than as a buy: at EUR 9,800 it is line-ball with YH-006, a 2016 Yaris Hybrid at EUR 10,200, which is reference model #1 and far cheaper to run. Coastal (Podstrana).",
-  "power_kw": 66,
-  "power_source": "combustion engine, as stated in the ad (Snaga motora 66 kW)"
- },
- {
   "id": "AH-004",
   "status": "active",
   "first_seen": "2026-08-17",
@@ -558,43 +778,6 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
-  "id": "XX-022",
-  "status": "active",
-  "first_seen": "2026-09-04",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-oglas-50986270",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-slika-281183829.jpg",
-  "model": "Opel Corsa 1.4 (E)",
-  "trim": "1,4 Aut.",
-  "year": 2016,
-  "mileage_km": 78000,
-  "engine": "1.398 cm3 66 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 9900,
-  "price_history": [
-   {
-    "date": "2026-09-04",
-    "price": 9900
-   }
-  ],
-  "location": "Rugvica, Zagrebačka",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "12 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Off-list find and the pick of this run: naturally aspirated 1.4 with a torque-converter automatic, one owner, 78,000 km, bought new in Croatia, inland (Rugvica) at 9,900 EUR. Import flag suppressed on \"NIJE UVOZ\" — audited 4 Sep 2026 and correct; the ad also says \"KUPLJEN U HR KAO NOVO VOZILO\". Second Corsa in the table alongside XX-019, which is a different ad (2018, 83,400 km, 9,800 EUR) — useful as a like-for-like price comparison.",
-  "power_kw": 66,
-  "power_source": "manufacturer spec for the 1.4 naturally aspirated (A14XER family), matches the ad"
- },
- {
   "id": "XX-004",
   "status": "active",
   "first_seen": "2026-08-17",
@@ -630,43 +813,6 @@ const SEED_ROWS = [
   "parse_notes": "Unmatched model, XX prefix. Transmission conflict: title says \"automatik\", Mjenjač field says \"Mehanički mjenjač\" — needs a human read. 4.86 m. Mjenjac field says 'Mehanicki mjenjac'; the Optima 2.0 GDI Hybrid was only ever built with a 6-speed automatic, and the title says automatik. Treat the structured field as a seller error.",
   "power_kw": 151,
   "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "XX-013",
-  "status": "active",
-  "first_seen": "2026-08-19",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-oglas-50915742",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-slika-280543337.jpg",
-  "model": "Nissan Juke 1.6 CVT Tekna",
-  "trim": "1,6 16V CVT TEKNA",
-  "year": 2015,
-  "mileage_km": 118000,
-  "engine": "1.598 cm3 86 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 10299,
-  "price_history": [
-   {
-    "date": "2026-08-19",
-    "price": 10299
-   }
-  ],
-  "location": "Sesvete, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera",
-  "registered_until": "09 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Nissan Juke 1.6 16V (HR16DE) with CVT - naturally aspirated at 54 kW/litre, so it fits the NA-petrol half of the brief. Off-list find. Import flag suppressed on \"ORIGINAL HR AUTO NIJE UVOZ\" — audited 4 Sep 2026, correct. Went unverified on a 28 Aug page timeout and stayed that way for two runs because verification only re-read rows already marked active; re-read on 4 Sep and live at the same price.",
-  "power_kw": null,
-  "power_source": null
  },
  {
   "id": "YH-006",
@@ -1294,43 +1440,6 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
-  "id": "YH-008",
-  "status": "active",
-  "first_seen": "2026-08-19",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-yaris-1.5-hybrid-automatik-2021god-produzeno-jamstvo-reg-3-2027-oglas-51290492",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-1.5-hybrid-automatik-2021god-produzeno-jamstvo-reg-3-2027-slika-283509948.jpg",
-  "model": "Toyota Yaris",
-  "trim": "1.5 Hybrid",
-  "year": 2021,
-  "mileage_km": 97000,
-  "engine": "1.490 cm3 68 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 15500,
-  "price_history": [
-   {
-    "date": "2026-08-19",
-    "price": 15500
-   }
-  ],
-  "location": "Novi Zagreb - Istok, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "2026-08-19: fit 139 (+36 Toyota Yaris Hybrid (priority 1); +0 above target, within reference range; +4 inland; -1 no_vin_stated)",
-  "power_kw": null,
-  "power_source": null
- },
- {
   "id": "AH-002",
   "status": "active",
   "first_seen": "2026-08-17",
@@ -1562,115 +1671,6 @@ const SEED_ROWS = [
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
-  "id": "CT-001",
-  "status": "active",
-  "first_seen": "2026-08-19",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/lexus-ct-200h-automatik-oglas-50628870",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/lexus-ct-200h-automatik-slika-278093269.jpg",
-  "model": "Lexus CT",
-  "trim": "200h",
-  "year": 2018,
-  "mileage_km": 96000,
-  "engine": "1.798 cm3 73 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 16800,
-  "price_history": [
-   {
-    "date": "2026-08-19",
-    "price": 16800
-   }
-  ],
-  "location": "Stenjevec, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "01 / 2027",
-  "flags": [
-   "recent_import_no_hr_history"
-  ],
-  "parse_notes": "2026-08-19: fit 114 (+18 Lexus CT 200h (priority 4); +0 above target, within reference range; +4 inland; -8 recent_import_no_hr_history)",
-  "power_kw": null,
-  "power_source": null
- },
- {
-  "id": "AH-006",
-  "status": "active",
-  "first_seen": "2026-09-04",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-automatik-oglas-51443014",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-auris-karavan-1.8-automatik-slika-284603033.jpg",
-  "model": "Toyota Auris Hybrid Touring Sports",
-  "trim": "karavan",
-  "year": 2018,
-  "mileage_km": 93600,
-  "engine": "1.798 cm3 73 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 16880,
-  "price_history": [
-   {
-    "date": "2026-09-04",
-    "price": 16880
-   }
-  ],
-  "location": "Sesvete, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": null,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera",
-  "registered_until": null,
-  "flags": [
-   "recent_import_no_hr_history"
-  ],
-  "parse_notes": "Estate, not the hatchback the revised brief asks for — same case as AH-004, and the ad title hides it (the URL slug says \"auris-karavan\"). German import, and the flag fired correctly: the ad says \"Uvoz Njemačka\", so there is no Croatian service history. At 16,880 EUR it is a reference row above budget, not a candidate.",
-  "power_kw": 100,
-  "power_source": "total system output for the 1.8 HSD; the ad's 73 kW is the combustion engine alone"
- },
- {
-  "id": "XX-023",
-  "status": "active",
-  "first_seen": "2026-09-04",
-  "last_verified": "2026-09-04",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/mazda-cx-3-g121-automatik-navigacija-head-up-kamera-oglas-51226109",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/mazda-cx-3-g121-automatik-navigacija-head-up-kamera-slika-283259435.jpg",
-  "model": "Mazda CX-3 2.0 Skyactiv-G 121",
-  "trim": "cx-3",
-  "year": 2018,
-  "mileage_km": 101000,
-  "engine": "1.998 cm3 89 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 16950,
-  "price_history": [
-   {
-    "date": "2026-09-04",
-    "price": 16950
-   }
-  ],
-  "location": "Osijek - Okolica, Osječko-baranjska",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera, parkirna, senzori",
-  "registered_until": null,
-  "flags": [],
-  "parse_notes": "Off-list find. Naturally aspirated 2.0 with a six-speed torque-converter automatic — no dual clutch anywhere in the range. 4.28 m, so it parks like the hatchbacks despite being a crossover. At 16,950 EUR it is a reference row above budget, right at the top of the reference band.",
-  "power_kw": 89,
-  "power_source": "manufacturer spec for the Skyactiv-G 121 (121 PS), matches the ad"
- },
- {
   "id": "XX-003",
   "status": "active",
   "first_seen": "2026-08-17",
@@ -1786,6 +1786,17 @@ const SEED_ROWS = [
 function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
+ {
+  "date": "2026-09-09",
+  "title": "Criteria narrowed",
+  "lines": [
+   "Price ceiling cut from €15,000 to €12,500. The reference band is unchanged and still runs to €17,000, so dearer ads are still collected and shown apart from the buying table.",
+   "Mileage ceiling cut from 120,000 km to 100,000 km, and the year floor moved from 2014 to 2019.",
+   "Length is a rule again at 4.1 m, down from the 4.35 m that was dropped as unenforceable. No listing states body length, so it is applied by judgement from the model rather than by config. It narrows the reference list sharply: of the six models only the Yaris (~3.95 m) and the Jazz (~4.04 m) are under it.",
+   "43 of the 44 tracked rows now fall outside the numeric rules. None is dropped — each keeps its place and its price history, marked as missing the brief. The one row inside the new band is XX-005, which is retired as out of brief on other grounds, so the buying table starts empty and refills from the next scan.",
+   "The njuškalo searches now carry the 2019 year floor and the 100,000 km ceiling, so out-of-range cards are not fetched at all. The €7,000 price floor at the site is unchanged, since the reference band still reaches to €17,000."
+  ]
+ },
  {
   "date": "2026-09-04",
   "title": "verify-only · 06:56 UTC",
@@ -2339,12 +2350,17 @@ function buildTable(rows, cols, all, key){
 const ORDER = {active:0, unverified:1, inactive:2};
 function sortRows(a,b){
   const s=(ORDER[a.status]??3)-(ORDER[b.status]??3);
-  return s || (a.price_eur||0)-(b.price_eur||0);
+  if(s) return s;
+  /* Newest first. A row with no first_seen sorts last rather than to the top:
+     an empty string beats every real date under a descending compare. */
+  const af=a.first_seen||'', bf=b.first_seen||'';
+  if(af!==bf) return (af&&bf) ? bf.localeCompare(af) : (af?-1:1);
+  return (a.price_eur||0)-(b.price_eur||0);
 }
 
 /* ---- column sorting ----
    Each table keeps its own column and direction; clicking a header cycles
-   ascending -> descending -> back to the default status-then-price order.
+   ascending -> descending -> back to the default status-then-newest order.
    Sorting only reorders what the filters already produced: no row is added
    or dropped by it. */
 const SORT = {ledger:{col:null, dir:1}, ref:{col:null, dir:1}};
