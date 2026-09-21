@@ -391,9 +391,9 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:681ddd4c22';
+const KEY = 'vozni:dataset:5a1b7234b1';
 const SHARED = true;
-const TODAY = '2026-09-20';
+const TODAY = '2026-09-21';
 const BUDGET_MAX = 15000;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
 const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
@@ -405,6 +405,80 @@ const RETIRED_IDS = ['XX-005','XX-006'];
    full hybrid or a naturally aspirated petrol. IDs stay retired.
    power_kw figures are model-typical, not read from the ads. -------- */
 const SEED_ROWS = [
+ {
+  "id": "XX-034",
+  "status": "active",
+  "first_seen": "2026-09-21",
+  "last_verified": "2026-09-21",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-oglas-50602524",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/opel-corsa-1.4-slika-277898433.jpg",
+  "model": "Opel Corsa E 1.4",
+  "trim": "1,4",
+  "year": 2019,
+  "mileage_km": 60000,
+  "engine": "66 kW Benzin",
+  "transmission": null,
+  "price_eur": 7000,
+  "price_history": [
+   {
+    "date": "2026-09-21",
+    "price": 7000
+   }
+  ],
+  "location": "Lovran, Primorsko-goranska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Gearbox not stated and the ad has no description text, so the 6-speed automatic that existed for this engine cannot be confirmed from the ad; ask the seller before treating it as a match. Naturally aspirated 1.4 (66 kW), 4,021 mm so inside the length rule, EUR 7,000 at the floor of the target range, private seller, 60,000 km exactly at the mileage floor. Model year 2018 per the ad, registered 2019. Found as similar to XX-033.",
+  "power_kw": null,
+  "power_source": null
+ },
+ {
+  "id": "YP-003",
+  "status": "active",
+  "first_seen": "2026-09-21",
+  "last_verified": "2026-09-21",
+  "went_inactive": null,
+  "source": "njuskalo",
+  "url": "https://www.njuskalo.hr/auti/toyota-yaris-2019-oglas-51409878",
+  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-2019-slika-284420181.jpg",
+  "model": "Toyota Yaris 1.5 Hybrid",
+  "trim": "1,5",
+  "year": 2019,
+  "mileage_km": 70000,
+  "engine": "54 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 13000,
+  "price_history": [
+   {
+    "date": "2026-09-21",
+    "price": 13000
+   }
+  ],
+  "location": "Konavle, Dubrovačko-neretvanska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": 2,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Filed by the seller under petrol with the title 'Toyota Yaris 2019', so the hybrid search never returned it and the id prefix is YP; the description says 1.5 Hybrid, 70,000 km, automatic. Reference model #1 in every respect. Private seller in Konavle (coastal), second owner, EUR 13,000 - EUR 500 above the target cap, within the reference range. Found by the owner in a tracked Yaris' 'Slicni oglasi' block, then by the first similar loop from YH-002.",
+  "power_kw": 74,
+  "power_source": "total system output for the 2019 Yaris Hybrid (100 PS); the ad's 54 kW is the combustion engine alone"
+ },
  {
   "id": "JZ-002",
   "status": "active",
@@ -1860,6 +1934,48 @@ const SEED_ROWS = [
 function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
+ {
+  "date": "2026-09-21",
+  "title": "similar · 07:59 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 55 → 58. 3 added.",
+   "njuskalo: opened 10 ads, kept 3; refused 7 (fuel 5, transmission 2).",
+   "njuskalo: 5 ads skipped unopened — already refused in an earlier run on a property of the car.",
+   "Similar-ads pages of 37 tracked rows — 925 cards seen, 10 opened, 3 kept (16 page loads per row).",
+   "47 of 220 page loads used. 462 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-09-21",
+  "title": "discover-only · 07:54 UTC",
+  "sources_reached": [
+   "njuskalo"
+  ],
+  "sources_unreachable": [],
+  "lines": [
+   "Rows 54 → 55. 1 added.",
+   "njuskalo: opened 12 ads, kept 1; refused 12 (forced_induction 2, transmission 10).",
+   "njuskalo: 225 ads skipped unopened — already refused in an earlier run on a property of the car.",
+   "Filter `fuelTypeId=604, sort=new` — site reported 32, 32 cards seen, 0 opened, 0 kept (2 page loads, no rows).",
+   "Filter `fuelTypeId=600, mileage[max]=100000, mileage[min]=60000` — site reported 698, 325 cards seen, 12 opened, 1 kept (25 page loads per row).",
+   "27 of 220 page loads used. 455 refusals carried forward."
+  ]
+ },
+ {
+  "date": "2026-09-21",
+  "title": "The similar loop, and the Yaris that started it",
+  "lines": [
+   "The owner found a 2019 Yaris Hybrid at 70,000 km for EUR 13,000 that no run had ever opened. Its seller filed it as petrol and titled it 'Toyota Yaris 2019': the hybrid search never returns it, and in the petrol search a title with no gearbox word sits in the unsignalled tail, which is sampled eight a run behind 120 others.",
+   "Two changes. A title that names a reference model (Yaris, Auris, Corolla...) now counts as signalled and goes to the front of the queue. And there is a second loop, `./scrape run --similar`, that reads the 'Slicni oglasi' page of every tracked row instead of the site search - the way the owner found the car - and feeds those cards through the same funnel, caps and page budget.",
+   "The page look-ahead also stopped too early: it counted remembered refusals and tracked rows as 'enough signalled cards to fill the budget', so today's normal run read 13 of 28 petrol pages and opened 12 ads. It now counts only cards it would actually open.",
+   "First similar run: 37 seeds, 925 cards, 312 past the free card filter, 10 opened, 3 kept for 47 page loads. YP-003 is the Yaris, curated as the hybrid it is. XX-034 is a EUR 7,000 Corsa E 1.4 whose gearbox the ad does not state. Retired: XX-033, a Corsa F 1.2 whose engine was manual-only, and XX-035, a Suzuki Swace (Corolla estate, 4.66 m) on length and price.",
+   "The normal run before it added XX-033 only. Nothing was verified today; the next normal run will re-read the table."
+  ]
+ },
  {
   "date": "2026-09-20",
   "title": "verify+discover · 04:12 UTC",
