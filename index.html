@@ -88,7 +88,7 @@
   }
   .barline .spacer{margin-left:auto}
   label.field{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);display:flex;gap:6px;align-items:center}
-  input[type=text],input[type=url],input[type=number],input[type=date],select,textarea{
+  input[type=text],input[type=search],input[type=url],input[type=number],input[type=date],select,textarea{
     font-family:var(--mono);font-size:12px;color:var(--ink);
     background:#F6F7F4;border:1px solid var(--rule);border-radius:0;
     padding:6px 8px;
@@ -216,7 +216,7 @@
 <header class="masthead">
   <div>
     <h1 class="wordmark">Vozni <span>ledger</span></h1>
-    <div class="sub">Automatic · full hybrid or NA petrol · 2014–2021 · 60–120 tkm · under 4.35 m · power recorded, not required · buying in Zagreb, driving to Dubrovnik</div>
+    <div class="sub">Automatic · full hybrid or NA petrol · <span class="js-years">2014–2021</span> · <span class="js-km">60–120 tkm</span> · under 4.4 m · power recorded, not required · buying in Zagreb, driving to Dubrovnik</div>
   </div>
   <div class="counters">
     <div><b id="c-total">0</b>rows</div>
@@ -248,6 +248,15 @@
       <label class="field">Model
         <select id="f-model"><option value="all">all models</option></select>
       </label>
+      <label class="field">Mileage
+        <select id="f-km">
+          <option value="brief" id="f-km-brief">up to the brief's ceiling</option>
+          <option value="all">every mileage</option>
+        </select>
+      </label>
+      <label class="field">Search
+        <input type="search" id="f-q" placeholder="model, e.g. yaris hyb" autocomplete="off" spellcheck="false">
+      </label>
       <label class="field">Coastal
         <select id="f-coastal">
           <option value="all">include coastal</option>
@@ -276,8 +285,8 @@
 
   <!-- ============ REFERENCE ============ -->
   <section id="tab-reference" hidden>
-    <h2 class="head">Above budget — €15,000 to €17,000</h2>
-    <p class="lede">Kept apart from the buying table on purpose: these are here to show what the extra money buys, not to be shopped. Same columns, same rules, same IDs — a row that drops below €15,000 moves itself into the in-budget table on the next render.</p>
+    <h2 class="head">Above budget — over <span class="js-budget">€15,000</span></h2>
+    <p class="lede">Kept apart from the buying table on purpose: these are here to show what the extra money buys, not to be shopped. Same columns, same rules, same IDs — a row that drops to <span class="js-budget">€15,000</span> or below moves itself into the in-budget table on the next render.</p>
     <div id="ref-mount"></div>
   </section>
 
@@ -338,7 +347,7 @@
   <!-- ============ ABOUT ============ -->
   <section id="tab-about" hidden>
     <h2 class="head">What this page is</h2>
-    <p class="lede">A cumulative record of automatic hybrid and naturally-aspirated petrol listings in Croatia, €7,000–15,000, 2014–2021, 60–170 tkm, under ~4.35 m. It exists to show attributes against asking price and to keep dead listings on file, not to choose a car.</p>
+    <p class="lede">A cumulative record of automatic hybrid and naturally-aspirated petrol listings in Croatia, €7,000–<span class="js-budget-n">15,000</span>, <span class="js-years">2014–2021</span>, <span class="js-km">60–170 tkm</span>, under ~4.4 m. It exists to show attributes against asking price and to keep dead listings on file, not to choose a car.</p>
 
     <div class="note decision">
       <h3>Power is recorded, not required — 18 Aug 2026</h3>
@@ -391,12 +400,12 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:18cb6bc3e2';
+const KEY = 'vozni:dataset:763d7e745c';
 const SHARED = true;
-const TODAY = '2026-09-23';
-const BUDGET_MAX = 15000;
+const TODAY = '2026-09-24';
+const BUDGET_MAX = 12500;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
-const CRIT = {km_min:60000, km_max:120000, year_min:2014, year_max:2021};
+const CRIT = {km_min:60000, km_max:100000, year_min:2017, year_max:2023};
 const RETIRED_IDS = ['XX-005','XX-006'];
 
 /* ---- seed: 17 Aug 2026 njuskalo.hr scan, 28 rows ---------------
@@ -962,117 +971,6 @@ const SEED_ROWS = [
   "power_source": null
  },
  {
-  "id": "XX-021",
-  "status": "active",
-  "first_seen": "2026-09-04",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/citro-n-c1-1.0-automatik-oglas-49966832",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/citro-n-c1-1.0-automatik-slika-273061283.jpg",
-  "model": "Citroën C1 1.0 VTi 68",
-  "trim": "1,0 VTi 68",
-  "year": 2016,
-  "mileage_km": 100000,
-  "engine": "999 cm3 50 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 8490,
-  "price_history": [
-   {
-    "date": "2026-09-04",
-    "price": 8490
-   }
-  ],
-  "location": "Rijeka, Primorsko-goranska",
-  "coastal": "yes",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": null,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Off-list find, XX prefix. Naturally aspirated three-cylinder, so it clears the fuel rule. COASTAL — Rijeka, flagged per the brief. Caveat for the owner: the C1 \"automatik\" is the ETG5, a robotised single-clutch manual with a dry clutch, not a torque converter. The brief excludes dry DUAL-clutch boxes, so this is not caught by that rule, but it shares the clutch-wear failure mode and drives poorly compared with the CVT/eCVT cars in this table. Kept and flagged rather than refused; say the word and it is retired. At EUR 8,490 for a 50 kW city car it is also weak value against the Yaris Hybrids already tracked.",
-  "power_kw": 50,
-  "power_source": "manufacturer spec for the 1.0 VTi 68 (999 cm3, naturally aspirated)"
- },
- {
-  "id": "XX-022",
-  "status": "active",
-  "first_seen": "2026-09-04",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-oglas-50986270",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/opel-corsa-1.4-automatik-1-vlasnik-nije-uvoz-78-000-km-slika-281183829.jpg",
-  "model": "Opel Corsa 1.4 (E)",
-  "trim": "1,4 Aut.",
-  "year": 2016,
-  "mileage_km": 78000,
-  "engine": "1.398 cm3 66 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 9900,
-  "price_history": [
-   {
-    "date": "2026-09-04",
-    "price": 9900
-   }
-  ],
-  "location": "Rugvica, Zagrebačka",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "12 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Off-list find and the pick of this run: naturally aspirated 1.4 with a torque-converter automatic, one owner, 78,000 km, bought new in Croatia, inland (Rugvica) at 9,900 EUR. Import flag suppressed on \"NIJE UVOZ\" — audited 4 Sep 2026 and correct; the ad also says \"KUPLJEN U HR KAO NOVO VOZILO\". Second Corsa in the table alongside XX-019, which is a different ad (2018, 83,400 km, 9,800 EUR) — useful as a like-for-like price comparison.",
-  "power_kw": 66,
-  "power_source": "manufacturer spec for the 1.4 naturally aspirated (A14XER family), matches the ad"
- },
- {
-  "id": "AH-006",
-  "status": "active",
-  "first_seen": "2026-09-04",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-automatik-oglas-51443014",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-auris-karavan-1.8-automatik-slika-284603033.jpg",
-  "model": "Toyota Auris Hybrid Touring Sports",
-  "trim": "karavan",
-  "year": 2018,
-  "mileage_km": 93600,
-  "engine": "1.798 cm3 73 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 16880,
-  "price_history": [
-   {
-    "date": "2026-09-04",
-    "price": 16880
-   }
-  ],
-  "location": "Sesvete, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": null,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera",
-  "registered_until": null,
-  "flags": [
-   "recent_import_no_hr_history"
-  ],
-  "parse_notes": "Estate, not the hatchback the revised brief asks for — same case as AH-004, and the ad title hides it (the URL slug says \"auris-karavan\"). German import, and the flag fired correctly: the ad says \"Uvoz Njemačka\", so there is no Croatian service history. At 16,880 EUR it is a reference row above budget, not a candidate.",
-  "power_kw": 100,
-  "power_source": "total system output for the 1.8 HSD; the ad's 73 kW is the combustion engine alone"
- },
- {
   "id": "XX-023",
   "status": "active",
   "first_seen": "2026-09-04",
@@ -1143,43 +1041,6 @@ const SEED_ROWS = [
   "parse_notes": "Off-list find. Gearbox fields are wrong three times over: Mjenjac says 'Mehanicki mjenjac', 'Rucni mjenjac' says Da, and 'Broj stupnjeva' says 5. The interior photo shows a P-R-N-D gate with a +/- rocker on the knob - the GM 6-speed torque-converter auto, exactly the 'tiptronic' the title claims. Not a dual-clutch, so nothing in the brief excludes it. Naturally aspirated 1.4, 4.02 m, so it satisfies every hard requirement. Included for the price/attribute picture rather than as a buy: at EUR 9,800 it is line-ball with YH-006, a 2016 Yaris Hybrid at EUR 10,200, which is reference model #1 and far cheaper to run. Coastal (Podstrana).",
   "power_kw": 66,
   "power_source": "combustion engine, as stated in the ad (Snaga motora 66 kW)"
- },
- {
-  "id": "XX-013",
-  "status": "active",
-  "first_seen": "2026-08-19",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-oglas-50915742",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/nissan-juke-1.6-16v-cvt-tekna-automatik-hr-auto-kamera-navi-servisna-slika-280543337.jpg",
-  "model": "Nissan Juke 1.6 CVT Tekna",
-  "trim": "1,6 16V CVT TEKNA",
-  "year": 2015,
-  "mileage_km": 118000,
-  "engine": "1.598 cm3 86 kW Benzin",
-  "transmission": "automatic",
-  "price_eur": 10299,
-  "price_history": [
-   {
-    "date": "2026-08-19",
-    "price": 10299
-   }
-  ],
-  "location": "Sesvete, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera",
-  "registered_until": "09 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Nissan Juke 1.6 16V (HR16DE) with CVT - naturally aspirated at 54 kW/litre, so it fits the NA-petrol half of the brief. Off-list find. Import flag suppressed on \"ORIGINAL HR AUTO NIJE UVOZ\" — audited 4 Sep 2026, correct. Went unverified on a 28 Aug page timeout and stayed that way for two runs because verification only re-read rows already marked active; re-read on 4 Sep and live at the same price.",
-  "power_kw": null,
-  "power_source": null
  },
  {
   "id": "YH-008",
@@ -1254,252 +1115,6 @@ const SEED_ROWS = [
   "parse_notes": "2026-08-19: fit 114 (+18 Lexus CT 200h (priority 4); +0 above target, within reference range; +4 inland; -8 recent_import_no_hr_history)",
   "power_kw": null,
   "power_source": null
- },
- {
-  "id": "YH-003",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-51230157",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-hybrid-1.5-vvt-automatik-slika-283338937.jpg",
-  "model": "Toyota Yaris Hybrid",
-  "trim": "Hybrid 1,5 VVT-i",
-  "year": 2015,
-  "mileage_km": 141955,
-  "engine": "1.497 cm3 54 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 8000,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 8400
-   },
-   {
-    "date": "2026-08-19",
-    "price": 8000
-   }
-  ],
-  "location": "Maksimir, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": null,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "12 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": null,
-  "power_kw": 74,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "AH-004",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-auris-1.8-hsd-sol-automatik-oglas-51172203",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-auris-karavan-auris-1.8-hsd-sol-automatik-slika-282526906.jpg",
-  "model": "Toyota Auris Hybrid Touring Sports",
-  "trim": "karavan",
-  "year": 2014,
-  "mileage_km": 155000,
-  "engine": "1.800 cm3 73 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 9900,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 9900
-   }
-  ],
-  "location": "Stenjevec, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "05 / 2027",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Accident flag suppressed: \"oštećenja\" negated by \"nema\" — audited 4 Sep 2026, the clause reads \"nema oštećenja\" and the suppression is correct. Estate — the revised brief asks for the hatchback.",
-  "power_kw": 100,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "XX-004",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/kia-optima-2.0-hibrid-automatik-oglas-51211433",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/kia-optima-2.0-hibrid-automatik-slika-282897033.jpg",
-  "model": "Kia Optima 2.0 Hybrid",
-  "trim": "2,0 HIBRID automatik",
-  "year": 2015,
-  "mileage_km": 150000,
-  "engine": "1.999 cm3 110 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 10200,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 10200
-   }
-  ],
-  "location": "Samobor, Zagrebačka",
-  "coastal": "no",
-  "seller_type": "dealer",
-  "owners": 2,
-  "service_history": null,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Unmatched model, XX prefix. Transmission conflict: title says \"automatik\", Mjenjač field says \"Mehanički mjenjač\" — needs a human read. 4.86 m. Mjenjac field says 'Mehanicki mjenjac'; the Optima 2.0 GDI Hybrid was only ever built with a 6-speed automatic, and the title says automatik. Treat the structured field as a seller error.",
-  "power_kw": 151,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "YH-006",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-1.5-vvt-automatik-oglas-50964036",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-hybrid-1.5-vvt-automatik-slika-280937705.jpg",
-  "model": "Toyota Yaris Hybrid",
-  "trim": "Hybrid 1,5 VVT-i",
-  "year": 2014,
-  "mileage_km": 137000,
-  "engine": "1.500 cm3 55 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 10500,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 10500
-   },
-   {
-    "date": "2026-08-24",
-    "price": 10200
-   },
-   {
-    "date": "2026-08-28",
-    "price": 10500
-   }
-  ],
-  "location": "Solin - Okolica, Splitsko-dalmatinska",
-  "coastal": "yes",
-  "seller_type": "dealer",
-  "owners": 1,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera",
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": null,
-  "power_kw": 74,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "YH-004",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-yaris-hybrid-pod-garancijom-oglas-50717195",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-yaris-hybrid-pod-garancijom-slika-278857715.jpg",
-  "model": "Toyota Yaris Hybrid",
-  "trim": "Hybrid 1,5 VVT-i",
-  "year": 2016,
-  "mileage_km": 168000,
-  "engine": "1.500 cm3 74 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 10800,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 11500
-   },
-   {
-    "date": "2026-09-04",
-    "price": 10800
-   }
-  ],
-  "location": "Varaždin, Varaždinska",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "10 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": null,
-  "power_kw": 74,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "AH-005",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-auris-1.8-automatik-oglas-50802095",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-auris-1.8-automatik-slika-279634323.jpg",
-  "model": "Toyota Auris Hybrid",
-  "trim": "1,8",
-  "year": 2016,
-  "mileage_km": 161000,
-  "engine": "1.800 cm3 100 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 11900,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 12500
-   },
-   {
-    "date": "2026-08-24",
-    "price": 12000
-   },
-   {
-    "date": "2026-08-28",
-    "price": 11900
-   }
-  ],
-  "location": "Trešnjevka - Jug, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera, senzori",
-  "registered_until": "10 / 2026",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Import flag suppressed: \"uvoz\" negated by \"Nije\" — audited 4 Sep 2026, the ad states the car was never imported. Suppression correct.",
-  "power_kw": 100,
-  "power_source": "model-typical total system output, not read from the ad"
  },
  {
   "id": "YH-007",
@@ -1649,47 +1264,6 @@ const SEED_ROWS = [
   "flags": [],
   "parse_notes": null,
   "power_kw": 74,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "XX-008",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/ford-mondeo-2.0-hybrid-oglas-50509254",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/ford-mondeo-2.0-hybrid-slika-276966302.jpg",
-  "model": "Ford Mondeo 2.0 Hybrid",
-  "trim": "2,0 HEV CT",
-  "year": 2015,
-  "mileage_km": 90000,
-  "engine": "2.000 cm3 130 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 13500,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 13900
-   },
-   {
-    "date": "2026-09-04",
-    "price": 13500
-   }
-  ],
-  "location": "Trešnjevka - Jug, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": null,
-  "service_history": null,
-  "import": null,
-  "parking_aids": null,
-  "registered_until": "01 / 2027",
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Unmatched model, XX prefix. 4.87 m.",
-  "power_kw": 137,
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
@@ -1880,81 +1454,6 @@ const SEED_ROWS = [
   ],
   "parse_notes": "Region unreadable, coastal undetermined. German car, no Croatian inspection history yet. Import to order - the ad states the cars are not in Croatia (UVOZ VOZILA PO NARUDZBI ... VOZILA SE NE NALAZE U RH). No Croatian region applies. This is a dealer offer to source a car, not a car you can go and see.",
   "power_kw": 100,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "AH-001",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/toyota-auris-karavan-1.8-136ks-hybrid-design-edition-kamera-navi-led-oglas-50408017",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/toyota-auris-karavan-1.8-136ks-hybrid-design-edition-kamera-navi-led-slika-276189055.jpg",
-  "model": "Toyota Auris Hybrid Touring Sports",
-  "trim": "karavan",
-  "year": 2016,
-  "mileage_km": 91000,
-  "engine": "1.798 cm3 100 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 14990,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 14990
-   }
-  ],
-  "location": "Njemačka",
-  "coastal": "unknown",
-  "seller_type": "dealer",
-  "owners": null,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "kamera",
-  "registered_until": null,
-  "flags": [
-   "recent_import_no_hr_history",
-   "no_vin_stated"
-  ],
-  "parse_notes": "Region unreadable, coastal undetermined. Estate — the revised brief asks for the hatchback. Import to order - the ad states the cars are not in Croatia (UVOZ VOZILA PO NARUDZBI ... VOZILA SE NE NALAZE U RH). No Croatian region applies. This is a dealer offer to source a car, not a car you can go and see.",
-  "power_kw": 100,
-  "power_source": "model-typical total system output, not read from the ad"
- },
- {
-  "id": "XX-009",
-  "status": "active",
-  "first_seen": "2026-08-17",
-  "last_verified": "2026-09-23",
-  "went_inactive": null,
-  "source": "njuskalo",
-  "url": "https://www.njuskalo.hr/auti/infiniti-q50-3.5-hybrid-awd-364-ks-v6-elektro-full-oprema-2016-oglas-50216237",
-  "image_url": "https://www.njuskalo.hr/image-360x360c/auti/infiniti-q50-3.5-hybrid-awd-364-ks-v6-elektro-full-oprema-2016-slika-274415553.jpg",
-  "model": "Infiniti Q50 3.5 Hybrid AWD",
-  "trim": "3,5",
-  "year": 2016,
-  "mileage_km": 162000,
-  "engine": "3.500 cm3 268 kW Hibrid",
-  "transmission": "automatic",
-  "price_eur": 14999,
-  "price_history": [
-   {
-    "date": "2026-08-17",
-    "price": 14999
-   }
-  ],
-  "location": "Maksimir, Grad Zagreb",
-  "coastal": "no",
-  "seller_type": "private",
-  "owners": 2,
-  "service_history": true,
-  "import": null,
-  "parking_aids": "360, kamera",
-  "registered_until": null,
-  "flags": [
-   "no_vin_stated"
-  ],
-  "parse_notes": "Unmatched model, XX prefix. 4.79 m and a V6 — far outside the brief, kept as price context.",
-  "power_kw": 268,
   "power_source": "model-typical total system output, not read from the ad"
  },
  {
@@ -2342,6 +1841,17 @@ const SEED_ROWS = [
 function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
+ {
+  "date": "2026-09-24",
+  "title": "The page now follows the brief it is built from",
+  "lines": [
+   "The page template still carried its first scan's constants: a EUR 15,000 budget line and 2014-2021 / 60-120 tkm for the 'fits brief' check. So rows at EUR 12,500-15,000 sat in the buying table. render_page.py now writes the budget and the year and mileage rules into the page from config.json on every render, so the next change to the brief moves the page with it.",
+   "Owner's instruction: rows older than the year floor (2017) are no longer shown - twelve rows, 2014-2016. They stay in listings.json with their price history and are still re-verified; the page just leaves them out, and follows the floor if it moves. New ads older than the floor were already skipped by discovery.",
+   "Fourteen rows priced EUR 12,500-15,000 moved to Above budget with the corrected line, the Aygo X among them. The buying table holds seven.",
+   "New on the page: a mileage filter, defaulting to the brief's 100,000 km ceiling with an option to show every mileage, and a fuzzy model search.",
+   "Retired AH-006, an Auris Touring Sports estate (~4.6 m) that the 4.4 m rule excludes."
+  ]
+ },
  {
   "date": "2026-09-23",
   "title": "verify+discover · 05:25 UTC",
@@ -3363,14 +2873,29 @@ function renderAll(){
   const md=sel.value, co=document.getElementById('f-coastal').value;
   const cols=document.getElementById('f-cols').value==='full'?FULL:COMPACT;
   const ft=document.getElementById('f-fit').value;
+  const km=document.getElementById('f-km').value;
+  const q=document.getElementById('f-q').value;
   const pass=r=>(st==='all'||r.status===st)&&(md==='all'||r.model===md)&&(co==='all'||r.coastal===co)
-    &&(ft==='all'||(ft==='fit'?misses(r).length===0:misses(r).length>0));
+    &&(ft==='all'||(ft==='fit'?misses(r).length===0:misses(r).length>0))
+    &&(km==='all'||r.mileage_km==null||r.mileage_km<=CRIT.km_max)
+    &&fuzzyMatch(q,[r.model,r.trim,r.id].filter(Boolean).join(' '));
 
   mount('ledger-mount', buildTable(inBudget.filter(pass).sort(sorterFor(SORT.ledger, rows)), cols, rows, 'ledger'));
   mount('ref-mount', buildTable(above.filter(pass).sort(sorterFor(SORT.ref, rows)), cols, rows, 'ref'));
 
   renderLog();
   document.getElementById('sync-stamp').textContent=rows.length+' rows · last saved '+(DB.meta.saved||'—');
+}
+
+// Each typed word must fit, letters in order, inside one word of the model or
+// two adjacent ones: "yrs hyb" finds "Toyota Yaris Hybrid", "ct200" finds
+// "Lexus CT 200h", but "aygo" does not wander across "Auris Touring Sports".
+function fold(s){ return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+function inOrder(w, h){ let i=0; for(const ch of h){ if(ch===w[i]) i++; if(i===w.length) return true; } return false; }
+function fuzzyMatch(q, hay){
+  const words=fold(hay).split(/[\s,()/-]+/).filter(Boolean);
+  const spans=words.concat(words.slice(1).map((w,i)=>words[i]+w));
+  return fold(q).split(/\s+/).filter(Boolean).every(w=>spans.some(h=>inOrder(w,h)));
 }
 
 function renderLog(){
@@ -3603,7 +3128,13 @@ function openTab(name){
 
 /* ---- wiring ---- */
 document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
-['f-status','f-model','f-coastal','f-cols','f-fit'].forEach(id=>document.getElementById(id).onchange=renderAll);
+['f-status','f-model','f-km','f-coastal','f-cols','f-fit'].forEach(id=>document.getElementById(id).onchange=renderAll);
+document.getElementById('f-q').oninput=renderAll;
+document.getElementById('f-km-brief').textContent='up to '+CRIT.km_max.toLocaleString('en-GB')+' km';
+document.querySelectorAll('.js-budget').forEach(e=>e.textContent='€'+BUDGET_MAX.toLocaleString('en-GB'));
+document.querySelectorAll('.js-budget-n').forEach(e=>e.textContent=BUDGET_MAX.toLocaleString('en-GB'));
+document.querySelectorAll('.js-years').forEach(e=>e.textContent=CRIT.year_min+'–'+CRIT.year_max);
+document.querySelectorAll('.js-km').forEach(e=>e.textContent=(CRIT.km_min/1000)+'–'+(CRIT.km_max/1000)+' tkm');
 document.getElementById('btn-csv').onclick=()=>copy(toCSV(),'Whole ledger copied as CSV.');
 document.getElementById('btn-copy-json').onclick=()=>copy(exportJSON(),'Dataset copied. Paste it into the scanning session.');
 document.getElementById('btn-copy-prompt').onclick=()=>copy(RUN_PROMPT+exportJSON(),'Run instructions and dataset copied.');
