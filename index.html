@@ -235,8 +235,8 @@
 
 <main>
   <!-- ============ LEDGER ============ -->
-  <section id="tab-ledger">
-    <div class="barline">
+  <!-- Shared by both tables: every filter here applies to In budget and Above budget alike. -->
+    <div class="barline" id="filterbar">
       <label class="field">Show
         <select id="f-status">
           <option value="all">every row</option>
@@ -280,6 +280,7 @@
       <span class="spacer"></span>
       <button class="btn ghost" id="btn-csv">Copy as CSV</button>
     </div>
+  <section id="tab-ledger">
     <div id="ledger-mount"></div>
   </section>
 
@@ -400,7 +401,7 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:763d7e745c';
+const KEY = 'vozni:dataset:d56e6cf1f8';
 const SHARED = true;
 const TODAY = '2026-09-24';
 const BUDGET_MAX = 12500;
@@ -414,6 +415,43 @@ const RETIRED_IDS = ['XX-005','XX-006'];
    full hybrid or a naturally aspirated petrol. IDs stay retired.
    power_kw figures are model-typical, not read from the ads. -------- */
 const SEED_ROWS = [
+ {
+  "id": "IX-001",
+  "status": "active",
+  "first_seen": "2026-09-24",
+  "last_verified": "2026-09-24",
+  "went_inactive": null,
+  "source": "index.hr",
+  "url": "https://www.index.hr/oglasi/auto-moto/osobni-automobili/oglas/prodajem/7417624",
+  "image_url": null,
+  "model": "Toyota Yaris 1.5 Hybrid (XP210)",
+  "trim": null,
+  "year": 2021,
+  "mileage_km": 100000,
+  "engine": "1.500 ccm 68 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15400,
+  "price_history": [
+   {
+    "date": "2026-09-24",
+    "price": 15400
+   }
+  ],
+  "location": "Velika Gorica, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": "04/2027",
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on index.hr on 24 Sep 2026; the scraper does not read index.hr, so nothing re-checks this row - last seen live on the date shown. Titled only 'Prodajem'. 100,000 km, exactly at the ceiling. The ad says not damaged. Seller-entered body (coupe), drive (rear) and doors (4) are wrong for a Yaris; engine, power and gearbox match the hybrid. Above budget.",
+  "power_kw": 85,
+  "power_source": "model-typical total system output (116 PS); the ad's 68 kW is the combustion engine alone"
+ },
  {
   "id": "XX-043",
   "status": "active",
@@ -1853,6 +1891,14 @@ const SEED_LOG = [
   ]
  },
  {
+  "date": "2026-09-24",
+  "title": "A hand search for Yaris Hybrids, and one from index.hr",
+  "lines": [
+   "A browser search for Yaris Hybrids read all 33 njuskalo Yaris ads 2017-2023 up to EUR 17,000 with no fuel or mileage filter: nothing the scraper did not already have that fits. index.hr, which the scraper does not read, had one: a 2021 Yaris Hybrid at 100,000 km for EUR 15,400 in Velika Gorica, titled only 'Prodajem'. It is IX-001.",
+   "IX- rows are entered by hand in curated.json under manual_rows, with their own prefix so they never collide with scraper ids. No run re-checks them; each shows the date it was last seen live. oglasnik.hr could not be searched from the browser."
+  ]
+ },
+ {
   "date": "2026-09-23",
   "title": "verify+discover · 05:25 UTC",
   "sources_reached": [
@@ -3123,6 +3169,7 @@ function openTab(name){
   ['ledger','reference','log','sync','entry','about'].forEach(t=>{
     document.getElementById('tab-'+t).hidden = (t!==name);
   });
+  document.getElementById('filterbar').hidden = !['ledger','reference'].includes(name);
   window.scrollTo({top:0});
 }
 
