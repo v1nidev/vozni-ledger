@@ -401,7 +401,7 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:70ddeb1f05';
+const KEY = 'vozni:dataset:d03beb73d7';
 const SHARED = true;
 const TODAY = '2026-09-27';
 const BUDGET_MAX = 13000;
@@ -415,6 +415,80 @@ const RETIRED_IDS = ['XX-005','XX-006'];
    full hybrid or a naturally aspirated petrol. IDs stay retired.
    power_kw figures are model-typical, not read from the ads. -------- */
 const SEED_ROWS = [
+ {
+  "id": "AV-001",
+  "status": "active",
+  "first_seen": "2026-09-27",
+  "last_verified": "2026-09-27",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22884083",
+  "image_url": null,
+  "model": "Toyota Yaris 1.5 Hybrid (XP130)",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 81000,
+  "engine": "1.497 ccm 74 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 12999,
+  "price_history": [
+   {
+    "date": "2026-09-27",
+    "price": 12999
+   }
+  ],
+  "location": "Senovo, Slovenija",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net (Slovenia) on 27 Sep 2026; the scraper does not read avto.net, so nothing re-checks this row. One owner, white, 17-inch alloys. About 1 h 15 from Zagreb; buying it means registering a Slovenian import. Inside the €13,000 budget by €1.",
+  "power_kw": 74,
+  "power_source": "total system output as stated in the ad (101 KM)"
+ },
+ {
+  "id": "AV-002",
+  "status": "active",
+  "first_seen": "2026-09-27",
+  "last_verified": "2026-09-27",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22875317",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid 115 1.5 Stella (XP210)",
+  "trim": null,
+  "year": 2023,
+  "mileage_km": 40006,
+  "engine": "1.490 ccm 85 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16900,
+  "price_history": [
+   {
+    "date": "2026-09-27",
+    "price": 16900
+   }
+  ],
+  "location": "Slovenija",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net (Slovenia) on 27 Sep 2026 and added at the owner's request; the scraper does not read avto.net. Misses the brief: 40,006 km is under the 60,000 km floor. Above budget, near the reference ceiling. Slovenian import to register.",
+  "power_kw": 85,
+  "power_source": "total system output as stated in the ad (116 KM)"
+ },
  {
   "id": "IX-001",
   "status": "active",
