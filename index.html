@@ -401,9 +401,9 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:22b0150716';
+const KEY = 'vozni:dataset:05ee5c123f';
 const SHARED = true;
-const TODAY = '2026-09-29';
+const TODAY = '2026-10-15';
 const BUDGET_MAX = 13000;
 /* revised brief, 18 Aug 2026. Power is recorded but not enforced. */
 const CRIT = {km_min:60000, km_max:100000, year_min:2017, year_max:2023};
@@ -416,11 +416,48 @@ const RETIRED_IDS = ['XX-005','XX-006'];
    power_kw figures are model-typical, not read from the ads. -------- */
 const SEED_ROWS = [
  {
-  "id": "AV-001",
+  "id": "AV-003",
   "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22540861",
+  "image_url": null,
+  "model": "Toyota Yaris Hybrid 115 1.5 Elegant (XP210)",
+  "trim": null,
+  "year": 2022,
+  "mileage_km": 71000,
+  "engine": "1.490 ccm 68 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 15970,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 15970
+   }
+  ],
+  "location": "Slovenske Konjice, Slovenija",
+  "coastal": "no",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net (Slovenia) on 15 Oct 2026; the scraper does not read avto.net, so nothing re-checks this row. First registered 9/2022, adaptive cruise, camera, parking sensors. Above the EUR 13,000 budget, inside the EUR 17,000 reference ceiling. About 1 h 45 from Zagreb; buying it means registering a Slovenian import. Seller type not checked.",
+  "power_kw": 85,
+  "power_source": "model-typical total system output (116 PS); the ad's 68 kW is the combustion engine alone"
+ },
+ {
+  "id": "AV-001",
+  "status": "inactive",
   "first_seen": "2026-09-27",
   "last_verified": "2026-09-29",
-  "went_inactive": null,
+  "went_inactive": "2026-10-15",
   "source": "avto.net",
   "url": "https://www.avto.net/Ads/details.asp?id=22884083",
   "image_url": null,
@@ -448,7 +485,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Found by hand on avto.net (Slovenia) on 27 Sep 2026; the scraper does not read avto.net, so nothing re-checks this row. One owner, white, 17-inch alloys. About 1 h 15 from Zagreb; buying it means registering a Slovenian import. Inside the €13,000 budget by €1.",
+  "parse_notes": "Found by hand on avto.net (Slovenia) on 27 Sep 2026; the scraper does not read avto.net, so nothing re-checks this row. One owner, white, 17-inch alloys. About 1 h 15 from Zagreb; buying it means registering a Slovenian import. Inside the €13,000 budget by €1. On 15 Oct 2026 avto.net answered the ad with its removal notice; marked inactive on that explicit signal.",
   "power_kw": 74,
   "power_source": "total system output as stated in the ad (101 KM)"
  },
@@ -491,10 +528,10 @@ const SEED_ROWS = [
  },
  {
   "id": "IX-001",
-  "status": "active",
+  "status": "inactive",
   "first_seen": "2026-09-24",
   "last_verified": "2026-09-29",
-  "went_inactive": null,
+  "went_inactive": "2026-10-15",
   "source": "index.hr",
   "url": "https://www.index.hr/oglasi/auto-moto/osobni-automobili/oglas/prodajem/7417624",
   "image_url": null,
@@ -522,7 +559,7 @@ const SEED_ROWS = [
   "flags": [
    "no_vin_stated"
   ],
-  "parse_notes": "Found by hand on index.hr on 24 Sep 2026; the scraper does not read index.hr, so nothing re-checks this row - last seen live on the date shown. Titled only 'Prodajem'. 100,000 km, exactly at the ceiling. The ad says not damaged. Seller-entered body (coupe), drive (rear) and doors (4) are wrong for a Yaris; engine, power and gearbox match the hybrid. Above budget.",
+  "parse_notes": "Found by hand on index.hr on 24 Sep 2026; the scraper does not read index.hr, so nothing re-checks this row - last seen live on the date shown. Titled only 'Prodajem'. 100,000 km, exactly at the ceiling. The ad says not damaged. Seller-entered body (coupe), drive (rear) and doors (4) are wrong for a Yaris; engine, power and gearbox match the hybrid. Above budget. On 15 Oct 2026 index.hr answered the ad with 'this ad is no longer available'; marked inactive on that explicit signal.",
   "power_kw": 85,
   "power_source": "model-typical total system output (116 PS); the ad's 68 kW is the combustion engine alone"
  },
@@ -1959,6 +1996,15 @@ const SEED_ROWS = [
 function seedRows(){ return SEED_ROWS.map(r=>({...r})); }
 
 const SEED_LOG = [
+ {
+  "date": "2026-10-15",
+  "title": "A hand search on seven sites; two hand-found rows gone, one added",
+  "lines": [
+   "Browser search for Yaris Hybrids 2017-2023 on njuskalo, index.hr, avto.net, oglasnik.hr, auti.hr, toyota.hr. One new fit: a 2022 Yaris Hybrid 115 Elegant at 71,000 km for EUR 15,970 on avto.net. It is AV-003, above budget.",
+   "IX-001 (index.hr) and AV-001 (avto.net) are both gone, each on the site's own removal notice. auti.hr carries the same Yaris ads as oglasnik.hr. toyota.hr has only 2024-26 stock and a 2016 diesel.",
+   "njuskalo has been redesigned: results no longer use EntityList-item--Regular, which the scraper's parser depends on. Of the ten tracked Yarises from 2017 on, nine are missing from njuskalo's Yaris results; the three opened were gone (one 410, two 'oglas istekao'). The scraper has not run since 29 Sep, so those rows still read active until it can verify them."
+  ]
+ },
  {
   "date": "2026-09-29",
   "title": "similar · 11:39 UTC",
