@@ -401,7 +401,7 @@ window.storage = { async get(){ return null; }, async set(){} };
 /* ============================================================
    Vozni ledger — data, storage, render
    ============================================================ */
-const KEY = 'vozni:dataset:68b11deb7b';
+const KEY = 'vozni:dataset:306aa892be';
 const SHARED = true;
 const TODAY = '2026-10-15';
 const BUDGET_MAX = 13000;
@@ -415,6 +415,228 @@ const RETIRED_IDS = ['XX-005','XX-006'];
    full hybrid or a naturally aspirated petrol. IDs stay retired.
    power_kw figures are model-typical, not read from the ads. -------- */
 const SEED_ROWS = [
+ {
+  "id": "AV-007",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22913020",
+  "image_url": null,
+  "model": "Nissan Juke 1.6 Acenta CVT",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 62000,
+  "engine": "1.598 ccm 86 kW Benzin",
+  "transmission": "cvt",
+  "price_eur": 9800,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 9800
+   }
+  ],
+  "location": "Žirovnica, Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. Naturally aspirated 1.6 with Xtronic CVT (4.13 m). Inside the budget, and the cheapest find of the day. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 86,
+  "power_source": "as stated in the ad"
+ },
+ {
+  "id": "HF-001",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "njuskalo.hr",
+  "url": "https://www.njuskalo.hr/auti/renault-clio-e-tech-hybrid-oglas-51778330",
+  "image_url": null,
+  "model": "Renault Clio E-Tech 140 Hybrid",
+  "trim": null,
+  "year": 2020,
+  "mileage_km": 61000,
+  "engine": "1.6 103 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 13400,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 13400
+   }
+  ],
+  "location": "Rijeka, Primorsko-goranska",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on njuskalo on 15 Oct 2026 while the scraper was blocked by a challenge; it has never seen this ad. Full hybrid with Renault's clutchless multi-mode gearbox, not a dual clutch. Service book, garaged. EUR 400 over the budget line; coastal. When the scraper adds this ad as its own row, retire HF-001.",
+  "power_kw": 103,
+  "power_source": "total system output as stated in the ad"
+ },
+ {
+  "id": "AV-004",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22954873",
+  "image_url": null,
+  "model": "Mazda CX-3 G120 Revolution",
+  "trim": null,
+  "year": 2017,
+  "mileage_km": 99500,
+  "engine": "1.998 ccm 88 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 13970,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 13970
+   }
+  ],
+  "location": "Goričnica, Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. 2.0 Skyactiv-G, naturally aspirated, 6-speed torque-converter automatic. 99,500 km, just under the ceiling. EUR 970 over budget. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 88,
+  "power_source": "as stated in the ad"
+ },
+ {
+  "id": "AV-006",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22749905",
+  "image_url": null,
+  "model": "Mazda 2 1.5 Skyactiv-G 90 Exclusive",
+  "trim": null,
+  "year": 2023,
+  "mileage_km": 92164,
+  "engine": "1.496 ccm 66 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 14720,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 14720
+   }
+  ],
+  "location": "Slovenija",
+  "coastal": "unknown",
+  "seller_type": "dealer",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. Naturally aspirated 1.5, 6-speed automatic, hatchback (4.07 m). Dealer stock with warranty. Above budget. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 66,
+  "power_source": "as stated in the ad"
+ },
+ {
+  "id": "AV-011",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22612732",
+  "image_url": null,
+  "model": "Renault Captur E-Tech 145 Limited",
+  "trim": null,
+  "year": 2021,
+  "mileage_km": 73493,
+  "engine": "1.598 ccm 105 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 14900,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 14900
+   }
+  ],
+  "location": "Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. Full hybrid, clutchless multi-mode gearbox, 4.23 m. One owner. Above budget. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 105,
+  "power_source": "total system output as stated in the ad"
+ },
+ {
+  "id": "AV-009",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22325428",
+  "image_url": null,
+  "model": "Honda Jazz 1.5 e:HEV Executive",
+  "trim": null,
+  "year": 2020,
+  "mileage_km": 90000,
+  "engine": "1.498 ccm 72 kW Hibrid",
+  "transmission": "ecvt",
+  "price_eur": 15690,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 15690
+   }
+  ],
+  "location": "Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. Full hybrid, e-CVT, hatchback. Above budget. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 80,
+  "power_source": "model total system output (109 PS); the ad's 72 kW is the combustion engine alone"
+ },
  {
   "id": "AV-003",
   "status": "active",
@@ -451,6 +673,228 @@ const SEED_ROWS = [
   "parse_notes": "Found by hand on avto.net (Slovenia) on 15 Oct 2026; the scraper does not read avto.net, so nothing re-checks this row. First registered 9/2022, adaptive cruise, camera, parking sensors. Above the EUR 13,000 budget, inside the EUR 17,000 reference ceiling. About 1 h 45 from Zagreb; buying it means registering a Slovenian import. Seller type not checked.",
   "power_kw": 85,
   "power_source": "model-typical total system output (116 PS); the ad's 68 kW is the combustion engine alone"
+ },
+ {
+  "id": "IX-002",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "index.hr",
+  "url": "https://www.index.hr/oglasi/auto-moto/osobni-automobili/oglas/toyota-auris-hybrid-1-8-automatik/7259727",
+  "image_url": null,
+  "model": "Toyota Auris 1.8 Hybrid (hatchback)",
+  "trim": null,
+  "year": 2017,
+  "mileage_km": 83000,
+  "engine": "1.800 ccm 73 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16000,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 16000
+   }
+  ],
+  "location": "Split",
+  "coastal": "yes",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on index.hr on 15 Oct 2026; the scraper does not read index.hr. Hatchback (4.33 m), not the Touring Sports estate. Two owners, full service history, 1-year warranty, registered to 07/2027; the description says 81,500 km. Above budget; coastal.",
+  "power_kw": 100,
+  "power_source": "model total system output (136 PS); the ad's 73 kW is the combustion engine alone"
+ },
+ {
+  "id": "HF-002",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "njuskalo.hr",
+  "url": "https://www.njuskalo.hr/auti/renault-clio-e-tech-automatik-full-oprema-oglas-51820727",
+  "image_url": null,
+  "model": "Renault Clio E-Tech 140 Hybrid",
+  "trim": null,
+  "year": 2020,
+  "mileage_km": 75000,
+  "engine": "1.6 67 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16000,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 16000
+   }
+  ],
+  "location": "Pušća, Zagrebačka",
+  "coastal": "no",
+  "seller_type": "private",
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on njuskalo on 15 Oct 2026 while the scraper was blocked; it has never seen this ad. Full hybrid, clutchless multi-mode gearbox. Service book, garaged; sold for the owner's health reasons. Above budget. When the scraper adds this ad as its own row, retire HF-002.",
+  "power_kw": 103,
+  "power_source": "model total system output (140 PS); the ad's 67 kW is the combustion engine alone"
+ },
+ {
+  "id": "AV-012",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22968883",
+  "image_url": null,
+  "model": "Renault Captur E-Tech 145 Hybrid",
+  "trim": null,
+  "year": 2023,
+  "mileage_km": 93587,
+  "engine": "1.598 ccm 105 kW Hibrid",
+  "transmission": "automatic",
+  "price_eur": 16290,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 16290
+   }
+  ],
+  "location": "Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. Full hybrid, clutchless multi-mode gearbox. One owner, serviced at an authorised dealer. Above budget. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 105,
+  "power_source": "total system output as stated in the ad"
+ },
+ {
+  "id": "AV-008",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22730414",
+  "image_url": null,
+  "model": "Toyota Yaris Cross 1.5 VVT-iE Sol (petrol)",
+  "trim": null,
+  "year": 2022,
+  "mileage_km": 67000,
+  "engine": "1.490 ccm 92 kW Benzin",
+  "transmission": "cvt",
+  "price_eur": 16500,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 16500
+   }
+  ],
+  "location": "Brežice, Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. Petrol, not hybrid: naturally aspirated 1.5 Dynamic Force with CVT, 4.18 m. Brežice is about 40 minutes from Zagreb. Above budget. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 92,
+  "power_source": "as stated in the ad"
+ },
+ {
+  "id": "AV-010",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22945301",
+  "image_url": null,
+  "model": "Toyota C-HR 1.8 Hybrid C-ENTER",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 68000,
+  "engine": "1.798 ccm 90 kW Hibrid",
+  "transmission": "ecvt",
+  "price_eur": 16700,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 16700
+   }
+  ],
+  "location": "Loka pri Žusmu, Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. Full hybrid, e-CVT, 4.36 m. Two owners. Above budget. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 90,
+  "power_source": "total system output (122 PS) as stated in the ad"
+ },
+ {
+  "id": "AV-005",
+  "status": "active",
+  "first_seen": "2026-10-15",
+  "last_verified": "2026-10-15",
+  "went_inactive": null,
+  "source": "avto.net",
+  "url": "https://www.avto.net/Ads/details.asp?id=22965429",
+  "image_url": null,
+  "model": "Mazda CX-3 G150 AWD Revolution Top",
+  "trim": null,
+  "year": 2018,
+  "mileage_km": 78000,
+  "engine": "1.998 ccm 110 kW Benzin",
+  "transmission": "automatic",
+  "price_eur": 17000,
+  "price_history": [
+   {
+    "date": "2026-10-15",
+    "price": 17000
+   }
+  ],
+  "location": "Brezovica pri Ljubljani, Slovenija",
+  "coastal": "unknown",
+  "seller_type": null,
+  "owners": null,
+  "service_history": null,
+  "import": null,
+  "parking_aids": null,
+  "registered_until": null,
+  "flags": [
+   "no_vin_stated"
+  ],
+  "parse_notes": "Found by hand on avto.net on 15 Oct 2026. 2.0 Skyactiv-G, naturally aspirated, 6-speed automatic, AWD, leather. At the EUR 17,000 reference ceiling. Slovenian import to register. The scraper does not read avto.net, so nothing re-checks this row.",
+  "power_kw": 110,
+  "power_source": "as stated in the ad"
  },
  {
   "id": "AV-001",
@@ -2043,6 +2487,15 @@ const SEED_LOG = [
    "Browser search for Yaris Hybrids 2017-2023 on njuskalo, index.hr, avto.net, oglasnik.hr, auti.hr, toyota.hr. One new fit: a 2022 Yaris Hybrid 115 Elegant at 71,000 km for EUR 15,970 on avto.net. It is AV-003, above budget.",
    "IX-001 (index.hr) and AV-001 (avto.net) are both gone, each on the site's own removal notice. auti.hr carries the same Yaris ads as oglasnik.hr. toyota.hr has only 2024-26 stock and a 2016 diesel.",
    "njuskalo has been redesigned: results no longer use EntityList-item--Regular, which the scraper's parser depends on. Of the ten tracked Yarises from 2017 on, nine are missing from njuskalo's Yaris results; the three opened were gone (one 410, two 'oglas istekao'). The scraper has not run since 29 Sep, so those rows still read active until it can verify them."
+  ]
+ },
+ {
+  "date": "2026-10-15",
+  "title": "A hand search across makes: twelve rows added",
+  "lines": [
+   "With the scraper blocked on njuskalo, a browser search for every make on the brief's numbers: index.hr (92 automatics, every page), avto.net (310 automatics: all 15 hybrids and all 176 petrols read, turbo makes and badges set aside), and njuskalo's hybrid category (18 ads).",
+   "Added: IX-002 Auris Hybrid hatchback (Split), HF-001 and HF-002 Clio E-Tech hybrids found on njuskalo while the scraper could not see them, and from avto.net AV-004/005 Mazda CX-3, AV-006 Mazda 2, AV-007 Nissan Juke 1.6 CVT (EUR 9,800, inside budget), AV-008 Yaris Cross petrol, AV-009 Honda Jazz e:HEV, AV-010 C-HR Hybrid, AV-011/012 Captur E-Tech.",
+   "Left out: a Corolla Hybrid on avto.net marked reserved; a Suzuki Swift 1.2 mild-hybrid CVT priced ex Italy; a Fiat 500 Dualogic and a Peugeot 2008 ETG (automated manuals, the same open question as XX-030); Smart fortwos (dry dual clutch); Kona, Ioniq (dry DCT), Megane Conquest, Swace, Corolla TS, Mondeo (length)."
   ]
  },
  {
